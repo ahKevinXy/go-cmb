@@ -9,39 +9,40 @@ import (
 	"time"
 )
 
-// MainAccountInfo
-// @Description:  获取账户信息
-// @Author ahKevinXy
-// @Date 2023-02-13 13:16:21
-func MainAccountInfo(userId, asePrivateKey, userPrivateKey, accnbr, bbknbr string) (*models.AccountInfoResponse, error) {
-	reqData := new(models.AccountDetailsRequest)
+// PayMods
+//  @Description:  获取支付模式
+//  @param userId
+//  @param asePrivateKey
+//  @param userPrivateKey
+//  @param buscode
+//  @Author  ahKevinXy
+//  @Date2023-04-06 19:54:15
+func PayMods(userId, asePrivateKey, userPrivateKey, busCode string) (*models.QueryAccountTransCodeResponse, error) {
+
+	reqData := new(models.QueryAccountTransCodeRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
-	reqData.Request.Head.Funcode = constants.CmbAccountInfo
+	reqData.Request.Head.Funcode = constants.CmbAccountCanPayMod
 	reqData.Request.Head.Userid = userId
 	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
 	reqData.Signature.Sigdat = "__signature_sigdat__"
-	reqData.Request.Body.Ntqacinfx = append(reqData.Request.Body.Ntqacinfx, &models.Ntqacinfx{
-		Accnbr: accnbr,
-		Bbknbr: bbknbr,
-	})
+	reqData.Request.Body.Buscod = busCode
 
 	req, err := json.Marshal(reqData)
 	if err != nil {
 		return nil, err
 	}
 
-	//  todo 优化
-	res := help.CmbSignRequest(string(req), constants.CmbAccountInfo, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountCanPayMod, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
 
 	}
 
-	var resp models.AccountInfoResponse
+	var resp models.QueryAccountTransCodeResponse
 
 	if err := json.Unmarshal([]byte(res), &resp); err != nil {
 		return nil, err
 	}
-
+	//fmt.Println(res)
 	return &resp, nil
 }

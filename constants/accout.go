@@ -3,7 +3,7 @@ package constants
 // 账务查询
 const (
 	CmbAccountCanPayMod                   = "DCLISMOD"     //可经办业务模式查询 DCLISMOD
-	CmbAccountUserList                    = "DCLISACC"     // 查询可经办的账户列表 DCLISACC
+	CmbAccountUserList                    = "DCLISACC"     // 查询可经办的账户列表 DCLISACC todo
 	CmbAccountInfo                        = "NTQACINF"     //账户详细信息查询 NTQACINF
 	CmbAccountHistoryBalance              = "NTQABINF"     //查询账户历史余额 NTQABINF
 	CmbAccountQueryBankLinkNo             = "NTACCBBK"     //查询分行号信息

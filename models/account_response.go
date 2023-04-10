@@ -35,3 +35,58 @@ type AccountInfoResponse struct {
 		} `json:"head"`
 	} `json:"response"`
 }
+
+// MainAccountHistoryBalanceResponse
+//  @Description:  获取历史余额返回
+//  @Author  ahKevinXy
+//  @Date2023-04-10 13:46:46
+type MainAccountHistoryBalanceResponse struct {
+	Response struct {
+		Body struct {
+			Ntqabinfz []struct {
+				Accnbr string `json:"accnbr,omitempty"`
+				Balamt string `json:"balamt,omitempty"`
+				Bbknbr string `json:"bbknbr,omitempty"`
+				Rsv30Z string `json:"rsv30z,omitempty"`
+				Trsdat string `json:"trsdat,omitempty"`
+			} `json:"ntqabinfz,omitempty"`
+		} `json:"body,omitempty"`
+		Head struct {
+			Bizcode    string `json:"bizcode,omitempty"`
+			Funcode    string `json:"funcode,omitempty"`
+			Reqid      string `json:"reqid,omitempty"`
+			Resultcode string `json:"resultcode,omitempty"`
+			Resultmsg  string `json:"resultmsg,omitempty"`
+			Rspid      string `json:"rspid,omitempty"`
+			Userid     string `json:"userid,omitempty"`
+		} `json:"head,omitempty"`
+	} `json:"response,omitempty"`
+}
+
+// AccountBankInfoResponse
+//  @Description:   银联号返回
+//  @Author  ahKevinXy
+//  @Date2023-04-10 13:50:05
+type AccountBankInfoResponse struct {
+	Response struct {
+		Body struct {
+			Ntaccbbky []struct {
+				Fcttyp string `json:"fcttyp,omitempty"`
+				Fctval string `json:"fctval,omitempty"`
+			} `json:"ntaccbbky,omitempty"`
+			Ntaccbbkz []struct {
+				Bbknbr string `json:"bbknbr,omitempty"`
+				Fctval string `json:"fctval,omitempty"`
+			} `json:"ntaccbbkz,omitempty"`
+		} `json:"body,omitempty"`
+		Head struct {
+			Bizcode    string `json:"bizcode,omitempty"`
+			Funcode    string `json:"funcode,omitempty"`
+			Reqid      string `json:"reqid,omitempty"`
+			Resultcode string `json:"resultcode,omitempty"`
+			Resultmsg  string `json:"resultmsg,omitempty"`
+			Rspid      string `json:"rspid,omitempty"`
+			Userid     string `json:"userid,omitempty"`
+		} `json:"head,omitempty"`
+	} `json:"response,omitempty"`
+}

@@ -14,6 +14,16 @@ import (
 	"strings"
 )
 
+// CmbSignRequest
+//  @Description:  招商银行 统一请求
+//  @param reqStr 请求参数
+//  @param funCode 请求代码
+//  @param uid   用户ID
+//  @param userKey 用户秘钥
+//  @param AESKey 用户对称秘钥
+//  @return string 结果返回
+//  @Author  ahKevinXy
+//  @Date2023-04-10 13:41:37
 func CmbSignRequest(reqStr string, funCode, uid, userKey, AESKey string) string {
 
 	return SignatureDataSM(reqStr, funCode, uid, userKey, AESKey)
@@ -35,14 +45,14 @@ func SignatureDataSM(
 	reqStr = strings.ReplaceAll(reqStr, "\r", "")
 	reqStr = strings.ReplaceAll(reqStr, " ", "")
 
-	//用户RSA
+	//用户签名
 	reqSign, err := SignSM2(reqStr, userKey, uid)
 	if err != nil {
 		fmt.Println(err)
 		return ""
 	}
 
-	//平台方RSA
+	//平台方签名
 	reqSignSaas, err := SignSM2(reqSign, config.Settings.CmbPay.CmbSaasPrivateKey, uid)
 	if err != nil {
 		fmt.Println(err)

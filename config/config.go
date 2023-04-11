@@ -7,8 +7,8 @@ import (
 	"github.com/BurntSushi/toml"
 )
 
-// InitConfig 初始化配置
-func InitConfig(path string) {
+// InitConfigByFilePath 初始化配置
+func InitConfigByFilePath(path string) {
 	if len(path) == 0 {
 		panic(errors.New("configuration path is not provided"))
 	}
@@ -21,6 +21,10 @@ func InitConfig(path string) {
 	if _, err := toml.DecodeFile(configPath, Settings); err != nil {
 		panic(err)
 	}
+}
+
+func IniConfigByImport() {
+
 }
 
 // Settings 全局配置

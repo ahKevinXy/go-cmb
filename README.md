@@ -6,3 +6,10 @@
 招商银行银企直连服务
 
 ## 招商银行文档 [官网](https://openbiz.cmbchina.com/developer/UI/business/Index.aspx)
+
+
+## 使用
+
+```bash
+import "github.com/ahKevinXy/go-cmb"
+```

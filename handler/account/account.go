@@ -182,3 +182,7 @@ func GetMainAccountPayBusList(userId, asePrivateKey, userPrivateKey, buscode str
 	//fmt.Println(res)
 	return &resp, nil
 }
+
+func QueryBatchAccountBalance() {
+
+}

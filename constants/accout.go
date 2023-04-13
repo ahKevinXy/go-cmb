@@ -48,8 +48,8 @@ const (
 	CmbUnitManageAddAccount                 = "NTDMAADD"    //新增记账子单元 NTDMAADD
 	CmbUnitManageCloseAccount               = "NTDUMDLT"    //关闭记账子单元NTDUMDLT
 	CmbUnitManageAccountQuery               = "NTDUMQRY"    //记账子单元查询NTDUMQRY
-	CmbUnitManageAccountTransQueryByBusNo   = "NTDUMRED"    //按业务参考号查询结果NTDUMRED
-	CmbUnitManageAccountTransQueryDetail    = "NTDUMINF"    //详情查询NTDUMINF
+	CmbUnitManageAccountTransQueryByBusNo   = "NTDUMRED"    //按业务参考号查询结果NTDUMRED todo
+	CmbUnitManageAccountTransQueryDetail    = "NTDUMINF"    //详情查询NTDUMINF todo
 	CmbUnitManageAccountSetWhitePay         = "NTDUMRLA"    //设置记账子单元付方白名单信息NTDUMRLA
 	CmbUnitManageAccountDelWhitePay         = "NTDUMRLD"    //删除记账子单元付方白名单信息NTDUMRLD
 	CmbUnitManageAccountQueryWhitePay       = "NTDUMRLQ"    //查询记账子单元付方白名单信息NTDUMRLQ

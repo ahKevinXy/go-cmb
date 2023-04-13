@@ -129,7 +129,7 @@ func SingleStatementQuery(userId, asePrivateKey, userPrivateKey, eacnbr, quedat,
 func GetStatementPdf(userId, asePrivateKey, userPrivateKey, taskid, qwenab, category string) (*models.QueryAccountCallbackDownloadPdfResponse, error) {
 	reqData := new(models.QueryAccountCallbackDownloadPdfRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
-	reqData.Request.Head.Funcode = constant.TranBackQuerySync
+	reqData.Request.Head.Funcode = constants.CmbAccountQueryAsyncDownloadStatement
 	reqData.Request.Head.Userid = userId
 	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
 	reqData.Signature.Sigdat = "__signature_sigdat__"
@@ -142,7 +142,7 @@ func GetStatementPdf(userId, asePrivateKey, userPrivateKey, taskid, qwenab, cate
 	}
 
 	//  todo
-	res := helps.CmbSignRequest(string(req), constant.TranBackQuerySync, userId, userPrivateKey, asePrivateKey, category)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryAsyncDownloadStatement, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
 		return nil, nil

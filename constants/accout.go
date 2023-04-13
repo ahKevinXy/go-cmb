@@ -64,3 +64,14 @@ const (
 	CmbUnitManageAccountPayIn               = "NTDMITRX"    //记账子单元内部转账NTDMITRX
 
 )
+
+// 提醒
+const (
+	CmbNoticeAccountBalance      = "YQN01010" //账务变动通知
+	CmbNoticeSatement            = "YQF01010" //回单结果通知
+	CmbNoticePayResult           = "YQN02030" //支付结果通知
+	CmbNoticePayrollResult       = "YQN03010" // 代发结果通知
+	CmbNoticePayrollDetailResult = "YQF03010" // 代发明细对账单结果通知
+	CmbNoticeWithHoldResult      = "YQN03030" // 代扣结果通知
+	CmbNoticeSystemMaintenance   = "YQSYSTEM" // 维护通知
+)

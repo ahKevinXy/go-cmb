@@ -64,3 +64,25 @@ type AccountBankInfoData struct {
 type AccountBankInfoBody struct {
 	Fctval string `json:"fctval,omitempty"`
 }
+
+// QueryBatchMainAccountBalanceRequest   查询概要信息
+type QueryBatchMainAccountBalanceRequest struct {
+	Request   QueryBatchMainAccountBalanceData `json:"request"`
+	Signature Signature                        `json:"signature"`
+}
+
+type QueryBatchMainAccountBalanceData struct {
+	Body NtqadinfxBody `json:"body,omitempty"`
+	Head Head          `json:"head"`
+}
+
+type NtqadinfxBody struct {
+	Ntqadinfx []*Ntqadinfx `json:"ntqadinfx,omitempty"`
+}
+
+type Ntqadinfx struct {
+	Accnbr string `json:"accnbr"` //账号
+
+	Bbknbr string `json:"bbknbr"` //分行号
+
+}

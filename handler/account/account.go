@@ -183,6 +183,44 @@ func GetMainAccountPayBusList(userId, asePrivateKey, userPrivateKey, buscode str
 	return &resp, nil
 }
 
-func QueryBatchAccountBalance() {
+// QueryBatchAccountBalance
+//  @Description:  批量获取余额
+//  @param userId
+//  @param asePrivateKey
+//  @param userPrivateKey
+//  @param accnbr 账号
+//  @param buscode 分行号
+//  @return *models.QueryBatchAccountBalanceResponse
+//  @return error
+//  @Author  ahKevinXy
+//  @Date2023-04-13 13:58:14
+func QueryBatchAccountBalance(userId, asePrivateKey, userPrivateKey, accnbr, buscode string) (*models.QueryBatchAccountBalanceResponse, error) {
+	reqData := new(models.QueryBatchMainAccountBalanceRequest)
+	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
+	reqData.Request.Head.Funcode = constants.CmbAccountBatchQueryBalance
+	reqData.Request.Head.Userid = userId
+	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
+	reqData.Signature.Sigdat = "__signature_sigdat__"
 
+	reqData.Request.Body.Ntqadinfx = append(reqData.Request.Body.Ntqadinfx, &models.Ntqadinfx{
+		Accnbr: accnbr,
+		Bbknbr: buscode,
+	})
+	req, err := json.Marshal(reqData)
+	if err != nil {
+		return nil, err
+	}
+
+	//  todo
+	res := help.CmbSignRequest(string(req), constants.CmbAccountPayModQuery, userId, userPrivateKey, asePrivateKey)
+
+	if res == "" {
+
+	}
+	var resp models.QueryBatchAccountBalanceResponse
+
+	if err := json.Unmarshal([]byte(res), &resp); err != nil {
+		return nil, err
+	}
+	return &resp, nil
 }

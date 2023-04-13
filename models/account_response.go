@@ -90,3 +90,42 @@ type AccountBankInfoResponse struct {
 		} `json:"head,omitempty"`
 	} `json:"response,omitempty"`
 }
+
+// QueryBatchAccountBalanceResponse
+//  @Description: 批量获取余额接口
+//  @Author  ahKevinXy
+//  @Date2023-04-13 13:56:52
+type QueryBatchAccountBalanceResponse struct {
+	Response struct {
+		Body struct {
+			Ntqadinfz []struct {
+				Accblv string `json:"accblv,omitempty"`
+				Accitm string `json:"accitm,omitempty"`
+				Accnam string `json:"accnam,omitempty"`
+				Accnbr string `json:"accnbr,omitempty"`
+				Avlblv string `json:"avlblv,omitempty"`
+				Bbknbr string `json:"bbknbr,omitempty"`
+				Ccynbr string `json:"ccynbr,omitempty"`
+				Errcod string `json:"errcod,omitempty"`
+				Hldblv string `json:"hldblv,omitempty"`
+				Intcod string `json:"intcod,omitempty"`
+				Intrat string `json:"intrat,omitempty"`
+				Lmtovr string `json:"lmtovr,omitempty"`
+				Mutdat string `json:"mutdat,omitempty"`
+				Onlblv string `json:"onlblv,omitempty"`
+				Opndat string `json:"opndat,omitempty"`
+				Relnbr string `json:"relnbr,omitempty"`
+				Stscod string `json:"stscod,omitempty"`
+			} `json:"ntqadinfz,omitempty"`
+		} `json:"body,omitempty"`
+		Head struct {
+			Bizcode    string `json:"bizcode,omitempty"`
+			Funcode    string `json:"funcode,omitempty"`
+			Reqid      string `json:"reqid,omitempty"`
+			Resultcode string `json:"resultcode,omitempty"`
+			Resultmsg  string `json:"resultmsg,omitempty"`
+			Rspid      string `json:"rspid,omitempty"`
+			Userid     string `json:"userid,omitempty"`
+		} `json:"head,omitempty"`
+	} `json:"response,omitempty"`
+}

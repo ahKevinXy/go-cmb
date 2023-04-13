@@ -126,7 +126,7 @@ func SingleStatementQuery(userId, asePrivateKey, userPrivateKey, eacnbr, quedat,
 //  @return error
 //  @Author  ahKevinXy
 //  @Date2023-04-10 15:09:59
-func GetStatementPdf(userId, asePrivateKey, userPrivateKey, taskid, qwenab, category string) (*models.QueryAccountCallbackDownloadPdfResponse, error) {
+func GetStatementPdf(userId, asePrivateKey, userPrivateKey, taskid, qwenab string) (*models.QueryAccountCallbackDownloadPdfResponse, error) {
 	reqData := new(models.QueryAccountCallbackDownloadPdfRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbAccountQueryAsyncDownloadStatement
@@ -149,6 +149,65 @@ func GetStatementPdf(userId, asePrivateKey, userPrivateKey, taskid, qwenab, cate
 	}
 
 	var resp models.QueryAccountCallbackDownloadPdfResponse
+
+	if err := json.Unmarshal([]byte(res), &resp); err != nil {
+		print(err)
+	}
+
+	return &resp, nil
+}
+
+// BatchStatementQuery
+//  @Description:  获取回单列表
+//  @param userId
+//  @param asePrivateKey
+//  @param userPrivateKey
+//  @param bbknbr
+//  @param accnbr
+//  @param bgndat
+//  @param enddat
+//  @param lowamt
+//  @param hghamt
+//  @return *models.BatchStatementQueryResponse
+//  @return error
+//  @Author  ahKevinXy
+//  @Date2023-04-13 15:40:33
+func BatchStatementQuery(userId, asePrivateKey, userPrivateKey,
+	bbknbr,
+	accnbr,
+	bgndat,
+	enddat,
+	lowamt, hghamt string) (*models.BatchStatementQueryResponse, error) {
+	reqData := new(models.BatchStatementQueryRequest)
+	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
+	reqData.Request.Head.Funcode = constants.CmbAccountQueryTransDetail
+	reqData.Request.Head.Userid = userId
+	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
+	reqData.Signature.Sigdat = "__signature_sigdat__"
+	reqData.Request.Body.Sdktsinfx = append(reqData.Request.Body.Sdktsinfx, &models.Sdktsinfx{
+		Accnbr: accnbr,
+		Amtcdr: "",
+		Bbknbr: bbknbr,
+		Bgndat: bgndat,
+
+		Enddat: enddat,
+		Hghamt: hghamt,
+		Lowamt: lowamt,
+	})
+
+	req, err := json.Marshal(reqData)
+	if err != nil {
+		return nil, nil
+	}
+
+	//  todo
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransDetail, userId, userPrivateKey, asePrivateKey)
+
+	if res == "" {
+		return nil, nil
+	}
+
+	var resp models.BatchStatementQueryResponse
 
 	if err := json.Unmarshal([]byte(res), &resp); err != nil {
 		print(err)

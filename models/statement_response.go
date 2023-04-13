@@ -88,3 +88,27 @@ type QueryAccountCallbackDownloadPdfResponse struct {
 		} `json:"head,omitempty"`
 	} `json:"response,omitempty"`
 }
+
+type BatchStatementQueryResponse struct {
+	Response struct {
+		Body struct {
+			Dctrspdfz []struct {
+				Printid string `json:"printid,omitempty"`
+				Taskid  string `json:"taskid,omitempty"`
+			} `json:"dctrspdfz,omitempty"`
+			Ntqacctny []struct {
+				Ctndta string `json:"ctndta,omitempty"`
+				Pagnbr string `json:"pagnbr,omitempty"`
+			} `json:"ntqacctny,omitempty"`
+		} `json:"body,omitempty"`
+		Head struct {
+			Bizcode    string `json:"bizcode,omitempty"`
+			Funcode    string `json:"funcode,omitempty"`
+			Reqid      string `json:"reqid,omitempty"`
+			Resultcode string `json:"resultcode,omitempty"`
+			Resultmsg  string `json:"resultmsg,omitempty"`
+			Rspid      string `json:"rspid,omitempty"`
+			Userid     string `json:"userid,omitempty"`
+		} `json:"head,omitempty"`
+	} `json:"response,omitempty"`
+}

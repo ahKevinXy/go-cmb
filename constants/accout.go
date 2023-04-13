@@ -29,7 +29,7 @@ const (
 
 //代发代扣 old
 
-// 代发代扣
+// 代发
 const (
 	CmbPayroll              = "BB6BTHHL" //代发经办 BB6BTHHL
 	CmbPayrollQuery         = "BB6BPDQY" //批次与明细查询 BB6BPDQY

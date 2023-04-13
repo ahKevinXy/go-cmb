@@ -55,3 +55,18 @@ type QueryAccountCallbackDownloadPdfBody struct {
 	Taskid string `json:"taskid,omitempty"`
 	Qwenab string `json:"qwenab,omitempty"`
 }
+
+// BatchStatementQueryRequest   电子回单异步查询
+type BatchStatementQueryRequest struct {
+	Request   BatchStatementQueryData `json:"request"`
+	Signature Signature               `json:"signature"`
+}
+
+type BatchStatementQueryData struct {
+	Body BatchStatementQueryBody `json:"body,omitempty"`
+	Head Head                    `json:"head"`
+}
+type BatchStatementQueryBody struct {
+	Sdktsinfx []*Sdktsinfx `json:"sdktsinfx,omitempty"`
+	Ntqacctny []*Ntqacctny `json:"ntqacctny,omitempty"`
+}

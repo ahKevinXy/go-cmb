@@ -11,5 +11,5 @@
 ## 使用
 
 ```bash
-import "github.com/ahKevinXy/go-cmb"
+go get -u github.com/ahKevinXy/go-cmb
 ```

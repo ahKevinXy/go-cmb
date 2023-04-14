@@ -22,3 +22,26 @@ type Bb1payqby1 struct {
 	ReqNbr string `json:"reqNbr,omitempty"`
 	Rsv50z string `json:"rsv50z,omitempty"`
 }
+
+type QueryPayrollRefundRequest struct {
+	Request   QueryPayrollRefundData `json:"request"`
+	Signature Signature              `json:"signature"`
+}
+
+type QueryPayrollRefundData struct {
+	Body QueryPayrollRefundBody `json:"body,omitempty"`
+	Head Head                   `json:"head"`
+}
+type QueryPayrollRefundBody struct {
+	Bb6rfdqyy1 []*Bb6rfdqyy1 `json:"bb6rfdqyy1,omitempty"`
+}
+
+type Bb6rfdqyy1 struct {
+	AccNbr string `json:"accnbr,omitempty"`
+	Trstyp string `json:"trstyp,omitempty"`
+	BgnDat string `json:"bgndat,omitempty"`
+	EndDat string `json:"enddat,omitempty"`
+	Reqnbr string `json:"reqnbr,omitempty"`
+	CtnKey string `json:"ctnKey,omitempty"`
+	Rsv50z string `json:"rsv50z,omitempty"`
+}

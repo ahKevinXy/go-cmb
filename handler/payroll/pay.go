@@ -22,7 +22,7 @@ import (
 func UnitPayrollPayment(userId, asePrivateKey, userPrivateKey string, payMod []*models.Bb6Busmod, totalInfo []*models.Bb6Aclakx1, payList []*models.Bb6Aclaky1) (*models.UnitPayrollPaymentResponse, error) {
 	reqData := new(models.UnitPayrollPaymentRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
-	reqData.Request.Head.Funcode = constants.CmbUnitManageAccountQuery
+	reqData.Request.Head.Funcode = constants.CmbPayroll
 	reqData.Request.Head.Userid = userId
 	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
 	reqData.Signature.Sigdat = "__signature_sigdat__"
@@ -35,7 +35,7 @@ func UnitPayrollPayment(userId, asePrivateKey, userPrivateKey string, payMod []*
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountQuery, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayroll, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
 		return nil, err
@@ -46,6 +46,6 @@ func UnitPayrollPayment(userId, asePrivateKey, userPrivateKey string, payMod []*
 	if err := json.Unmarshal([]byte(res), &resp); err != nil {
 		return nil, err
 	}
-	//fmt.Println(res)
+
 	return &resp, err
 }

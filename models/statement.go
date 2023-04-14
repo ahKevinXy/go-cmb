@@ -70,3 +70,42 @@ type BatchStatementQueryBody struct {
 	Sdktsinfx []*Sdktsinfx `json:"sdktsinfx,omitempty"`
 	Ntqacctny []*Ntqacctny `json:"ntqacctny,omitempty"`
 }
+
+// QueryPayrollStatementRequest   代发对账单请求
+type QueryPayrollStatementRequest struct {
+	Request   QueryPayrollStatementData `json:"request"`
+	Signature Signature                 `json:"signature"`
+}
+
+type QueryPayrollStatementData struct {
+	Body QueryPayrollStatementBody `json:"body,omitempty"`
+	Head Head                      `json:"head"`
+}
+type QueryPayrollStatementBody struct {
+	Payeac string `json:"payeac,omitempty"`
+	Begdat string `json:"begdat,omitempty"`
+	Enddat string `json:"enddat,omitempty"`
+	Buscod string `json:"buscod,omitempty"`
+	Busmod string `json:"busmod,omitempty"`
+	Eacnam string `json:"eacnam,omitempty"`
+	Ptyref string `json:"ptyref,omitempty"`
+	Trxsrl string `json:"trxsrl,omitempty"`
+	Minamt string `json:"minamt,omitempty"`
+	Maxamt string `json:"maxamt,omitempty"`
+	Prtmod string `json:"prtmod,omitempty"`
+	Begidx string `json:"begidx,omitempty"`
+	Pagsiz string `json:"pagsiz,omitempty"`
+}
+
+type QueryPayrollStatementDownloadUrlRequest struct {
+	Request   QueryPayrollStatementDownloadUrlData `json:"request"`
+	Signature Signature                            `json:"signature"`
+}
+
+type QueryPayrollStatementDownloadUrlData struct {
+	Body QueryPayrollStatementDownloadUrlBody `json:"body,omitempty"`
+	Head Head                                 `json:"head"`
+}
+type QueryPayrollStatementDownloadUrlBody struct {
+	Taskid string `json:"taskid,omitempty"`
+}

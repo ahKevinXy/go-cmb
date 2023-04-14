@@ -28,19 +28,24 @@ const (
 )
 
 //代发代扣 old
+const (
+	CmbPayrollOld = ""
+)
 
 // 代发
 const (
-	CmbPayroll               = "BB6BTHHL" //代发经办 BB6BTHHL
-	CmbPayrollQuery          = "BB6BPDQY" //批次与明细查询 BB6BPDQY
-	CmbPayrollQueryAll       = "BB6INTQY" //代发代扣综合查询 BB6INTQY
-	CmbPayrollQueryBatchList = "BB6BTHQY" //代发批次查询 BB6BTHQY
-	CmbPayrollQueryDetail    = "BB6DTLQY" //代发明细查询 BB6DTLQY
-	CmbPayrollRefund         = "BB6RFDQY" //代发退票查询 BB6RFDQY
-	CmbPayrollQueryType      = "BB6AGTQY" //代发类型查询 BB6AGTQY
-	CmbWithholde             = "BB6ACLAK" //代扣经办 BB6ACLAK
-	CmbWithholdeQuery        = "BB6CDCQY" //代扣批次查询 BB6CDCQY
-	CmbWithholdeQueryDetail  = "BB6ACLIF" //代扣明细查询 BB6ACLIF
+	CmbPayroll                     = "BB6BTHHL" //代发经办 BB6BTHHL
+	CmbPayrollQuery                = "BB6BPDQY" //批次与明细查询 BB6BPDQY
+	CmbPayrollQueryAll             = "BB6INTQY" //代发代扣综合查询 BB6INTQY
+	CmbPayrollQueryBatchList       = "BB6BTHQY" //代发批次查询 BB6BTHQY
+	CmbPayrollQueryDetail          = "BB6DTLQY" //代发明细查询 BB6DTLQY
+	CmbPayrollRefund               = "BB6RFDQY" //代发退票查询 BB6RFDQY
+	CmbPayrollQueryType            = "BB6AGTQY" //代发类型查询 BB6AGTQY
+	CmbWithholde                   = "BB6ACLAK" //代扣经办 BB6ACLAK
+	CmbWithholdeQuery              = "BB6CDCQY" //代扣批次查询 BB6CDCQY
+	CmbWithholdeQueryDetail        = "BB6ACLIF" //代扣明细查询 BB6ACLIF
+	CmbPayrollStatement            = "DCAGPPDF" //代扣明细查询 BB6ACLIF
+	CmbPayrollStatementDownloadUrl = "DCTASKID" //代扣明细查询 BB6ACLIF
 )
 
 // 管家 管理

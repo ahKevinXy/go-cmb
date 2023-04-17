@@ -13,3 +13,16 @@
 ```bash
 go get -u github.com/ahKevinXy/go-cmb
 ```
+
+## 文档
+
+
+
+### 账务管理
+
+
+
+### 交易管家
+
+
+### 代发代扣

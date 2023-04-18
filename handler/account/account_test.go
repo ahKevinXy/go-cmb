@@ -6,6 +6,9 @@ import (
 	"testing"
 )
 
+func init() {
+	// 初始化配置文件
+}
 func TestGetBankLinkNo(t *testing.T) {
 	type args struct {
 		userId         string

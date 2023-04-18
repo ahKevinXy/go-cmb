@@ -29,7 +29,16 @@ const (
 
 //代发代扣 old
 const (
-	CmbPayrollOld = ""
+	CmbPayrollOld                        = ""
+	CmbPayrollOldTransCode               = "NTAGTLS2" //获取交易代码
+	CmbPayrollOldSupPay                  = "NTAGCAPI" //超网代发其他
+	CmbPayrollOldQueryTrans              = "NTAGCINN" //获取交易概要
+	CmbPayrollOldQueryTransDetail        = "NTAGDINF" //查询交易明细信息
+	CmbPayrollOldQueryTransResultByBusNo = "NTAGCINY" //代发结果查询-按业务参考号
+	CmbPayrollOldQueryTransRefund        = "NTAGDRFD" //代发退票明细查询
+	CmbPayrollOldQueryTransStatement     = "DCAGPPDF" //代发明细对账单查询请求
+	CmbPayrollOldTransStatementDownload  = "DCTASKID" //代发明细对账单处理结果查询请求
+
 )
 
 // 代发

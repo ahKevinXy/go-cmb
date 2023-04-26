@@ -38,8 +38,6 @@ func SignSm2ByCmd(signContent, privateKey, userId string) (string, error) {
 	signContent = strings.ReplaceAll(signContent, `"`, `\"`)
 
 	command := config.Settings.CmbPay.CmbJavaBin + "  -jar " + config.Settings.CmbPay.Sm2Jar + " \"" + signContent + "\" " + userId + " " + privateKey
-
-	//fmt.Println("请求加密信息-----------", command)
 	cmd := exec.Command("/bin/sh", "-c", command)
 	buf, err := cmd.Output()
 	if err != nil {
@@ -48,25 +46,22 @@ func SignSm2ByCmd(signContent, privateKey, userId string) (string, error) {
 	data := strings.ReplaceAll(string(buf), "\n", "")
 	data = strings.ReplaceAll(data, " ", "")
 
-	//fmt.Println("------------加密数据", data)
 	return data, nil
 }
 
 func SignSm2ByRequest(signContent, privateKey, userId string) (string, error) {
 	mp := make(map[string]interface{})
-	//signContent = strings.ReplaceAll(signContent, `"`, `\"`)
-	//signContent = strings.ReplaceAll(signContent, " ", "")
+
 	mp["sign_content"] = signContent
 	mp["private_key"] = privateKey
 	mp["user_id"] = userId
-	//fmt.Println("加密数据::::----", mp)  config.Settings.CmbPay
-	//r, code, _ := MakeHttpRequest("POST", "http://localhost:8080/api/sign", mp, nil)
+
 	r, code, _ := MakeHttpRequest("POST", config.Settings.CmbPay.CmbSignUrl, mp, nil)
 
 	if code != 200 {
 		return "", errors.New("sign error")
 	}
-	//fmt.Println(r, "")
+
 	return r, nil
 }
 

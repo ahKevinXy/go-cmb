@@ -20,9 +20,16 @@ const (
 )
 
 // MakeHttpRequest
-// @Description: HTTP请求
-// @Author ahKevinXy
-// @Date 2022-11-08 16:49:40
+//  @Description:  HTTP请求
+//  @param method
+//  @param url 请求地址
+//  @param entity 参数
+//  @param jar
+//  @return string
+//  @return int
+//  @return error
+//  @Author  ahKevinXy
+//  @Date  2023-04-26 20:21:17
 func MakeHttpRequest(method, url string, entity map[string]interface{}, jar *cookiejar.Jar) (string, int, error) {
 	var body io.Reader
 	var err error
@@ -66,8 +73,6 @@ func MakeHttpRequest(method, url string, entity map[string]interface{}, jar *coo
 	}
 	req.Header.Add("Connection", "close")
 	req.Header.Set("User-Agent", "Mozilla/5.0 (X11; Linux i686; U;) Gecko/20070322 Kazehakase/0.4.5")
-
-	//fmt.Printf("================Request: %+v\n", *req)
 	client := http.DefaultClient
 	if jar != nil {
 		client = &http.Client{
@@ -77,18 +82,16 @@ func MakeHttpRequest(method, url string, entity map[string]interface{}, jar *coo
 
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println("faild to do the request with error ", err)
+
 		return "", 0, err
 	}
 	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusOK && res.StatusCode != http.StatusCreated && res.StatusCode != http.StatusNoContent {
-		fmt.Println("code is not 200 ", res.StatusCode, res)
 		return "", 0, errors.New("http request failed to call")
 	}
 	resBody, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println("could not read the response body")
 		return "", 0, errors.New("the response could not be read")
 	}
 

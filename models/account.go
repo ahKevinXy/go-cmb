@@ -86,3 +86,19 @@ type Ntqadinfx struct {
 	Bbknbr string `json:"bbknbr"` //分行号
 
 }
+
+// MainAccountUsersRequest    获取账户列表
+type MainAccountUsersRequest struct {
+	Request   MainAccountUsersData `json:"request"`
+	Signature Signature            `json:"signature"`
+}
+
+type MainAccountUsersData struct {
+	Body MainAccountUsersBody `json:"body,omitempty"`
+	Head Head                 `json:"head"`
+}
+
+type MainAccountUsersBody struct {
+	Buscode string `json:"buscode,omitempty"`
+	Busmod  string `json:"busmod,omitempty"`
+}

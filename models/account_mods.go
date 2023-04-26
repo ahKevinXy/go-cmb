@@ -12,5 +12,5 @@ type QueryAccountTransCodeData struct {
 }
 
 type QueryAccountTransCodeBody struct {
-	Buscod string `json:"buscod,omitempty"`
+	Buscod string `json:"buscod,omitempty"` // 模式
 }

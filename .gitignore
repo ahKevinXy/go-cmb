@@ -1,6 +1,7 @@
 
 logs/
 .idea/
+.ps.sh
 
 configs/cmb_prod.conf
 configs/cmb_dev.conf

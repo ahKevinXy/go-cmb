@@ -3,4 +3,5 @@ logs/
 .idea/
 
 configs/cmb_prod.conf
+configs/cmb_dev.conf
 ps.sh

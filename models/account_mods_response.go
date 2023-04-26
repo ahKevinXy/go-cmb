@@ -1,5 +1,9 @@
 package models
 
+// QueryAccountTransCodeResponse
+//  @Description:   交易代码
+//  @Author  ahKevinXy
+//  @Date  2023-04-26 20:24:34
 type QueryAccountTransCodeResponse struct {
 	Response struct {
 		Body struct {

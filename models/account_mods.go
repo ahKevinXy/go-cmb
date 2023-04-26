@@ -1,6 +1,6 @@
 package models
 
-// QueryAccountTransCodeRequest   超网代发其他
+// QueryAccountTransCodeRequest   获取交易代码
 type QueryAccountTransCodeRequest struct {
 	Request   QueryAccountTransCodeData `json:"request"`
 	Signature Signature                 `json:"signature"`

@@ -59,8 +59,9 @@ func SignSm2ByRequest(signContent, privateKey, userId string) (string, error) {
 	mp["sign_content"] = signContent
 	mp["private_key"] = privateKey
 	mp["user_id"] = userId
-	//fmt.Println("加密数据::::----", mp)
-	r, code, _ := MakeHttpRequest("POST", "http://localhost:8080/api/sign", mp, nil)
+	//fmt.Println("加密数据::::----", mp)  config.Settings.CmbPay
+	//r, code, _ := MakeHttpRequest("POST", "http://localhost:8080/api/sign", mp, nil)
+	r, code, _ := MakeHttpRequest("POST", config.Settings.CmbPay.CmbSignUrl, mp, nil)
 
 	if code != 200 {
 		return "", errors.New("sign error")

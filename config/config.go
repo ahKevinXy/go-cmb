@@ -58,4 +58,5 @@ type CmbPay struct {
 	CmbPayUpper        string `toml:"cmb_pay_upper"`                //上限
 	RefundTicket       int    `toml:"refund_ticket_query_interval"` //退票周期
 	Sm2Jar             string `toml:"sm2_jar"`                      // sm2 Java sdk
+	CmbSignUrl         string `toml:"cmb_sign_url"`                 // 签名地址
 }

@@ -1,6 +1,11 @@
 # go-cmb
 
 
+
+版本变更日志参见 [`CHANGELOG.md`](CHANGELOG.md)
+
+[![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg "logo")](https://jb.gg/OpenSourceSupport)
+
 ## 介绍
 
 招商银行银企直连服务

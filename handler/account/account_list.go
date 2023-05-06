@@ -27,7 +27,7 @@ func MainAccountUsers(userId, asePrivateKey, userPrivateKey, buscod, busmod stri
 		return nil, err
 	}
 
-	//  todo 优化
+	//  todo 优化 返回参数
 	res := help.CmbSignRequest(string(req), constants.CmbAccountUserList, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {

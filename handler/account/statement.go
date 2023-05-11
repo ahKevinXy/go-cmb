@@ -2,6 +2,7 @@ package account
 
 import (
 	"encoding/json"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
@@ -55,7 +56,7 @@ func AsyncStatement(userId, asePrivateKey, userPrivateKey,
 	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryAsyncStatement, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, nil
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.QueryAccountCallbackAsyncResponse
@@ -102,7 +103,7 @@ func SingleStatementQuery(userId, asePrivateKey, userPrivateKey, eacnbr, quedat,
 	res := help.CmbSignRequest(string(req), constants.CmbAccountQuerySingleStatement, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, nil
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.SingleCallBackPdfResponse
@@ -145,7 +146,7 @@ func GetStatementPdf(userId, asePrivateKey, userPrivateKey, taskid, qwenab strin
 	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryAsyncDownloadStatement, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, nil
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.QueryAccountCallbackDownloadPdfResponse
@@ -204,7 +205,7 @@ func BatchStatementQuery(userId, asePrivateKey, userPrivateKey,
 	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransDetail, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, nil
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.BatchStatementQueryResponse

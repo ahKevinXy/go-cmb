@@ -2,6 +2,7 @@ package account
 
 import (
 	"encoding/json"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
@@ -85,11 +86,10 @@ func MainAccountPaySingle(userId,
 		return nil, err
 	}
 
-	//  todo
 	res := help.CmbSignRequest(string(req), constants.CmbAccountSinglePay, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.MainAccountSinglePayResponse
@@ -155,7 +155,7 @@ func MainAccountBatchPay(userId,
 	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayQuery, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.MainAccountSinglePayResponse

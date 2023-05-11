@@ -2,6 +2,7 @@ package payroll
 
 import (
 	"encoding/json"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
@@ -38,7 +39,7 @@ func UnitPayrollPayment(userId, asePrivateKey, userPrivateKey string, payMod []*
 	res := help.CmbSignRequest(string(req), constants.CmbPayroll, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.UnitPayrollPaymentResponse

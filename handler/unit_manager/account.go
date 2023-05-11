@@ -2,6 +2,7 @@ package unit_manager
 
 import (
 	"encoding/json"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
@@ -49,7 +50,7 @@ func AddUnitAccount(
 	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAddAccount, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.AddUnitAccountResponse
@@ -103,7 +104,7 @@ func CloseUnitAccount(
 	res := help.CmbSignRequest(string(req), constants.CmbUnitManageCloseAccount, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.CloseUnitAccountResponse
@@ -147,7 +148,7 @@ func QueryUnitAccountInfo(userId, asePrivateKey, userPrivateKey, accnbr, dmanbr 
 	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountQuery, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.AccountUnitInfoResponse

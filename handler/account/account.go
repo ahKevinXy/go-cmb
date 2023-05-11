@@ -3,6 +3,7 @@ package account
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
@@ -36,6 +37,7 @@ func MainAccountInfo(userId, asePrivateKey, userPrivateKey, accnbr, bbknbr strin
 
 	if res == "" {
 
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.AccountInfoResponse
@@ -67,7 +69,7 @@ func MainAccountHistoryBalance(
 	bbknbr,
 	bgndat,
 	enddat string,
-) string {
+) (*models.MainAccountHistoryBalanceResponse, error) {
 	reqData := new(models.MainAccountHistoryBalanceRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbAccountHistoryBalance
@@ -83,23 +85,23 @@ func MainAccountHistoryBalance(
 
 	req, err := json.Marshal(reqData)
 	if err != nil {
-		return ""
+		return nil, err
 	}
 
 	//  todo
 	res := help.CmbSignRequest(string(req), constants.CmbAccountHistoryBalance, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.MainAccountHistoryBalanceResponse
 
 	if err := json.Unmarshal([]byte(res), &resp); err != nil {
-		print(err)
+		return nil, err
 	}
 	fmt.Println(res)
-	return ""
+	return &resp, nil
 }
 
 // GetBankLinkNo
@@ -130,7 +132,7 @@ func GetBankLinkNo(userId, asePrivateKey, userPrivateKey, accnbr string) (*model
 	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryBankLinkNo, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.AccountBankInfoResponse

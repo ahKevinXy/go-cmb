@@ -3,6 +3,7 @@ package unit_manager
 import (
 	"encoding/json"
 	"errors"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
@@ -44,7 +45,7 @@ func GetUnitAccountTransList(userId, asePrivateKey, userPrivateKey, accnbr, dman
 	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransDaily, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp *models.UnitAccountTransDailyResponse
@@ -95,7 +96,7 @@ func GetUnitAccountTransHistoryList(userId, asePrivateKey, userPrivateKey, accnb
 	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransHistory, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp *models.UnitAccountTransHistoryResponse

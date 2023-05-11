@@ -2,6 +2,7 @@ package account
 
 import (
 	"encoding/json"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
@@ -48,7 +49,7 @@ func GetMainAccountTransInfo(userId, asePrivateKey, userPrivateKey,
 	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransInfo, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.GetMainAccountTransInfoResponse
@@ -108,7 +109,7 @@ func QueryAccountTransInfo(userId, asePrivateKey, userPrivateKey,
 	res := help.CmbSignRequest(string(req), constants.CmbAccountGetTransInfo, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.QueryAccountTransInfoResponse

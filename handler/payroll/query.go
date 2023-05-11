@@ -2,6 +2,7 @@ package payroll
 
 import (
 	"encoding/json"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
@@ -47,7 +48,7 @@ func QueryBatchTransInfo(userId, asePrivateKey, userPrivateKey, buscode, yurref,
 	res := help.CmbSignRequest(string(req), constants.CmbPayrollQuery, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.QueryBatchTransInfoResponse
@@ -98,7 +99,7 @@ func QueryBatchTransList(userId, asePrivateKey, userPrivateKey, buscode, yurref,
 	res := help.CmbSignRequest(string(req), constants.CmbPayrollQueryBatchList, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.QueryBatchTransListResponse
@@ -145,7 +146,7 @@ func QueryPayrollTransDetail(userId, asePrivateKey, userPrivateKey, reqnbr, bthn
 	res := help.CmbSignRequest(string(req), constants.CmbPayrollQueryDetail, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.QueryPayrollTransDetailResponse

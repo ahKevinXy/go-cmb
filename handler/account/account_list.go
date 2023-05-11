@@ -32,6 +32,7 @@ func MainAccountUsers(userId, asePrivateKey, userPrivateKey, buscod, busmod stri
 
 	if res == "" {
 
+		return nil, err
 	}
 
 	var resp models.MainAccountUsersResponse

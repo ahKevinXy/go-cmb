@@ -2,6 +2,7 @@ package unit_manager
 
 import (
 	"encoding/json"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
@@ -54,7 +55,7 @@ func UnitAccountPayIn(userId,
 	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountPayIn, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
-		return nil, nil
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.UnitAccountPayInResponse

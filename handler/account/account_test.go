@@ -1,6 +1,7 @@
 package account
 
 import (
+	"github.com/ahKevinXy/go-cmb/config"
 	"github.com/ahKevinXy/go-cmb/models"
 	"reflect"
 	"testing"
@@ -8,6 +9,7 @@ import (
 
 func init() {
 	// 初始化配置文件
+	config.InitConfigByFilePath("../../configs/cmb_dev.conf")
 }
 func TestGetBankLinkNo(t *testing.T) {
 	type args struct {
@@ -23,6 +25,7 @@ func TestGetBankLinkNo(t *testing.T) {
 		wantErr bool
 	}{
 		// TODO: Add test cases.
+
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

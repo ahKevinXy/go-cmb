@@ -45,18 +45,8 @@ type CmbPay struct {
 	CmbSaasPrivateKey string `toml:"cmb_saas_private_key"` //私钥
 	CmbSigdatDefult   string `toml:"cmb_sigdat_defult"`    //默认签名
 
-	CmbBusCode string `toml:"cmb_bus_code"` //交易代码
-	CmbBusNAME string `toml:"cmb_bus_name"` //代发名称
-
 	CmbAccountUrl string `toml:"cmb_account_url"` //通知名称
-	CmbJavaBin    string `toml:"cmb_java_bin"`    //java 路径
-	CmbSign       string `toml:"cmb_sign"`        // 招商银行签名
 
-	ZipLocalPath       string `toml:"zip_local_path"`               //压缩路径
-	FileLocalPath      string `toml:"file_local_path"`              //文件路径
-	CmbPayIntervalTime string `toml:"cmb_pay_interval_time"`        //交易延时等待
-	CmbPayUpper        string `toml:"cmb_pay_upper"`                //上限
-	RefundTicket       int    `toml:"refund_ticket_query_interval"` //退票周期
-	Sm2Jar             string `toml:"sm2_jar"`                      // sm2 Java sdk
-	CmbSignUrl         string `toml:"cmb_sign_url"`                 // 签名地址
+	Sm2Jar     string `toml:"sm2_jar"`      // sm2 Java sdk
+	CmbSignUrl string `toml:"cmb_sign_url"` // 签名地址
 }

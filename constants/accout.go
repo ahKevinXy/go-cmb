@@ -69,8 +69,8 @@ const (
 	CmbUnitManageAccountQueryWhitePay       = "NTDUMRLQ"    //查询记账子单元付方白名单信息NTDUMRLQ
 	CmbUnitManageAccountSetCtl              = "NTDUMCTL"    //设置记账子单元入账控制NTDUMCTL
 	CmbUnitManageAccountUnSetCtl            = "NTDUMCLE"    //解除记账子单元入账控制NTDUMCLE
-	CmbUnitManageAccountTransDaily          = "NTDMTQRD"    //记账子单元当天交易查询NTDMTQRD
-	CmbUnitManageAccountTransHistory        = "NTDMTQRY"    //记账子单元历史交易查询NTDMTQRY
+	CmbUnitManageAccountTransDaily          = "NTDMTLST"    //记账子单元当天交易查询NTDMTQRD
+	CmbUnitManageAccountTransHistory        = "NTDMTHLS"    //记账子单元历史交易查询NTDMTQRY
 	CmbUnitManageAccountTransStatement      = "NTDMTQRYPDF" //记账子单元交易明细对账单获取NTDMTQRYPDF
 	CmbUnitManageAccountTransQueryStatement = "DCTASKID"    //记账子单元交易明细对账单处理结果查询请求DCTASKI
 	CmbUnitManageAccountPay                 = "NTOPRDMP"    //记账子单元付款经办NTOPRDMP

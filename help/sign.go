@@ -74,6 +74,7 @@ func SignatureDataSM(
 		fmt.Println(err)
 		return ""
 	}
+
 	u := url.Values{}
 
 	u.Set("ALG", "SM")
@@ -93,6 +94,7 @@ func SignatureDataSM(
 
 	respBody, _ := ioutil.ReadAll(resp.Body)
 
+	fmt.Println("请求返回内容:", string(respBody))
 	var dataStr string
 	if !strings.Contains(string(respBody), "ErrMsg") {
 		//dataByte, err := sm4.Sm4Cbc([]byte(AESKey), respBody, false)

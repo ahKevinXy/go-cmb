@@ -1,29 +1,35 @@
 package help
 
 import (
+	"bytes"
 	"crypto/cipher"
+	"crypto/rand"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"github.com/ahKevinXy/go-cmb/config"
-	"github.com/ahKevinXy/go-cmb/models"
-	"github.com/tjfoc/gmsm/sm4"
 	"io/ioutil"
+	"math/big"
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/ahKevinXy/go-cmb/config"
+	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/tjfoc/gmsm/sm2"
+	"github.com/tjfoc/gmsm/sm4"
 )
 
 // CmbSignRequest
-//  @Description:  招商银行 统一请求
-//  @param reqStr 请求参数
-//  @param funCode 请求代码
-//  @param uid   用户ID
-//  @param userKey 用户秘钥
-//  @param AESKey 用户对称秘钥
-//  @return string 结果返回
-//  @Author  ahKevinXy
-//  @Date2023-04-10 13:41:37
+//
+//	@Description:  招商银行 统一请求
+//	@param reqStr 请求参数
+//	@param funCode 请求代码
+//	@param uid   用户ID
+//	@param userKey 用户秘钥
+//	@param AESKey 用户对称秘钥
+//	@return string 结果返回
+//	@Author  ahKevinXy
+//	@Date2023-04-10 13:41:37
 func CmbSignRequest(reqStr string, funCode, uid, userKey, AESKey string) string {
 
 	return SignatureDataSM(reqStr, funCode, uid, userKey, AESKey)
@@ -46,17 +52,42 @@ func SignatureDataSM(
 	reqStr = strings.ReplaceAll(reqStr, " ", "")
 
 	//用户签名
-	reqSign, err := SignSM2(reqStr, userKey, uid)
+
+	key, _ := base64.StdEncoding.DecodeString(userKey)
+
+	priv, err := FormatPri([]byte(key))
+	if err != nil {
+		fmt.Println("decode private key fail")
+		return ""
+	}
+
+	sm2uid := uid + "0000000000000000"
+	reqSign, err := SM3WithSM2Sign(priv, reqStr, []byte(sm2uid[0:16]))
+
 	if err != nil {
 		fmt.Println(err)
 		return ""
 	}
 
 	//平台方签名
-	reqSignSaas, err := SignSM2(reqSign, config.Settings.CmbPay.CmbSaasPrivateKey, uid)
-	if err != nil {
-		fmt.Println(err)
-		return ""
+
+	var reqSignSaas = ""
+
+	if len(config.Settings.CmbPay.CmbSaasPrivateKey) > 0 {
+
+		saaskey, _ := base64.StdEncoding.DecodeString(config.Settings.CmbPay.CmbSaasPrivateKey)
+
+		saasPriv, err := FormatPri([]byte(saaskey))
+		if err != nil {
+			fmt.Println("decode saas private key fail")
+			return ""
+		}
+		reqSignSaas, err = SM3WithSM2Sign(saasPriv, reqSign, []byte(sm2uid[0:16]))
+		if err != nil {
+			fmt.Println(err)
+			return ""
+		}
+
 	}
 
 	signatureV1 := models.SignatureV1{Sigtim: reqV1.SignatureV1.Sigtim, Sigdat: reqSign, Paltsigdat: reqSignSaas}
@@ -135,4 +166,38 @@ func pkcs5UnPadding(src []byte) []byte {
 	length := len(src)
 	unpadding := int(src[length-1])
 	return src[:(length - unpadding)]
+}
+
+// SM3WithSM2Sign SM3WithSM2签名 Hex ToUpper
+func SM3WithSM2Sign(privateKey *sm2.PrivateKey, forSignStr string, uid []byte) (string, error) {
+
+	r, s, err := sm2.Sm2Sign(privateKey, []byte(forSignStr), uid, rand.Reader)
+	if err != nil {
+		return "", err
+	}
+
+	rByte := r.Bytes()
+	sByte := s.Bytes()
+	if len(rByte) < 32 {
+		rByte = append([]byte{0}, rByte...)
+	}
+	if len(sByte) < 32 {
+		sByte = append([]byte{0}, sByte...)
+	}
+	var buffer bytes.Buffer
+	buffer.Write(rByte)
+	buffer.Write(sByte)
+
+	return base64.StdEncoding.EncodeToString(buffer.Bytes()), nil
+
+}
+
+func FormatPri(priByte []byte) (*sm2.PrivateKey, error) {
+	c := sm2.P256Sm2()
+	k := new(big.Int).SetBytes(priByte)
+	priv := new(sm2.PrivateKey)
+	priv.PublicKey.Curve = c
+	priv.D = k
+	priv.PublicKey.X, priv.PublicKey.Y = c.ScalarBaseMult(k.Bytes())
+	return priv, nil
 }

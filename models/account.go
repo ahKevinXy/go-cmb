@@ -99,6 +99,6 @@ type MainAccountUsersData struct {
 }
 
 type MainAccountUsersBody struct {
-	Buscode string `json:"buscode,omitempty"`
-	Busmod  string `json:"busmod,omitempty"`
+	Buscode string `json:"buscod,omitempty"` //业务代码
+	Busmod  string `json:"busmod,omitempty"` //业务模式
 }

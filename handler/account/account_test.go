@@ -1,16 +1,13 @@
 package account
 
 import (
-	"github.com/ahKevinXy/go-cmb/config"
 	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/ahKevinXy/go-cmb/testdata"
 	"reflect"
 	"testing"
 )
 
-func init() {
-	// 初始化配置文件
-	config.InitConfigByFilePath("../../configs/cmb_dev.conf")
-}
+// 获取银联号 测试完成
 func TestGetBankLinkNo(t *testing.T) {
 	type args struct {
 		userId         string
@@ -24,8 +21,15 @@ func TestGetBankLinkNo(t *testing.T) {
 		want    *models.AccountBankInfoResponse
 		wantErr bool
 	}{
-		// TODO: Add test cases.
-
+		{
+			name: "获取测试模式",
+			args: args{
+				userId:         testdata.UserId,
+				asePrivateKey:  testdata.AseKey,
+				userPrivateKey: testdata.UserKey,
+				accnbr:         testdata.Account,
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -41,6 +45,7 @@ func TestGetBankLinkNo(t *testing.T) {
 	}
 }
 
+//todo
 func TestGetMainAccountPayBusList(t *testing.T) {
 	type args struct {
 		userId         string
@@ -70,6 +75,7 @@ func TestGetMainAccountPayBusList(t *testing.T) {
 	}
 }
 
+// 批量获取账户历史余额
 func TestMainAccountHistoryBalance(t *testing.T) {
 	type args struct {
 		userId         string
@@ -81,16 +87,34 @@ func TestMainAccountHistoryBalance(t *testing.T) {
 		enddat         string
 	}
 	tests := []struct {
-		name string
-		args args
-		want string
+		name    string
+		args    args
+		want    *models.MainAccountHistoryBalanceResponse
+		wantErr bool
 	}{
-		// TODO: Add test cases.
+
+		{
+			name: "获取测试模式",
+			args: args{
+				userId:         testdata.UserId,
+				asePrivateKey:  testdata.AseKey,
+				userPrivateKey: testdata.UserKey,
+				accnbr:         testdata.Account,
+				bbknbr:         "75",
+				bgndat:         "20230112",
+				enddat:         "20230112",
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := MainAccountHistoryBalance(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accnbr, tt.args.bbknbr, tt.args.bgndat, tt.args.enddat); got != tt.want {
-				t.Errorf("MainAccountHistoryBalance() = %v, want %v", got, tt.want)
+			got, err := MainAccountHistoryBalance(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accnbr, tt.args.bbknbr, tt.args.bgndat, tt.args.enddat)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("MainAccountHistoryBalance() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("MainAccountHistoryBalance() got = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -110,7 +134,17 @@ func TestMainAccountInfo(t *testing.T) {
 		want    *models.AccountInfoResponse
 		wantErr bool
 	}{
-		// TODO: Add test cases.
+
+		{
+			name: "获取测试模式",
+			args: args{
+				userId:         testdata.UserId,
+				asePrivateKey:  testdata.AseKey,
+				userPrivateKey: testdata.UserKey,
+				accnbr:         testdata.Account,
+				bbknbr:         "75",
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -126,13 +160,14 @@ func TestMainAccountInfo(t *testing.T) {
 	}
 }
 
+// 批量获取
 func TestQueryBatchAccountBalance(t *testing.T) {
 	type args struct {
 		userId         string
 		asePrivateKey  string
 		userPrivateKey string
 		accnbr         string
-		buscode        string
+		bbknbr         string
 	}
 	tests := []struct {
 		name    string
@@ -140,11 +175,20 @@ func TestQueryBatchAccountBalance(t *testing.T) {
 		want    *models.QueryBatchAccountBalanceResponse
 		wantErr bool
 	}{
-		// TODO: Add test cases.
+		{
+			name: "获取测试模式",
+			args: args{
+				userId:         testdata.UserId,
+				asePrivateKey:  testdata.AseKey,
+				userPrivateKey: testdata.UserKey,
+				accnbr:         testdata.Account,
+				bbknbr:         "75",
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryBatchAccountBalance(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accnbr, tt.args.buscode)
+			got, err := QueryBatchAccountBalance(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accnbr, tt.args.bbknbr)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryBatchAccountBalance() error = %v, wantErr %v", err, tt.wantErr)
 				return

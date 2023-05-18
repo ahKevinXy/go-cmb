@@ -14,13 +14,13 @@ type QueryAccountPaymentRefundBody struct {
 }
 
 type Bb1payqby1 struct {
-	BbkNbr string `json:"bbkNbr,omitempty"`
-	AccNbr string `json:"accNbr,omitempty"`
-	BgnDat string `json:"bgnDat,omitempty"`
-	CtnKey string `json:"ctnKey,omitempty"`
-	EndDat string `json:"endDat,omitempty"`
-	ReqNbr string `json:"reqNbr,omitempty"`
-	Rsv50z string `json:"rsv50z,omitempty"`
+	BbkNbr string `json:"bbkNbr,omitempty"` // 分行号
+	AccNbr string `json:"accNbr,omitempty"` // 账号
+	BgnDat string `json:"bgnDat,omitempty"` // 开始时间
+	CtnKey string `json:"ctnKey,omitempty"` // 续传标志
+	EndDat string `json:"endDat,omitempty"` //结束时间
+	ReqNbr string `json:"reqNbr,omitempty"` // 流程实例号
+	Rsv50z string `json:"rsv50z,omitempty"` // 保留字
 }
 
 type QueryPayrollRefundRequest struct {

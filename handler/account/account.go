@@ -145,7 +145,7 @@ func GetBankLinkNo(userId, asePrivateKey, userPrivateKey, accnbr string) (*model
 }
 
 // GetMainAccountPayBusList
-//  @Description:   获取招商以后支付模式
+//  @Description:   获取招商以后支付模式 todo
 //  @param userId
 //  @param asePrivateKey
 //  @param userPrivateKey
@@ -196,7 +196,7 @@ func GetMainAccountPayBusList(userId, asePrivateKey, userPrivateKey, buscode str
 //  @return error
 //  @Author  ahKevinXy
 //  @Date2023-04-13 13:58:14
-func QueryBatchAccountBalance(userId, asePrivateKey, userPrivateKey, accnbr, buscode string) (*models.QueryBatchAccountBalanceResponse, error) {
+func QueryBatchAccountBalance(userId, asePrivateKey, userPrivateKey, accnbr, bbknbr string) (*models.QueryBatchAccountBalanceResponse, error) {
 	reqData := new(models.QueryBatchMainAccountBalanceRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbAccountBatchQueryBalance
@@ -206,7 +206,7 @@ func QueryBatchAccountBalance(userId, asePrivateKey, userPrivateKey, accnbr, bus
 
 	reqData.Request.Body.Ntqadinfx = append(reqData.Request.Body.Ntqadinfx, &models.Ntqadinfx{
 		Accnbr: accnbr,
-		Bbknbr: buscode,
+		Bbknbr: bbknbr,
 	})
 	req, err := json.Marshal(reqData)
 	if err != nil {
@@ -214,7 +214,7 @@ func QueryBatchAccountBalance(userId, asePrivateKey, userPrivateKey, accnbr, bus
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountPayModQuery, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchQueryBalance, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
 

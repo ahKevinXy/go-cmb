@@ -11,14 +11,14 @@ type QueryAccountCallbackAsyncData struct {
 	Head Head                          `json:"head"`
 }
 type QueryAccountCallbackAsyncBody struct {
-	Primod string `json:"primod,omitempty"`
-	Eacnbr string `json:"eacnbr,omitempty"`
-	Begdat string `json:"begdat,omitempty"`
-	Enddat string `json:"enddat,omitempty"`
-	Rrcflg string `json:"rrcflg,omitempty"`
-	Begamt string `json:"begamt,omitempty"`
-	Endamt string `json:"endamt,omitempty"`
-	Rrccod string `json:"rrccod,omitempty"`
+	Primod string `json:"primod,omitempty"` // 文件格式 默认 pdf
+	Eacnbr string `json:"eacnbr,omitempty"` // 账号
+	Begdat string `json:"begdat,omitempty"` // 开始时间
+	Enddat string `json:"enddat,omitempty"` // 结束时间
+	Rrcflg string `json:"rrcflg,omitempty"` // 打印标志
+	Begamt string `json:"begamt,omitempty"` // 最小金额
+	Endamt string `json:"endamt,omitempty"` // 最大金额
+	Rrccod string `json:"rrccod,omitempty"` // 回单代码
 }
 
 // SingleCallBackPdfRequest

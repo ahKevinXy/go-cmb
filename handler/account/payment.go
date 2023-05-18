@@ -120,8 +120,8 @@ func MainAccountPaySingle(userId,
 //  @Date2023-04-10 13:57:21
 func MainAccountBatchPay(userId,
 	asePrivateKey, userPrivateKey,
-	busCode,
-	busMode,
+	busCode, //业务代码
+	busMode, // 支付模式
 	dtlNbr,
 	ctnFlg,
 	ctnSts,

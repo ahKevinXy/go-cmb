@@ -16,9 +16,9 @@ type QueryAccountCallbackAsyncResponse struct {
 		} `json:"head,omitempty"`
 		Body struct {
 			Asycalhdz1 struct {
-				Rtncod string `json:"rtncod,omitempty"`
-				Rtnmsg string `json:"rtnmsg,omitempty"`
-				Rtndat string `json:"rtndat,omitempty"`
+				Rtncod string `json:"rtncod,omitempty"` // 返回码
+				Rtnmsg string `json:"rtnmsg,omitempty"` // 返回信息
+				Rtndat string `json:"rtndat,omitempty"` // 打印任务编号
 			} `json:"asycalhdz1,omitempty"`
 			Ctnkeyz2 struct {
 				Begamt string `json:"begamt,omitempty"`

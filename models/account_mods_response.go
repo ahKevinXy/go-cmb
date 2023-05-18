@@ -8,8 +8,8 @@ type QueryAccountTransCodeResponse struct {
 	Response struct {
 		Body struct {
 			Ntqmdlstz []struct {
-				Busmod string `json:"busmod"`
-				Modals string `json:"modals"`
+				Busmod string `json:"busmod"` // 业务模式编号
+				Modals string `json:"modals"` // 业务模式名称
 			} `json:"ntqmdlstz"`
 		} `json:"body"`
 		Head struct {
@@ -22,4 +22,18 @@ type QueryAccountTransCodeResponse struct {
 			Userid     string `json:"userid"`
 		} `json:"head"`
 	} `json:"response"`
+}
+
+// HeadResponse
+//  @Description:   Head 通用回复
+//  @Author  ahKevinXy
+//  @Date  2023-05-18 09:32:28
+type HeadResponse struct {
+	Bizcode    string `json:"bizcode"`
+	Funcode    string `json:"funcode"`
+	Reqid      string `json:"reqid"`
+	Resultcode string `json:"resultcode"`
+	Resultmsg  string `json:"resultmsg"`
+	Rspid      string `json:"rspid"`
+	Userid     string `json:"userid"`
 }

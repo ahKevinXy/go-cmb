@@ -87,7 +87,6 @@ func SignatureDataSM(
 			fmt.Println(err)
 			return ""
 		}
-		fmt.Println(reqSignSaas)
 
 	}
 	signatureV1 := models.SignatureV1{Sigtim: reqV1.SignatureV1.Sigtim, Sigdat: reqSign, Paltsigdat: reqSignSaas}

@@ -8,3 +8,5 @@ configs/cmb_dev.conf
 ps.sh
 
 sdk/
+
+testdata/

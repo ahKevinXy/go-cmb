@@ -10,3 +10,9 @@ ps.sh
 sdk/
 
 testdata/
+
+tmp/
+
+log/
+
+temp/

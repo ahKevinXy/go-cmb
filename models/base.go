@@ -7,7 +7,7 @@ type ReqV1 struct {
 type SignatureV1 struct {
 	Sigdat     string `json:"sigdat"` //
 	Sigtim     string `json:"sigtim"`
-	Paltsigdat string `json:"paltsigda,omitempty"`
+	Paltsigdat string `json:"paltsigdat,omitempty"` //
 }
 type RequestV1 struct {
 	Body interface{} `json:"body"`

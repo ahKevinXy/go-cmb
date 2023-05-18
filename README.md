@@ -18,16 +18,6 @@
 ```bash
 go get -u github.com/ahKevinXy/go-cmb
 
-#  下载 sm2 
-
-git  clone https://github.com/ahKevinXy/sm2.git 
-
-cd sm2 
-
-./mvnw package
-
-java -jar target/sm2.jar --server.port=8081 # 指定端口号 配置 设置好对应签名地址
-
 ```
 
 ## 目录说明

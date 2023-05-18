@@ -52,7 +52,6 @@ func SignatureDataSM(
 	reqStr = strings.ReplaceAll(reqStr, " ", "")
 
 	//用户签名
-
 	key, _ := base64.StdEncoding.DecodeString(userKey)
 
 	priv, err := FormatPri([]byte(key))
@@ -70,7 +69,6 @@ func SignatureDataSM(
 	}
 
 	//平台方签名
-
 	var reqSignSaas = ""
 
 	if len(config.Settings.CmbPay.CmbSaasPrivateKey) > 0 {
@@ -127,13 +125,6 @@ func SignatureDataSM(
 	fmt.Println("请求返回内容:", string(respBody))
 	var dataStr string
 	if !strings.Contains(string(respBody), "ErrMsg") {
-		//dataByte, err := sm4.Sm4Cbc([]byte(AESKey), respBody, false)
-		//if err != nil {
-		//	fmt.Println(err)
-		//	return ""
-		//}
-		//dataStr = string(dataByte)
-
 		respBody64, err := base64.StdEncoding.DecodeString(string(respBody))
 		dataByte, err := sm4Decrypt([]byte(AESKey), []byte(userId), respBody64)
 		if err != nil {

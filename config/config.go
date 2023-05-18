@@ -28,8 +28,15 @@ func InitConfigByFilePath(path string) {
 //  @param cmbConfig
 //  @Author  ahKevinXy
 //  @Date2023-04-13 15:04:18
-func IniConfigByImport(cmbConfig *Config) {
-	Settings = cmbConfig
+func IniConfigByImport(sassName, url, prKey, signDefault string) {
+	Settings = &Config{
+		CmbPay{
+			CmbSaasName:       sassName,
+			CmbUrl:            url,
+			CmbSaasPrivateKey: prKey,
+			CmbSigdatDefult:   signDefault,
+		},
+	}
 }
 
 // Settings 全局配置
@@ -41,12 +48,8 @@ type Config struct {
 
 type CmbPay struct {
 	CmbSaasName       string `toml:"cmb_saas_name"`        //Sass名称
-	CmbUrl            string `toml:"cmb_url"`              //招商银行名称
+	CmbUrl            string `toml:"cmb_url"`              //招商请求地址
 	CmbSaasPrivateKey string `toml:"cmb_saas_private_key"` //私钥
 	CmbSigdatDefult   string `toml:"cmb_sigdat_defult"`    //默认签名
 
-	CmbAccountUrl string `toml:"cmb_account_url"` //通知名称
-
-	Sm2Jar     string `toml:"sm2_jar"`      // sm2 Java sdk
-	CmbSignUrl string `toml:"cmb_sign_url"` // 签名地址
 }

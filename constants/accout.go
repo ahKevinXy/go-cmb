@@ -76,6 +76,8 @@ const (
 	CmbUnitManageAccountPay                 = "NTOPRDMP"    //记账子单元付款经办NTOPRDMP
 	CmbUnitManageAccountPayRefund           = "NTOPRDMR"    //记账子单元退款经办NTOPRDMR
 	CmbUnitManageAccountPayIn               = "NTDMITRX"    //记账子单元内部转账NTDMITRX
+	CmbUnitHistoryBalance                   = "NTDMAHAD"    //查询单个记账子单元的历史余额
+	CmbUnitAllHistoryBalance                = "NTDMAHBD"    //查询所有记账子单元的某日余额
 
 )
 

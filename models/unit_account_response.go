@@ -114,3 +114,30 @@ type QueryUnitTransByBusNoResponse struct {
 		} `json:"head,omitempty"`
 	} `json:"response,omitempty"`
 }
+
+type QueryUnitAccountBalanceHistoryResponse struct {
+	Response struct {
+		Body struct {
+			Ntdmahbdz1 []struct {
+				Accnbr string `json:"accnbr,omitempty"`
+				Ccynbr string `json:"ccynbr,omitempty"`
+				Dmabal string `json:"dmabal,omitempty"`
+				Dmanam string `json:"dmanam,omitempty"`
+				Dmanbr string `json:"dmanbr,omitempty"`
+				Psedat string `json:"psedat,omitempty"`
+			} `json:"ntdmahbdz1,omitempty"`
+			Ntdmahbdz2 []struct {
+				Ctnflg string `json:"ctnflg,omitempty"`
+			} `json:"ntdmahbdz2,omitempty"`
+		} `json:"body,omitempty"`
+		Head struct {
+			Bizcode    string `json:"bizcode,omitempty"`
+			Funcode    string `json:"funcode,omitempty"`
+			Reqid      string `json:"reqid,omitempty"`
+			Resultcode string `json:"resultcode,omitempty"`
+			Resultmsg  string `json:"resultmsg,omitempty"`
+			Rspid      string `json:"rspid,omitempty"`
+			Userid     string `json:"userid,omitempty"`
+		} `json:"head,omitempty"`
+	} `json:"response,omitempty"`
+}

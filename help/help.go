@@ -4,8 +4,6 @@ import (
 	"bytes"
 	"crypto/cipher"
 	"encoding/json"
-	"errors"
-	"github.com/ahKevinXy/go-cmb/config"
 	"github.com/tjfoc/gmsm/sm4"
 )
 
@@ -21,16 +19,16 @@ func GetJson(reqAccount string) string {
 	return string(resJson)
 }
 
-// SignSM2 参数加密算法
-func SignSM2(signContent, privateKey, userId string) (string, error) {
-	//fmt.Println("-----请求加密文件 -----")
-	return SignSm2ByRequest(signContent, privateKey, userId)
-	//if config.Settings.CmbPay.CmbSign != "local" {
-	//
-	//} else {
-	//	return SignSm2ByCmd(signContent, privateKey, userId)
-	//}
-}
+//// SignSM2 参数加密算法
+//func SignSM2(signContent, privateKey, userId string) (string, error) {
+//	//fmt.Println("-----请求加密文件 -----")
+//	return SignSm2ByRequest(signContent, privateKey, userId)
+//	//if config.Settings.CmbPay.CmbSign != "local" {
+//	//
+//	//} else {
+//	//	return SignSm2ByCmd(signContent, privateKey, userId)
+//	//}
+//}
 
 //func SignSm2ByCmd(signContent, privateKey, userId string) (string, error) {
 //	signContent = strings.ReplaceAll(signContent, `"`, `\"`)
@@ -47,21 +45,21 @@ func SignSM2(signContent, privateKey, userId string) (string, error) {
 //	return data, nil
 //}
 
-func SignSm2ByRequest(signContent, privateKey, userId string) (string, error) {
-	mp := make(map[string]interface{})
-
-	mp["sign_content"] = signContent
-	mp["private_key"] = privateKey
-	mp["user_id"] = userId
-
-	r, code, _ := MakeHttpRequest("POST", config.Settings.CmbPay.CmbSignUrl, mp, nil)
-
-	if code != 200 {
-		return "", errors.New("sign error")
-	}
-
-	return r, nil
-}
+//func SignSm2ByRequest(signContent, privateKey, userId string) (string, error) {
+//	mp := make(map[string]interface{})
+//
+//	mp["sign_content"] = signContent
+//	mp["private_key"] = privateKey
+//	mp["user_id"] = userId
+//
+//	r, code, _ := MakeHttpRequest("POST", config.Settings.CmbPay.CmbSignUrl, mp, nil)
+//
+//	if code != 200 {
+//		return "", errors.New("sign error")
+//	}
+//
+//	return r, nil
+//}
 
 func Sm4Encrypt(key, iv, plainText []byte) ([]byte, error) {
 	block, err := sm4.NewCipher(key)

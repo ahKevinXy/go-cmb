@@ -90,3 +90,24 @@ type Ntdumredx1 struct {
 	Bgndat string `json:"bgndat,omitempty"`
 	Enddat string `json:"enddat,omitempty"`
 }
+
+// QueryUnitAccountBalanceHistoryRequest    按照交易流水获取
+type QueryUnitAccountBalanceHistoryRequest struct {
+	Request   QueryUnitAccountBalanceHistoryData `json:"request"`
+	Signature Signature                          `json:"signature"`
+}
+
+type QueryUnitAccountBalanceHistoryData struct {
+	Body Ntdmahbdz1Body `json:"body,omitempty"`
+	Head Head           `json:"head"`
+}
+
+type Ntdmahbdz1Body struct {
+	Ntdmahbdx1 []*Ntdmahbdx1 `json:"ntdmahbdx1,omitempty"`
+}
+type Ntdmahbdx1 struct {
+	Bbknbr string `json:"bbknbr,omitempty"`
+	Accnbr string `json:"accnbr,omitempty"`
+	Qrydat string `json:"qrydat,omitempty"`
+	Dmanbr string `json:"dmanbr,omitempty"`
+}

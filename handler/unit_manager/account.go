@@ -159,3 +159,51 @@ func QueryUnitAccountInfo(userId, asePrivateKey, userPrivateKey, accnbr, dmanbr 
 	//fmt.Println(res)
 	return &resp, err
 }
+
+// QueryUnitAccountBalanceHistory
+//  @Description:   获取子账户余额
+//  @param userId
+//  @param asePrivateKey
+//  @param userPrivateKey
+//  @param accnbr //账户
+//  @param bbknbr  分行号
+//  @param qrydat 时间
+//  @param dmanbr 续传子单元
+//  @return *models.QueryUnitAccountBalanceHistoryResponse
+//  @return error
+//  @Author  ahKevinXy
+//  @Date  2023-05-18 16:56:54
+func QueryUnitAccountBalanceHistory(userId, asePrivateKey, userPrivateKey, accnbr, bbknbr, qrydat, dmanbr string) (*models.QueryUnitAccountBalanceHistoryResponse, error) {
+	reqData := new(models.QueryUnitAccountBalanceHistoryRequest)
+	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
+	reqData.Request.Head.Funcode = constants.CmbUnitAllHistoryBalance
+	reqData.Request.Head.Userid = userId
+	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
+	reqData.Signature.Sigdat = "__signature_sigdat__"
+	reqData.Request.Body.Ntdmahbdx1 = append(reqData.Request.Body.Ntdmahbdx1, &models.Ntdmahbdx1{
+		Accnbr: accnbr,
+		Qrydat: qrydat,
+		Bbknbr: bbknbr,
+		Dmanbr: dmanbr,
+	})
+
+	req, err := json.Marshal(reqData)
+	if err != nil {
+		return nil, err
+	}
+
+	//  todo
+	res := help.CmbSignRequest(string(req), constants.CmbUnitAllHistoryBalance, userId, userPrivateKey, asePrivateKey)
+
+	if res == "" {
+		return nil, cmb_errors.SystemError
+	}
+
+	var resp models.QueryUnitAccountBalanceHistoryResponse
+
+	if err := json.Unmarshal([]byte(res), &resp); err != nil {
+		return nil, err
+	}
+	//fmt.Println(res)
+	return &resp, err
+}

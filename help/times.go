@@ -11,7 +11,6 @@ import "time"
 //  @Author  ahKevinXy
 //  @Date2023-04-13 15:00:11
 func GetCmbTransTime(d string, t string) (time.Time, error) {
-
 	return time.ParseInLocation("20060102150405", d+t, time.Local)
 }
 
@@ -23,6 +22,5 @@ func GetCmbTransTime(d string, t string) (time.Time, error) {
 //  @Author  ahKevinXy
 //  @Date2023-04-13 15:00:22
 func GetCmbOpTime(d string) (time.Time, error) {
-
 	return time.ParseInLocation("20060102", d, time.Local)
 }

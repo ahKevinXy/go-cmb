@@ -4,7 +4,6 @@
 
 版本变更日志参见 [`CHANGELOG.md`](CHANGELOG.md)
 
-[![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg "logo")](https://jb.gg/OpenSourceSupport)
 
 ## 介绍
 
@@ -47,3 +46,6 @@ go get -u github.com/ahKevinXy/go-cmb
 
 
 ### 交易流水
+
+
+[![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg "logo")](https://jb.gg/OpenSourceSupport)

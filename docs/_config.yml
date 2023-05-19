@@ -1,3 +1,6 @@
-remote_theme: pages-themes/time-machine@v0.2.0
-plugins:
-  - jekyll-remote-theme # add this line to the plugins list if you already have one
+title: 招商银行银企直联 go sdk
+logo: https://avatars.githubusercontent.com/u/31835335?s=40&v=4
+description: 招商银行银企直联 go sdk
+show_downloads: true
+google_analytics:
+theme: jekyll-theme-minimal

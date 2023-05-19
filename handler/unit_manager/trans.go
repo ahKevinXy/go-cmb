@@ -24,7 +24,7 @@ import (
 //  @Author  ahKevinXy
 //  @Date  2023-04-13 18:49:18
 func GetUnitAccountTransList(userId, asePrivateKey, userPrivateKey, accnbr, dmanbr, ctnkey string) (*models.UnitAccountTransDailyResponse, error) {
-	reqData := new(models.AccountAddUnitTransDailyRequest)
+	reqData := new(models.AccountUnitTransDailyRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbUnitManageAccountTransDaily
 	reqData.Request.Head.Userid = userId
@@ -63,11 +63,11 @@ func GetUnitAccountTransList(userId, asePrivateKey, userPrivateKey, accnbr, dman
 //  @param userId
 //  @param asePrivateKey
 //  @param userPrivateKey
-//  @param accnbr
-//  @param dmanbr
-//  @param begdat
-//  @param enddat
-//  @param ctnkey
+//  @param accnbr 账号
+//  @param dmanbr 子单元
+//  @param begdat 开始时间
+//  @param enddat 结束时间
+//  @param ctnkey 续传key
 //  @return *models.UnitAccountTransHistoryResponse
 //  @return error
 //  @Author  ahKevinXy

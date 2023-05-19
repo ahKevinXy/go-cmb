@@ -21,7 +21,7 @@ import (
 
 // CmbSignRequest
 //
-//	@Description:  招商银行 统一请求
+//	@Description:  招商银行 统一请求 todo  返回错误信息
 //	@param reqStr 请求参数
 //	@param funCode 请求代码
 //	@param uid   用户ID
@@ -121,15 +121,13 @@ func SignatureDataSM(
 	defer resp.Body.Close()
 
 	respBody, _ := ioutil.ReadAll(resp.Body)
-
-	fmt.Println("请求返回内容:", string(respBody))
+	// 返回数据处理
 	var dataStr string
 	if !strings.Contains(string(respBody), "ErrMsg") {
 		respBody64, err := base64.StdEncoding.DecodeString(string(respBody))
 		dataByte, err := sm4Decrypt([]byte(AESKey), []byte(userId), respBody64)
 		if err != nil {
 
-			fmt.Println(string(reqV1Json), "++++错误信息++++", string(respBody))
 			return ""
 		}
 		dataStr = string(dataByte)

@@ -17,8 +17,10 @@ type AccountUnitTransInDataBody struct {
 
 type Ntdmatrxx1 struct {
 	Accnbr string `json:"accnbr"`
+	Bbknbr string `json:"bbknbr"`
 	Dmacrt string `json:"dmacrt"`
 	Dmadbt string `json:"dmadbt"`
 	Trxamt string `json:"trxamt"`
 	Trxtxt string `json:"trxtxt"`
+	Yurref string `json:"yurref"`
 }

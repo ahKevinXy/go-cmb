@@ -18,8 +18,8 @@ type Ntduminfx1 struct {
 	Reqnbr string `json:"reqnbr,omitempty"`
 }
 
-// AccountAddUnitTransDailyRequest   获取当天交易信息
-type AccountAddUnitTransDailyRequest struct {
+// AccountUnitTransDailyRequest   获取当天交易信息
+type AccountUnitTransDailyRequest struct {
 	Request   AccountAddUnitTransDailyData `json:"request"`
 	Signature Signature                    `json:"signature"`
 }

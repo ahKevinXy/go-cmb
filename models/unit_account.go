@@ -91,7 +91,7 @@ type Ntdumredx1 struct {
 	Enddat string `json:"enddat,omitempty"`
 }
 
-// QueryUnitAccountBalanceHistoryRequest    按照交易流水获取
+// QueryUnitAccountBalanceHistoryRequest    获取所有子单元账户历史余额
 type QueryUnitAccountBalanceHistoryRequest struct {
 	Request   QueryUnitAccountBalanceHistoryData `json:"request"`
 	Signature Signature                          `json:"signature"`
@@ -110,4 +110,26 @@ type Ntdmahbdx1 struct {
 	Accnbr string `json:"accnbr,omitempty"`
 	Qrydat string `json:"qrydat,omitempty"`
 	Dmanbr string `json:"dmanbr,omitempty"`
+}
+
+// QueryUnitAccountSingleBalanceHistoryRequest    获取单个交易历史余额
+type QueryUnitAccountSingleBalanceHistoryRequest struct {
+	Request   QueryUnitAccountSingleBalanceHistoryData `json:"request"`
+	Signature Signature                                `json:"signature"`
+}
+
+type QueryUnitAccountSingleBalanceHistoryData struct {
+	Body Ntdmahadx1Body `json:"body,omitempty"`
+	Head Head           `json:"head"`
+}
+type Ntdmahadx1Body struct {
+	Ntdmahadx1 []*Ntdmahadx1 `json:"ntdmahadx1,omitempty"`
+}
+
+type Ntdmahadx1 struct {
+	Bbknbr string `json:"bbknbr,omitempty"` // 分行号
+	Accnbr string `json:"accnbr,omitempty"` //账户
+	Dmanbr string `json:"dmanbr,omitempty"` // 记账单元
+	Begdat string `json:"begdat,omitempty"` // 开始时间
+	Enddat string `json:"enddat,omitempty"` // 结束时间
 }

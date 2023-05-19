@@ -218,6 +218,7 @@ func QueryBatchAccountBalance(userId, asePrivateKey, userPrivateKey, accnbr, bbk
 
 	if res == "" {
 
+		return nil, cmb_errors.SystemError
 	}
 	var resp models.QueryBatchAccountBalanceResponse
 

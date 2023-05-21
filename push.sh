@@ -11,7 +11,9 @@ commit="${time2}"
 content="\n  $name ${time2} "
 content1="NR==2{print \"$content\"}1"
 
-echo $content1
+
+
+echo $2
 if test $2 != "n"
 then
 awk "$content1" ./docs/CHANGELOG.md >>./docs/CHANGELOG_new.md

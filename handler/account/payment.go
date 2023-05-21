@@ -17,7 +17,7 @@ import (
 //  @param userPrivateKey
 //  @param dbAcc
 //  @param buscode
-//  @param busMode
+//  @param busMode 交易模式
 //  @param dmaNbr
 //  @param crtAcc
 //  @param crtNam
@@ -34,7 +34,7 @@ import (
 //  @return *models.MainAccountSinglePayResponse
 //  @return error
 //  @Author  ahKevinXy
-//  @Date2023-04-10 13:56:28
+//  @Date 2023-04-10 13:56:28
 func MainAccountPaySingle(userId,
 	asePrivateKey, userPrivateKey,
 	dbAcc,
@@ -117,7 +117,7 @@ func MainAccountPaySingle(userId,
 //  @return *models.MainAccountSinglePayResponse
 //  @return error
 //  @Author  ahKevinXy
-//  @Date2023-04-10 13:57:21
+//  @Date 2023-04-10 13:57:21
 func MainAccountBatchPay(userId,
 	asePrivateKey, userPrivateKey,
 	busCode, //业务代码
@@ -150,8 +150,7 @@ func MainAccountBatchPay(userId,
 	if err != nil {
 		return nil, err
 	}
-
-	//  todo
+	
 	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayQuery, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {

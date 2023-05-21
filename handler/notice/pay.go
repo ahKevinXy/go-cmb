@@ -5,6 +5,13 @@ import (
 	"github.com/ahKevinXy/go-cmb/models"
 )
 
+// Pay
+//  @Description:  支付通知 序列化
+//  @param s
+//  @return *models.PayResultNotice
+//  @return error
+//  @Author  ahKevinXy
+//  @Date  2023-05-21 20:31:50
 func Pay(s string) (*models.PayResultNotice, error) {
 	var pay *models.PayResultNotice
 

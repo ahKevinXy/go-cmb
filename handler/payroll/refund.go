@@ -10,7 +10,7 @@ import (
 )
 
 // QueryRefundList
-//  @Description: BB6RFDQY
+//  @Description: 退票查询
 //  @param userId
 //  @param asePrivateKey
 //  @param userPrivateKey

@@ -15,17 +15,17 @@ import (
 //  @param userId
 //  @param asePrivateKey
 //  @param userPrivateKey
-//  @param bbkNbr
-//  @param bgnDat
-//  @param endDat
-//  @param reqNbr
-//  @param ctnKey
-//  @param rsv50z
+//  @param bbkNbr 开户行
+//  @param bgnDat 开始时间
+//  @param endDat 结束时间
+//  @param reqNbr 请求批次
+//  @param ctnKey 续传key
+//  @param rsv50z 保留字
 //  @param
 //  @return *models.QueryAccountPaymentRefundResponse
 //  @return error
 //  @Author  ahKevinXy
-//  @Date2023-04-13 16:59:34
+//  @Date 2023-04-13 16:59:34
 func QueryAccountPaymentRefund(
 	userId,
 	asePrivateKey, userPrivateKey,

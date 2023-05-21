@@ -6,7 +6,7 @@ import (
 )
 
 // Account
-//  @Description:   解析account 账户
+//  @Description:   解析account 账户 通知
 //  @param s
 //  @return *models.AccountNotice
 //  @return error

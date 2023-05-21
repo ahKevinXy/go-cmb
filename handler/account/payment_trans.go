@@ -23,7 +23,7 @@ import (
 //  @return *models.MainAccountSinglePayResponse
 //  @return error
 //  @Author  ahKevinXy
-//  @Date2023-04-13 16:47:10
+//  @Date 2023-04-13 16:47:10
 func QueryAccountPaymentTransInfo(userId,
 	asePrivateKey, userPrivateKey,
 	begDat,
@@ -79,7 +79,7 @@ func QueryAccountPaymentTransInfo(userId,
 //  @return *models.MainAccountSinglePayResponse
 //  @return error
 //  @Author  ahKevinXy
-//  @Date2023-04-13 16:51:27
+//  @Date 2023-04-13 16:51:27
 func QueryAccountPaymentDetail(
 	userId,
 	asePrivateKey, userPrivateKey,

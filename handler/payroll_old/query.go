@@ -10,9 +10,18 @@ import (
 )
 
 // QueryPayRollDetail
-// @Description:查询交易概要信息
-// @Author ahKevinXy
-// @Date 2023-02-13 11:37:38
+//  @Description:   查询交易概要信息
+//  @param userId
+//  @param asePrivateKey
+//  @param userPrivateKey
+//  @param reqnbr
+//  @param bthnbr
+//  @param trxseq
+//  @param histag
+//  @return *models.QueryPayRollDetailResponse
+//  @return error
+//  @Author  ahKevinXy
+//  @Date  2023-05-21 20:34:03
 func QueryPayRollDetail(userId, asePrivateKey, userPrivateKey, reqnbr, bthnbr, trxseq, histag string) (*models.QueryPayRollDetailResponse, error) {
 	reqData := new(models.PayrollOldQueryTransRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())

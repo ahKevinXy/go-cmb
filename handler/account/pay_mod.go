@@ -2,6 +2,7 @@ package account
 
 import (
 	"encoding/json"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
@@ -11,12 +12,12 @@ import (
 
 // PayMods
 //  @Description:  获取支付模式
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param buscode
+//  @param userId 用户ID
+//  @param asePrivateKey 对称加密秘钥
+//  @param userPrivateKey 用户私钥
+//  @param buscode 业务模式
 //  @Author  ahKevinXy
-//  @Date2023-04-06 19:54:15
+//  @Date 2023-04-06 19:54:15
 func PayMods(userId, asePrivateKey, userPrivateKey, busCode string) (*models.QueryAccountTransCodeResponse, error) {
 
 	reqData := new(models.QueryAccountTransCodeRequest)
@@ -36,8 +37,7 @@ func PayMods(userId, asePrivateKey, userPrivateKey, busCode string) (*models.Que
 
 	//todo
 	if res == "" {
-
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.QueryAccountTransCodeResponse

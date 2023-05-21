@@ -1,34 +1,27 @@
 package config
 
-import (
-	"errors"
-	"path/filepath"
-
-	"github.com/BurntSushi/toml"
-)
-
 // InitConfigByFilePath 初始化配置
-func InitConfigByFilePath(path string) {
-	if len(path) == 0 {
-		panic(errors.New("configuration path is not provided"))
-	}
+//func InitConfigByFilePath(path string) {
+//	if len(path) == 0 {
+//		panic(errors.New("configuration path is not provided"))
+//	}
+//
+//	configPath, err := filepath.Abs(path)
+//	if err != nil {
+//		panic(err)
+//	}
+//
+//	if _, err := toml.DecodeFile(configPath, Settings); err != nil {
+//		panic(err)
+//	}
+//}
 
-	configPath, err := filepath.Abs(path)
-	if err != nil {
-		panic(err)
-	}
-
-	if _, err := toml.DecodeFile(configPath, Settings); err != nil {
-		panic(err)
-	}
-}
-
-// IniConfigByImport
-//  @Description:  配置导入
+// InitConfig
+//  @Description:  初始化配置文件
 //  @param cmbConfig
 //  @Author  ahKevinXy
 //  @Date2023-04-13 15:04:18
-func IniConfigByImport(sassName, url, prKey, signDefault string) {
+func InitConfig(sassName, url, prKey, signDefault string) {
 	Settings = &Config{
 		CmbPay{
 			CmbSaasName:       sassName,

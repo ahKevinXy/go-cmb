@@ -16,9 +16,9 @@ import (
 //  @param userId
 //  @param asePrivateKey
 //  @param userPrivateKey
-//  @param accnbr
-//  @param dmanbr
-//  @param ctnkey
+//  @param accnbr 账户
+//  @param dmanbr 子单元
+//  @param ctnkey  续传key
 //  @return *models.UnitAccountTransDailyResponse
 //  @return error
 //  @Author  ahKevinXy

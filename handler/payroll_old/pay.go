@@ -15,8 +15,8 @@ import (
 //  @param asePrivateKey
 //  @param userPrivateKey
 //  @param busmod 交易模式
-//  @param total
-//  @param detail
+//  @param total 汇总信息
+//  @param detail 每笔交易详情
 //  @return *models.PayrollOldCreditOtherBySupResponse
 //  @return error
 //  @Author  ahKevinXy

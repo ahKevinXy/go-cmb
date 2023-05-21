@@ -113,7 +113,7 @@ func MainAccountHistoryBalance(
 //  @return *models.AccountBankInfoResponse 请求返回
 //  @return error
 //  @Author  ahKevinXy
-//  @Date2023-04-10 13:51:13
+//  @Date 2023-04-10 13:51:13
 func GetBankLinkNo(userId, asePrivateKey, userPrivateKey, accnbr string) (*models.AccountBankInfoResponse, error) {
 	reqData := new(models.AccountBankInfoRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
@@ -154,7 +154,7 @@ func GetBankLinkNo(userId, asePrivateKey, userPrivateKey, accnbr string) (*model
 //  @return *models.QueryAccountTransCodeResponse
 //  @return error
 //  @Author  ahKevinXy
-//  @Date2023-04-10 15:16:34
+//  @Date 2023-04-10 15:16:34
 func GetMainAccountPayBusList(userId, asePrivateKey, userPrivateKey, buscode string) (*models.QueryAccountTransCodeResponse, error) {
 	reqData := new(models.QueryAccountTransCodeRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
@@ -195,7 +195,7 @@ func GetMainAccountPayBusList(userId, asePrivateKey, userPrivateKey, buscode str
 //  @return *models.QueryBatchAccountBalanceResponse
 //  @return error
 //  @Author  ahKevinXy
-//  @Date2023-04-13 13:58:14
+//  @Date 2023-04-13 13:58:14
 func QueryBatchAccountBalance(userId, asePrivateKey, userPrivateKey, accnbr, bbknbr string) (*models.QueryBatchAccountBalanceResponse, error) {
 	reqData := new(models.QueryBatchMainAccountBalanceRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())

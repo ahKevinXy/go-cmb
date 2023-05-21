@@ -6,7 +6,7 @@ import (
 )
 
 // Payroll
-//  @Description:  代发信息
+//  @Description:  代发信息通知解析
 //  @param s
 //  @return *models.PayResultNotice
 //  @return error

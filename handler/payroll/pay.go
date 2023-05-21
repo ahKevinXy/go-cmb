@@ -35,7 +35,6 @@ func UnitPayrollPayment(userId, asePrivateKey, userPrivateKey string, payMod []*
 		return nil, err
 	}
 
-	//  todo
 	res := help.CmbSignRequest(string(req), constants.CmbPayroll, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {

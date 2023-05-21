@@ -29,7 +29,7 @@ import (
 //	@param AESKey 用户对称秘钥
 //	@return string 结果返回
 //	@Author  ahKevinXy
-//	@Date2023-04-10 13:41:37
+//	@Date 2023-04-10 13:41:37
 func CmbSignRequest(reqStr string, funCode, uid, userKey, AESKey string) string {
 
 	return SignatureDataSM(reqStr, funCode, uid, userKey, AESKey)
@@ -92,14 +92,14 @@ func SignatureDataSM(
 	reqV1Json, err := json.Marshal(reqV1)
 
 	if err != nil {
-		fmt.Println(err)
+
 		return ""
 	}
 
 	userId := uid + "000000"
 	reqNewAccountAes, err := Sm4Encrypt([]byte(AESKey), []byte(userId), reqV1Json)
 	if err != nil {
-		fmt.Println(err)
+
 		return ""
 	}
 
@@ -115,7 +115,7 @@ func SignatureDataSM(
 
 	resp, err := http.PostForm(config.Settings.CmbPay.CmbUrl, u)
 	if err != nil {
-		fmt.Println(err)
+
 		return ""
 	}
 	defer resp.Body.Close()

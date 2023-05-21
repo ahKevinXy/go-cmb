@@ -15,15 +15,14 @@ import (
 //  @param userId
 //  @param asePrivateKey
 //  @param userPrivateKey
-//  @param bbknbr
-//  @param accnbr
-//  @param trsDat
+//  @param bbknbr 开户行
+//  @param accnbr 账户
+//  @param trsDat 交易日期
 //  @param trsseq
-//  @param category
 //  @return *models.GetMainAccountTransInfoResponse
 //  @return error
 //  @Author  ahKevinXy
-//  @Date2023-04-10 14:01:42
+//  @Date 2023-04-10 14:01:42
 func GetMainAccountTransInfo(userId, asePrivateKey, userPrivateKey,
 	bbknbr,
 	accnbr,
@@ -67,16 +66,16 @@ func GetMainAccountTransInfo(userId, asePrivateKey, userPrivateKey,
 //  @param userId
 //  @param asePrivateKey
 //  @param userPrivateKey
-//  @param bbknbr
-//  @param accnbr
-//  @param bgndat
-//  @param enddat
-//  @param lowamt
-//  @param hghamt
+//  @param bbknbr 开户行
+//  @param accnbr 账户
+//  @param bgndat 开始时间
+//  @param enddat 结束时间
+//  @param lowamt 最小金额
+//  @param hghamt 最大金额
 //  @return *models.QueryAccountTransInfoResponse
 //  @return error
 //  @Author  ahKevinXy
-//  @Date2023-04-13 15:32:25
+//  @Date 2023-04-13 15:32:25
 func QueryAccountTransInfo(userId, asePrivateKey, userPrivateKey,
 	bbknbr,
 	accnbr,

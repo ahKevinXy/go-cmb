@@ -68,8 +68,8 @@ func AddUnitAccount(
 //  @param userId
 //  @param asePrivateKey
 //  @param userPrivateKey
-//  @param accnbr
-//  @param dmanbr
+//  @param accnbr 账户
+//  @param dmanbr 子单元账号
 //  @param
 //  @return *models.CloseUnitAccountResponse
 //  @return error
@@ -121,8 +121,8 @@ func CloseUnitAccount(
 //  @param userId
 //  @param asePrivateKey
 //  @param userPrivateKey
-//  @param accnbr
-//  @param dmanbr
+//  @param accnbr 账号
+//  @param dmanbr 子单元
 //  @return *models.AccountUnitInfoResponse
 //  @return error
 //  @Author  ahKevinXy
@@ -255,6 +255,6 @@ func QueryUnitAccountSingleBalanceHistory(userId, asePrivateKey, userPrivateKey,
 	if err := json.Unmarshal([]byte(res), &resp); err != nil {
 		return nil, err
 	}
-	//fmt.Println(res)
+
 	return &resp, err
 }

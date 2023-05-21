@@ -6,7 +6,7 @@ import (
 )
 
 // Statement
-//  @Description:   回单提醒
+//  @Description:   回单提醒解析
 //  @param s
 //  @return *models.SatementNotice
 //  @return error

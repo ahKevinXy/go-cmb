@@ -45,7 +45,7 @@ go get -u github.com/ahKevinXy/go-cmb
 ## 代发代扣
 
 
-### 交易流水
+## 交易流水
 
 
 [![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg "logo")](https://jb.gg/OpenSourceSupport)

@@ -22,10 +22,10 @@ awk "$content1" ./docs/CHANGELOG.md >>./docs/CHANGELOG_new.md
 mv ./docs/CHANGELOG_new.md ./docs/CHANGELOG.md
 #mv ./README_new.md ./README.md
 
-
+cp -rf  ./docs/CHANGELOG.md ./CHANGELOG.md
 
 fi
 # 提交代码
 git add .
-git commit -m"$1"
+git commit -m"${time1}  $1"
 git push

@@ -8,7 +8,7 @@ name=$(git config user.name)
 commit="${time2}"
 
 
-content="\n  $name ${time2} "
+content="\n ${time2}   $name  "
 content1="NR==2{print \"$content\"}1"
 
 

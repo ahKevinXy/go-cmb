@@ -2,7 +2,7 @@
 
 
 time1=$(date "+%Y-%m-%d %H:%M:%S")
-time2="**$1**  *${time1}*"
+time2=" *${time1}*  **$1** "
 
 name=$(git config user.name)
 commit="${time2}"

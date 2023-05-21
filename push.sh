@@ -15,10 +15,10 @@ echo $content1
 if test $2 != "n"
 then
 awk "$content1" ./docs/CHANGELOG.md >>./docs/CHANGELOG_new.md
-awk "$content1" ./CHANGELOG.md >>./CHANGELOG.md
+#awk "$content1" ./CHANGELOG.md >>./CHANGELOG.md
 
 mv ./docs/CHANGELOG_new.md ./docs/CHANGELOG.md
-mv ./README_new.md ./README.md
+#mv ./README_new.md ./README.md
 
 
 

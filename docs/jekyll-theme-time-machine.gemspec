@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name          = "招商银行银企直联 go sdk"
   s.version       = "1.1.0"
   s.license       = "Apache-2.0 license"
-  s.authors       = ["Steve Smith", "GitHub, Inc."]
+  s.authors       = ["ahKevinXy"]
   s.email         = ["ah_kevin_xy@126.com"]
   s.homepage      = "https://ahkevinxy.github.io/go-cmb/"
   s.summary       = "招商银行银企直联 go sdk"

@@ -8,8 +8,8 @@ name=$(git config user.name)
 commit="${time2}"
 
 
-content="\n🌟 $name ${time2} 🔥"
-content1="NR==10{print \"$content\"}1"
+content="\n  $name ${time2} "
+content1="NR==2{print \"$content\"}1"
 
 echo $content1
 if test $2 != "n"

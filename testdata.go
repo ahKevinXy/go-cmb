@@ -1,8 +1,17 @@
 package go_cmb
 
+// 商户配置
 const (
 	UserId  = "" // 用户ID
 	Account = "" //账户
 	UserKey = "" // 用户秘钥
 	AseKey  = "" // 对称秘钥
+)
+
+// Sass平台配置
+const (
+	CmbSassName       = "" // Sass 名称
+	CmbSassPrivateKey = "" // 平台私钥
+	CmbSigdatDefault  = "" // 默认值
+	CmbUrl            = "" // 银企直联地址
 )

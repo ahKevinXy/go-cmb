@@ -22,6 +22,12 @@ go get -u github.com/ahKevinXy/go-cmb
 
 ```
 
+## TODO 
+
+- [ ] 更新 models 为 proto 兼容其他语言
+- [ ] 优化请求参数
+- [ ] 完善功能
+
 ## 目录说明
 
 

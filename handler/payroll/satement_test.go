@@ -1,15 +1,16 @@
 package payroll
 
 import (
-	"github.com/ahKevinXy/go-cmb/models"
 	"reflect"
 	"testing"
+
+	"github.com/ahKevinXy/go-cmb/models"
 )
 
 func TestQueryPayrollStatement(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		payeac         string
 		begdat         string
@@ -34,7 +35,7 @@ func TestQueryPayrollStatement(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryPayrollStatement(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.payeac, tt.args.begdat, tt.args.enddat, tt.args.buscod, tt.args.busmod, tt.args.eacnam, tt.args.ptyref, tt.args.trxsrl, tt.args.minamt, tt.args.maxamt, tt.args.prtmod, tt.args.begidx)
+			got, err := QueryPayrollStatement(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.payeac, tt.args.begdat, tt.args.enddat, tt.args.buscod, tt.args.busmod, tt.args.eacnam, tt.args.ptyref, tt.args.trxsrl, tt.args.minamt, tt.args.maxamt, tt.args.prtmod, tt.args.begidx)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryPayrollStatement() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -49,7 +50,7 @@ func TestQueryPayrollStatement(t *testing.T) {
 func TestQueryPayrollStatementDownloadUrl(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		taskid         string
 	}
@@ -63,7 +64,7 @@ func TestQueryPayrollStatementDownloadUrl(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryPayrollStatementDownloadUrl(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.taskid)
+			got, err := QueryPayrollStatementDownloadUrl(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.taskid)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryPayrollStatementDownloadUrl() error = %v, wantErr %v", err, tt.wantErr)
 				return

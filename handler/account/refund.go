@@ -2,33 +2,35 @@ package account
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // QueryAccountPaymentRefund
-//  @Description:  跨行退票查询
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param bbkNbr 开户行
-//  @param bgnDat 开始时间
-//  @param endDat 结束时间
-//  @param reqNbr 请求批次
-//  @param ctnKey 续传key
-//  @param rsv50z 保留字
-//  @param
-//  @return *models.QueryAccountPaymentRefundResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-13 16:59:34
+//
+//	@Description:  跨行退票查询
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param bbkNbr 开户行
+//	@param bgnDat 开始时间
+//	@param endDat 结束时间
+//	@param reqNbr 请求批次
+//	@param ctnKey 续传key
+//	@param rsv50z 保留字
+//	@param
+//	@return *models.QueryAccountPaymentRefundResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-13 16:59:34
 func QueryAccountPaymentRefund(
 	userId,
-	asePrivateKey, userPrivateKey,
+	sm4Key, userPrivateKey,
 	bbkNbr,
 	bgnDat,
 	endDat,
@@ -59,7 +61,7 @@ func QueryAccountPaymentRefund(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayRefund, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayRefund, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

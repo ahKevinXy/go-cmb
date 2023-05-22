@@ -1,17 +1,18 @@
 package account
 
 import (
-	"github.com/ahKevinXy/go-cmb/models"
-	"github.com/ahKevinXy/go-cmb/testdata"
 	"reflect"
 	"testing"
+
+	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/ahKevinXy/go-cmb/testdata"
 )
 
 // 获取银联号 测试完成
 func TestGetBankLinkNo(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		accnbr         string
 	}
@@ -25,7 +26,7 @@ func TestGetBankLinkNo(t *testing.T) {
 			name: "获取测试模式",
 			args: args{
 				userId:         testdata.UserId,
-				asePrivateKey:  testdata.AseKey,
+				sm4Key:         testdata.AseKey,
 				userPrivateKey: testdata.UserKey,
 				accnbr:         testdata.Account,
 			},
@@ -33,7 +34,7 @@ func TestGetBankLinkNo(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetBankLinkNo(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accnbr)
+			got, err := GetBankLinkNo(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.accnbr)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetBankLinkNo() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -45,11 +46,11 @@ func TestGetBankLinkNo(t *testing.T) {
 	}
 }
 
-//todo
+// todo
 func TestGetMainAccountPayBusList(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		buscode        string
 	}
@@ -63,7 +64,7 @@ func TestGetMainAccountPayBusList(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetMainAccountPayBusList(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.buscode)
+			got, err := GetMainAccountPayBusList(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.buscode)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetMainAccountPayBusList() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -79,7 +80,7 @@ func TestGetMainAccountPayBusList(t *testing.T) {
 func TestMainAccountHistoryBalance(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		accnbr         string
 		bbknbr         string
@@ -97,7 +98,7 @@ func TestMainAccountHistoryBalance(t *testing.T) {
 			name: "获取测试模式",
 			args: args{
 				userId:         testdata.UserId,
-				asePrivateKey:  testdata.AseKey,
+				sm4Key:         testdata.AseKey,
 				userPrivateKey: testdata.UserKey,
 				accnbr:         testdata.Account,
 				bbknbr:         "75",
@@ -108,7 +109,7 @@ func TestMainAccountHistoryBalance(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := MainAccountHistoryBalance(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accnbr, tt.args.bbknbr, tt.args.bgndat, tt.args.enddat)
+			got, err := MainAccountHistoryBalance(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.accnbr, tt.args.bbknbr, tt.args.bgndat, tt.args.enddat)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("MainAccountHistoryBalance() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -123,7 +124,7 @@ func TestMainAccountHistoryBalance(t *testing.T) {
 func TestMainAccountInfo(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		accnbr         string
 		bbknbr         string
@@ -139,7 +140,7 @@ func TestMainAccountInfo(t *testing.T) {
 			name: "获取测试模式",
 			args: args{
 				userId:         testdata.UserId,
-				asePrivateKey:  testdata.AseKey,
+				sm4Key:         testdata.AseKey,
 				userPrivateKey: testdata.UserKey,
 				accnbr:         testdata.Account,
 				bbknbr:         "75",
@@ -148,7 +149,7 @@ func TestMainAccountInfo(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := MainAccountInfo(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accnbr, tt.args.bbknbr)
+			got, err := MainAccountInfo(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.accnbr, tt.args.bbknbr)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("MainAccountInfo() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -164,7 +165,7 @@ func TestMainAccountInfo(t *testing.T) {
 func TestQueryBatchAccountBalance(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		accnbr         string
 		bbknbr         string
@@ -179,7 +180,7 @@ func TestQueryBatchAccountBalance(t *testing.T) {
 			name: "获取测试模式",
 			args: args{
 				userId:         testdata.UserId,
-				asePrivateKey:  testdata.AseKey,
+				sm4Key:         testdata.AseKey,
 				userPrivateKey: testdata.UserKey,
 				accnbr:         testdata.Account,
 				bbknbr:         "75",
@@ -188,7 +189,7 @@ func TestQueryBatchAccountBalance(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryBatchAccountBalance(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accnbr, tt.args.bbknbr)
+			got, err := QueryBatchAccountBalance(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.accnbr, tt.args.bbknbr)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryBatchAccountBalance() error = %v, wantErr %v", err, tt.wantErr)
 				return

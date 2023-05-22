@@ -2,41 +2,43 @@ package account
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // MainAccountPaySingle
-//  @Description:   单笔对公支付
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param dbAcc
-//  @param buscode
-//  @param busMode 交易模式
-//  @param dmaNbr
-//  @param crtAcc
-//  @param crtNam
-//  @param crtBnk
-//  @param crtAdr
-//  @param bnkFlg
-//  @param trsAmt
-//  @param brdNbr
-//  @param nusAge
-//  @param //
-//  @param trsTyp
-//  @param busNar
-//  @param category
-//  @return *models.MainAccountSinglePayResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-10 13:56:28
+//
+//	@Description:   单笔对公支付
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param dbAcc
+//	@param buscode
+//	@param busMode 交易模式
+//	@param dmaNbr
+//	@param crtAcc
+//	@param crtNam
+//	@param crtBnk
+//	@param crtAdr
+//	@param bnkFlg
+//	@param trsAmt
+//	@param brdNbr
+//	@param nusAge
+//	@param //
+//	@param trsTyp
+//	@param busNar
+//	@param category
+//	@return *models.MainAccountSinglePayResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-10 13:56:28
 func MainAccountPaySingle(userId,
-	asePrivateKey, userPrivateKey,
+	sm4Key, userPrivateKey,
 	dbAcc,
 	buscode,
 	busMode,
@@ -86,7 +88,7 @@ func MainAccountPaySingle(userId,
 		return nil, err
 	}
 
-	res := help.CmbSignRequest(string(req), constants.CmbAccountSinglePay, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountSinglePay, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -102,24 +104,25 @@ func MainAccountPaySingle(userId,
 }
 
 // MainAccountBatchPay
-//  @Description:  批量支付
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param busCode
-//  @param busMode
-//  @param dtlNbr
-//  @param ctnFlg
-//  @param ctnSts
-//  @param bthNbr
-//  @param payList
-//  @param category
-//  @return *models.MainAccountSinglePayResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-10 13:57:21
+//
+//	@Description:  批量支付
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param busCode
+//	@param busMode
+//	@param dtlNbr
+//	@param ctnFlg
+//	@param ctnSts
+//	@param bthNbr
+//	@param payList
+//	@param category
+//	@return *models.MainAccountSinglePayResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-10 13:57:21
 func MainAccountBatchPay(userId,
-	asePrivateKey, userPrivateKey,
+	sm4Key, userPrivateKey,
 	busCode, //业务代码
 	busMode, // 支付模式
 	dtlNbr,
@@ -150,8 +153,8 @@ func MainAccountBatchPay(userId,
 	if err != nil {
 		return nil, err
 	}
-	
-	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayQuery, userId, userPrivateKey, asePrivateKey)
+
+	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayQuery, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

@@ -2,25 +2,27 @@ package payroll_old
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // PayMods
-//  @Description:   获取交易模式
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param busCode
-//  @param accnbr
-//  @return *models.QueryPayrollOldTransCodeResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-04-18 09:45:07
-func PayMods(userId, asePrivateKey, userPrivateKey, busCode, accnbr string) (*models.QueryPayrollOldTransCodeResponse, error) {
+//
+//	@Description:   获取交易模式
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param busCode
+//	@param accnbr
+//	@return *models.QueryPayrollOldTransCodeResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-04-18 09:45:07
+func PayMods(userId, sm4Key, userPrivateKey, busCode, accnbr string) (*models.QueryPayrollOldTransCodeResponse, error) {
 
 	reqData := new(models.QueryPayrollOldTransCodeRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
@@ -37,7 +39,7 @@ func PayMods(userId, asePrivateKey, userPrivateKey, busCode, accnbr string) (*mo
 	if err != nil {
 		return nil, err
 	}
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldTransCode, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldTransCode, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 

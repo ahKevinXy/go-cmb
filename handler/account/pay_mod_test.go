@@ -1,11 +1,12 @@
 package account
 
 import (
+	"reflect"
+	"testing"
+
 	"github.com/ahKevinXy/go-cmb/config"
 	"github.com/ahKevinXy/go-cmb/models"
 	"github.com/ahKevinXy/go-cmb/testdata"
-	"reflect"
-	"testing"
 )
 
 func init() {
@@ -17,7 +18,7 @@ func init() {
 func TestPayMods(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		busCode        string
 	}
@@ -32,7 +33,7 @@ func TestPayMods(t *testing.T) {
 			name: "获取测试模式",
 			args: args{
 				userId:         testdata.UserId,
-				asePrivateKey:  testdata.AseKey,
+				sm4Key:         testdata.AseKey,
 				userPrivateKey: testdata.UserKey,
 				busCode:        "N02030",
 			},
@@ -41,7 +42,7 @@ func TestPayMods(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := PayMods(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.busCode)
+			got, err := PayMods(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.busCode)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("PayMods() error = %v, wantErr %v", err, tt.wantErr)
 				return

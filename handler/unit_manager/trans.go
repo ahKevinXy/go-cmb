@@ -3,27 +3,29 @@ package unit_manager
 import (
 	"encoding/json"
 	"errors"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // GetUnitAccountTransList
-//  @Description: 记账子单元当天交易查询
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param accnbr 账户
-//  @param dmanbr 子单元
-//  @param ctnkey  续传key
-//  @return *models.UnitAccountTransDailyResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-04-13 18:49:18
-func GetUnitAccountTransList(userId, asePrivateKey, userPrivateKey, accnbr, dmanbr, ctnkey string) (*models.UnitAccountTransDailyResponse, error) {
+//
+//	@Description: 记账子单元当天交易查询
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param accnbr 账户
+//	@param dmanbr 子单元
+//	@param ctnkey  续传key
+//	@return *models.UnitAccountTransDailyResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-04-13 18:49:18
+func GetUnitAccountTransList(userId, sm4Key, userPrivateKey, accnbr, dmanbr, ctnkey string) (*models.UnitAccountTransDailyResponse, error) {
 	reqData := new(models.AccountUnitTransDailyRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbUnitManageAccountTransDaily
@@ -42,7 +44,7 @@ func GetUnitAccountTransList(userId, asePrivateKey, userPrivateKey, accnbr, dman
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransDaily, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransDaily, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -59,20 +61,21 @@ func GetUnitAccountTransList(userId, asePrivateKey, userPrivateKey, accnbr, dman
 }
 
 // GetUnitAccountTransHistoryList
-//  @Description:  获取记账单元历史列表
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param accnbr 账号
-//  @param dmanbr 子单元
-//  @param begdat 开始时间
-//  @param enddat 结束时间
-//  @param ctnkey 续传key
-//  @return *models.UnitAccountTransHistoryResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-04-13 18:53:33
-func GetUnitAccountTransHistoryList(userId, asePrivateKey, userPrivateKey, accnbr, dmanbr, begdat, enddat, ctnkey string) (*models.UnitAccountTransHistoryResponse, error) {
+//
+//	@Description:  获取记账单元历史列表
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param accnbr 账号
+//	@param dmanbr 子单元
+//	@param begdat 开始时间
+//	@param enddat 结束时间
+//	@param ctnkey 续传key
+//	@return *models.UnitAccountTransHistoryResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-04-13 18:53:33
+func GetUnitAccountTransHistoryList(userId, sm4Key, userPrivateKey, accnbr, dmanbr, begdat, enddat, ctnkey string) (*models.UnitAccountTransHistoryResponse, error) {
 	reqData := new(models.AccountUnitTransHistoryRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbUnitManageAccountTransHistory
@@ -93,7 +96,7 @@ func GetUnitAccountTransHistoryList(userId, asePrivateKey, userPrivateKey, accnb
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransHistory, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransHistory, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

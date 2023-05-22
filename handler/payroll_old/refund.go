@@ -2,15 +2,16 @@ package payroll_old
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 func Refund(
-	userId, asePrivateKey, userPrivateKey, taskId string) (*models.GetPayrollPdfResponse, error) {
+	userId, sm4Key, userPrivateKey, taskId string) (*models.GetPayrollPdfResponse, error) {
 	reqData := new(models.PayrollPdfFileRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollOldQueryTransRefund
@@ -25,7 +26,7 @@ func Refund(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldQueryTransRefund, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldQueryTransRefund, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, err

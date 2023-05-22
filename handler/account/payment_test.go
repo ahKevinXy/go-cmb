@@ -1,15 +1,16 @@
 package account
 
 import (
-	"github.com/ahKevinXy/go-cmb/models"
 	"reflect"
 	"testing"
+
+	"github.com/ahKevinXy/go-cmb/models"
 )
 
 func TestMainAccountBatchPay(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		busCode        string
 		busMode        string
@@ -29,7 +30,7 @@ func TestMainAccountBatchPay(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := MainAccountBatchPay(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.busCode, tt.args.busMode, tt.args.dtlNbr, tt.args.ctnFlg, tt.args.ctnSts, tt.args.bthNbr, tt.args.payList)
+			got, err := MainAccountBatchPay(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.busCode, tt.args.busMode, tt.args.dtlNbr, tt.args.ctnFlg, tt.args.ctnSts, tt.args.bthNbr, tt.args.payList)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("MainAccountBatchPay() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -44,7 +45,7 @@ func TestMainAccountBatchPay(t *testing.T) {
 func TestMainAccountPaySingle(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		dbAcc          string
 		buscode        string
@@ -72,7 +73,7 @@ func TestMainAccountPaySingle(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := MainAccountPaySingle(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.dbAcc, tt.args.buscode, tt.args.busMode, tt.args.dmaNbr, tt.args.crtAcc, tt.args.crtNam, tt.args.crtBnk, tt.args.crtAdr, tt.args.bnkFlg, tt.args.trsAmt, tt.args.brdNbr, tt.args.nusAge, tt.args.yurRef, tt.args.trsTyp, tt.args.busNar)
+			got, err := MainAccountPaySingle(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.dbAcc, tt.args.buscode, tt.args.busMode, tt.args.dmaNbr, tt.args.crtAcc, tt.args.crtNam, tt.args.crtBnk, tt.args.crtAdr, tt.args.bnkFlg, tt.args.trsAmt, tt.args.brdNbr, tt.args.nusAge, tt.args.yurRef, tt.args.trsTyp, tt.args.busNar)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("MainAccountPaySingle() error = %v, wantErr %v", err, tt.wantErr)
 				return

@@ -2,27 +2,29 @@ package payroll_old
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // QueryPayRollDetail
-//  @Description:   查询交易概要信息
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param reqnbr
-//  @param bthnbr
-//  @param trxseq
-//  @param histag
-//  @return *models.QueryPayRollDetailResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-05-21 20:34:03
-func QueryPayRollDetail(userId, asePrivateKey, userPrivateKey, reqnbr, bthnbr, trxseq, histag string) (*models.QueryPayRollDetailResponse, error) {
+//
+//	@Description:   查询交易概要信息
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param reqnbr
+//	@param bthnbr
+//	@param trxseq
+//	@param histag
+//	@return *models.QueryPayRollDetailResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-05-21 20:34:03
+func QueryPayRollDetail(userId, sm4Key, userPrivateKey, reqnbr, bthnbr, trxseq, histag string) (*models.QueryPayRollDetailResponse, error) {
 	reqData := new(models.PayrollOldQueryTransRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollOldQueryTrans
@@ -42,7 +44,7 @@ func QueryPayRollDetail(userId, asePrivateKey, userPrivateKey, reqnbr, bthnbr, t
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldQueryTrans, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldQueryTrans, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, err

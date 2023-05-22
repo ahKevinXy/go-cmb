@@ -1,15 +1,16 @@
 package account
 
 import (
-	"github.com/ahKevinXy/go-cmb/models"
 	"reflect"
 	"testing"
+
+	"github.com/ahKevinXy/go-cmb/models"
 )
 
 func TestAsyncStatement(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		eacnbr         string
 		begdat         string
@@ -27,7 +28,7 @@ func TestAsyncStatement(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := AsyncStatement(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.eacnbr, tt.args.begdat, tt.args.enddat, tt.args.begamt, tt.args.endamt)
+			got, err := AsyncStatement(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.eacnbr, tt.args.begdat, tt.args.enddat, tt.args.begamt, tt.args.endamt)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("AsyncStatement() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -42,7 +43,7 @@ func TestAsyncStatement(t *testing.T) {
 func TestBatchStatementQuery(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		bbknbr         string
 		accnbr         string
@@ -61,7 +62,7 @@ func TestBatchStatementQuery(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := BatchStatementQuery(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.bbknbr, tt.args.accnbr, tt.args.bgndat, tt.args.enddat, tt.args.lowamt, tt.args.hghamt)
+			got, err := BatchStatementQuery(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.bbknbr, tt.args.accnbr, tt.args.bgndat, tt.args.enddat, tt.args.lowamt, tt.args.hghamt)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("BatchStatementQuery() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -76,7 +77,7 @@ func TestBatchStatementQuery(t *testing.T) {
 func TestGetStatementPdf(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		taskid         string
 		qwenab         string
@@ -91,7 +92,7 @@ func TestGetStatementPdf(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetStatementPdf(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.taskid, tt.args.qwenab)
+			got, err := GetStatementPdf(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.taskid, tt.args.qwenab)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetStatementPdf() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -106,7 +107,7 @@ func TestGetStatementPdf(t *testing.T) {
 func TestSingleStatementQuery(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		eacnbr         string
 		quedat         string
@@ -123,7 +124,7 @@ func TestSingleStatementQuery(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := SingleStatementQuery(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.eacnbr, tt.args.quedat, tt.args.trsseq, tt.args.primod)
+			got, err := SingleStatementQuery(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.eacnbr, tt.args.quedat, tt.args.trsseq, tt.args.primod)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("SingleStatementQuery() error = %v, wantErr %v", err, tt.wantErr)
 				return

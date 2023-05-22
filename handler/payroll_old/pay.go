@@ -2,26 +2,28 @@ package payroll_old
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // CreditHandleOtherBySup
-//  @Description:  超网代发
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param busmod 交易模式
-//  @param total 汇总信息
-//  @param detail 每笔交易详情
-//  @return *models.PayrollOldCreditOtherBySupResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-04-18 09:48:49
-func CreditHandleOtherBySup(userId, asePrivateKey, userPrivateKey, busmod string, total []*models.Ntagcsaix1, detail []*models.Ntagcsaix2) (*models.PayrollOldCreditOtherBySupResponse, error) {
+//
+//	@Description:  超网代发
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param busmod 交易模式
+//	@param total 汇总信息
+//	@param detail 每笔交易详情
+//	@return *models.PayrollOldCreditOtherBySupResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-04-18 09:48:49
+func CreditHandleOtherBySup(userId, sm4Key, userPrivateKey, busmod string, total []*models.Ntagcsaix1, detail []*models.Ntagcsaix2) (*models.PayrollOldCreditOtherBySupResponse, error) {
 
 	reqData := new(models.PayrollOldCreditOtherBySupRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
@@ -44,7 +46,7 @@ func CreditHandleOtherBySup(userId, asePrivateKey, userPrivateKey, busmod string
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldSupPay, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldSupPay, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, err

@@ -2,31 +2,33 @@ package unit_manager
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // 记账单元 管理
 
 // AddUnitAccount
-//  @Description:  新增记账单元
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param accnbr
-//  @param dmanam
-//  @param dmanbr
-//  @param
-//  @return *models.AddUnitAccountResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-13 17:28:18
+//
+//	@Description:  新增记账单元
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param accnbr
+//	@param dmanam
+//	@param dmanbr
+//	@param
+//	@return *models.AddUnitAccountResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-13 17:28:18
 func AddUnitAccount(
-	userId, asePrivateKey, userPrivateKey, accnbr, dmanam, dmanbr string,
+	userId, sm4Key, userPrivateKey, accnbr, dmanam, dmanbr string,
 
 ) (*models.AddUnitAccountResponse, error) {
 	reqData := new(models.AccountAddUnitRequest)
@@ -47,7 +49,7 @@ func AddUnitAccount(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAddAccount, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAddAccount, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -64,20 +66,21 @@ func AddUnitAccount(
 }
 
 // CloseUnitAccount
-//  @Description:  关闭记账单元
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param accnbr 账户
-//  @param dmanbr 子单元账号
-//  @param
-//  @return *models.CloseUnitAccountResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-13 17:46:41
+//
+//	@Description:  关闭记账单元
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param accnbr 账户
+//	@param dmanbr 子单元账号
+//	@param
+//	@return *models.CloseUnitAccountResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-13 17:46:41
 func CloseUnitAccount(
 	userId,
-	asePrivateKey, userPrivateKey,
+	sm4Key, userPrivateKey,
 	accnbr,
 	dmanbr string,
 
@@ -101,7 +104,7 @@ func CloseUnitAccount(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageCloseAccount, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitManageCloseAccount, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -117,17 +120,18 @@ func CloseUnitAccount(
 }
 
 // QueryUnitAccountInfo
-//  @Description:  获取账户信息 可以获取实时余额
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param accnbr 账号
-//  @param dmanbr 子单元
-//  @return *models.AccountUnitInfoResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-04-13 17:51:01
-func QueryUnitAccountInfo(userId, asePrivateKey, userPrivateKey, accnbr, dmanbr string) (*models.AccountUnitInfoResponse, error) {
+//
+//	@Description:  获取账户信息 可以获取实时余额
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param accnbr 账号
+//	@param dmanbr 子单元
+//	@return *models.AccountUnitInfoResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-04-13 17:51:01
+func QueryUnitAccountInfo(userId, sm4Key, userPrivateKey, accnbr, dmanbr string) (*models.AccountUnitInfoResponse, error) {
 	reqData := new(models.AccountUnitInfoRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbUnitManageAccountQuery
@@ -145,7 +149,7 @@ func QueryUnitAccountInfo(userId, asePrivateKey, userPrivateKey, accnbr, dmanbr 
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountQuery, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountQuery, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -161,19 +165,20 @@ func QueryUnitAccountInfo(userId, asePrivateKey, userPrivateKey, accnbr, dmanbr 
 }
 
 // QueryUnitAccountBalanceHistory
-//  @Description:   获取子账户历史余额
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param accnbr //账户
-//  @param bbknbr  分行号
-//  @param qrydat 时间
-//  @param dmanbr 续传子单元
-//  @return *models.QueryUnitAccountBalanceHistoryResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-05-18 16:56:54
-func QueryUnitAccountBalanceHistory(userId, asePrivateKey, userPrivateKey, accnbr, bbknbr, qrydat, dmanbr string) (*models.QueryUnitAccountBalanceHistoryResponse, error) {
+//
+//	@Description:   获取子账户历史余额
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param accnbr //账户
+//	@param bbknbr  分行号
+//	@param qrydat 时间
+//	@param dmanbr 续传子单元
+//	@return *models.QueryUnitAccountBalanceHistoryResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-05-18 16:56:54
+func QueryUnitAccountBalanceHistory(userId, sm4Key, userPrivateKey, accnbr, bbknbr, qrydat, dmanbr string) (*models.QueryUnitAccountBalanceHistoryResponse, error) {
 	reqData := new(models.QueryUnitAccountBalanceHistoryRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbUnitAllHistoryBalanceV2
@@ -193,7 +198,7 @@ func QueryUnitAccountBalanceHistory(userId, asePrivateKey, userPrivateKey, accnb
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitAllHistoryBalanceV2, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitAllHistoryBalanceV2, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -209,20 +214,21 @@ func QueryUnitAccountBalanceHistory(userId, asePrivateKey, userPrivateKey, accnb
 }
 
 // QueryUnitAccountSingleBalanceHistory
-//  @Description: 获取子单元 余额列表
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param bbknbr 分行号
-//  @param accnbr 账号
-//  @param dmanbr 子单元
-//  @param begdat 开始时间
-//  @param enddat 结束时间
-//  @return *models.QueryUnitAccountSingleBalanceHistoryResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-05-19 18:02:13
-func QueryUnitAccountSingleBalanceHistory(userId, asePrivateKey, userPrivateKey, bbknbr, accnbr, dmanbr, begdat, enddat string) (*models.QueryUnitAccountSingleBalanceHistoryResponse, error) {
+//
+//	@Description: 获取子单元 余额列表
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param bbknbr 分行号
+//	@param accnbr 账号
+//	@param dmanbr 子单元
+//	@param begdat 开始时间
+//	@param enddat 结束时间
+//	@return *models.QueryUnitAccountSingleBalanceHistoryResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-05-19 18:02:13
+func QueryUnitAccountSingleBalanceHistory(userId, sm4Key, userPrivateKey, bbknbr, accnbr, dmanbr, begdat, enddat string) (*models.QueryUnitAccountSingleBalanceHistoryResponse, error) {
 	reqData := new(models.QueryUnitAccountSingleBalanceHistoryRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbUnitAllHistoryBalanceV2
@@ -244,7 +250,7 @@ func QueryUnitAccountSingleBalanceHistory(userId, asePrivateKey, userPrivateKey,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitAllHistoryBalanceV2, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitAllHistoryBalanceV2, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

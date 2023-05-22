@@ -2,28 +2,30 @@ package account
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // GetMainAccountTransInfo
-//  @Description:   获取交易信息
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param bbknbr 开户行
-//  @param accnbr 账户
-//  @param trsDat 交易日期
-//  @param trsseq
-//  @return *models.GetMainAccountTransInfoResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-10 14:01:42
-func GetMainAccountTransInfo(userId, asePrivateKey, userPrivateKey,
+//
+//	@Description:   获取交易信息
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param bbknbr 开户行
+//	@param accnbr 账户
+//	@param trsDat 交易日期
+//	@param trsseq
+//	@return *models.GetMainAccountTransInfoResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-10 14:01:42
+func GetMainAccountTransInfo(userId, sm4Key, userPrivateKey,
 	bbknbr,
 	accnbr,
 	trsDat,
@@ -45,7 +47,7 @@ func GetMainAccountTransInfo(userId, asePrivateKey, userPrivateKey,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransInfo, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransInfo, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -62,21 +64,22 @@ func GetMainAccountTransInfo(userId, asePrivateKey, userPrivateKey,
 }
 
 // QueryAccountTransInfo
-//  @Description:   获取交易信息
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param bbknbr 开户行
-//  @param accnbr 账户
-//  @param bgndat 开始时间
-//  @param enddat 结束时间
-//  @param lowamt 最小金额
-//  @param hghamt 最大金额
-//  @return *models.QueryAccountTransInfoResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-13 15:32:25
-func QueryAccountTransInfo(userId, asePrivateKey, userPrivateKey,
+//
+//	@Description:   获取交易信息
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param bbknbr 开户行
+//	@param accnbr 账户
+//	@param bgndat 开始时间
+//	@param enddat 结束时间
+//	@param lowamt 最小金额
+//	@param hghamt 最大金额
+//	@return *models.QueryAccountTransInfoResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-13 15:32:25
+func QueryAccountTransInfo(userId, sm4Key, userPrivateKey,
 	bbknbr,
 	accnbr,
 	bgndat,
@@ -105,7 +108,7 @@ func QueryAccountTransInfo(userId, asePrivateKey, userPrivateKey,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountGetTransInfo, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountGetTransInfo, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

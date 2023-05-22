@@ -2,32 +2,34 @@ package account
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // 回单
 
 // AsyncStatement
-//  @Description:   异步获取回单
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param eacnbr
-//  @param begdat
-//  @param enddat
-//  @param begamt
-//  @param endamt
-//  @param category
-//  @return *models.QueryAccountCallbackAsyncResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date2023-04-10 15:05:15
-func AsyncStatement(userId, asePrivateKey, userPrivateKey,
+//
+//	@Description:   异步获取回单
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param eacnbr
+//	@param begdat
+//	@param enddat
+//	@param begamt
+//	@param endamt
+//	@param category
+//	@return *models.QueryAccountCallbackAsyncResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date2023-04-10 15:05:15
+func AsyncStatement(userId, sm4Key, userPrivateKey,
 	eacnbr,
 	begdat,
 	enddat,
@@ -53,7 +55,7 @@ func AsyncStatement(userId, asePrivateKey, userPrivateKey,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryAsyncStatement, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryAsyncStatement, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -69,19 +71,20 @@ func AsyncStatement(userId, asePrivateKey, userPrivateKey,
 }
 
 // SingleStatementQuery
-//  @Description:  单个回单请求
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param eacnbr
-//  @param quedat
-//  @param trsseq
-//  @param primod
-//  @return *models.SingleCallBackPdfResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date2023-04-10 15:09:21
-func SingleStatementQuery(userId, asePrivateKey, userPrivateKey, eacnbr, quedat, trsseq, primod string) (*models.SingleCallBackPdfResponse, error) {
+//
+//	@Description:  单个回单请求
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param eacnbr
+//	@param quedat
+//	@param trsseq
+//	@param primod
+//	@return *models.SingleCallBackPdfResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date2023-04-10 15:09:21
+func SingleStatementQuery(userId, sm4Key, userPrivateKey, eacnbr, quedat, trsseq, primod string) (*models.SingleCallBackPdfResponse, error) {
 	reqData := new(models.SingleCallBackPdfRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbAccountQuerySingleStatement
@@ -100,7 +103,7 @@ func SingleStatementQuery(userId, asePrivateKey, userPrivateKey, eacnbr, quedat,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQuerySingleStatement, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQuerySingleStatement, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -116,18 +119,19 @@ func SingleStatementQuery(userId, asePrivateKey, userPrivateKey, eacnbr, quedat,
 }
 
 // GetStatementPdf
-//  @Description:   获取回单文件
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param taskid
-//  @param qwenab
-//  @param category
-//  @return *models.QueryAccountCallbackDownloadPdfResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date2023-04-10 15:09:59
-func GetStatementPdf(userId, asePrivateKey, userPrivateKey, taskid, qwenab string) (*models.QueryAccountCallbackDownloadPdfResponse, error) {
+//
+//	@Description:   获取回单文件
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param taskid
+//	@param qwenab
+//	@param category
+//	@return *models.QueryAccountCallbackDownloadPdfResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date2023-04-10 15:09:59
+func GetStatementPdf(userId, sm4Key, userPrivateKey, taskid, qwenab string) (*models.QueryAccountCallbackDownloadPdfResponse, error) {
 	reqData := new(models.QueryAccountCallbackDownloadPdfRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbAccountQueryAsyncDownloadStatement
@@ -143,7 +147,7 @@ func GetStatementPdf(userId, asePrivateKey, userPrivateKey, taskid, qwenab strin
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryAsyncDownloadStatement, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryAsyncDownloadStatement, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -159,21 +163,22 @@ func GetStatementPdf(userId, asePrivateKey, userPrivateKey, taskid, qwenab strin
 }
 
 // BatchStatementQuery
-//  @Description:  获取回单列表
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param bbknbr
-//  @param accnbr
-//  @param bgndat
-//  @param enddat
-//  @param lowamt
-//  @param hghamt
-//  @return *models.BatchStatementQueryResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date2023-04-13 15:40:33
-func BatchStatementQuery(userId, asePrivateKey, userPrivateKey,
+//
+//	@Description:  获取回单列表
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param bbknbr
+//	@param accnbr
+//	@param bgndat
+//	@param enddat
+//	@param lowamt
+//	@param hghamt
+//	@return *models.BatchStatementQueryResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date2023-04-13 15:40:33
+func BatchStatementQuery(userId, sm4Key, userPrivateKey,
 	bbknbr,
 	accnbr,
 	bgndat,
@@ -202,7 +207,7 @@ func BatchStatementQuery(userId, asePrivateKey, userPrivateKey,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransDetail, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransDetail, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

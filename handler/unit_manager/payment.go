@@ -2,30 +2,32 @@ package unit_manager
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // UnitAccountPayIn
-//  @Description:  子账户内部调账
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param accnbr
-//  @param dmadbt
-//  @param dmacrt
-//  @param trxamt
-//  @param trxtxt
-//  @return *models.UnitAccountPayInResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date2023-04-13 17:23:59
+//
+//	@Description:  子账户内部调账
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param accnbr
+//	@param dmadbt
+//	@param dmacrt
+//	@param trxamt
+//	@param trxtxt
+//	@return *models.UnitAccountPayInResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date2023-04-13 17:23:59
 func UnitAccountPayIn(userId,
-	asePrivateKey,
+	sm4Key,
 	userPrivateKey,
 	accnbr,
 	dmadbt,
@@ -52,7 +54,7 @@ func UnitAccountPayIn(userId,
 	}
 
 	//  todo 判断错误信息
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountPayIn, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountPayIn, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

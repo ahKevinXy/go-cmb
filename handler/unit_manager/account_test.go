@@ -1,11 +1,12 @@
 package unit_manager
 
 import (
+	"reflect"
+	"testing"
+
 	"github.com/ahKevinXy/go-cmb/config"
 	"github.com/ahKevinXy/go-cmb/models"
 	"github.com/ahKevinXy/go-cmb/testdata"
-	"reflect"
-	"testing"
 )
 
 func init() {
@@ -16,7 +17,7 @@ func init() {
 func TestAddUnitAccount(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		accnbr         string
 		dmanam         string
@@ -32,7 +33,7 @@ func TestAddUnitAccount(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := AddUnitAccount(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accnbr, tt.args.dmanam, tt.args.dmanbr)
+			got, err := AddUnitAccount(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.accnbr, tt.args.dmanam, tt.args.dmanbr)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("AddUnitAccount() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -47,7 +48,7 @@ func TestAddUnitAccount(t *testing.T) {
 func TestCloseUnitAccount(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		accnbr         string
 		dmanbr         string
@@ -62,7 +63,7 @@ func TestCloseUnitAccount(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := CloseUnitAccount(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accnbr, tt.args.dmanbr)
+			got, err := CloseUnitAccount(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.accnbr, tt.args.dmanbr)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("CloseUnitAccount() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -77,7 +78,7 @@ func TestCloseUnitAccount(t *testing.T) {
 func TestQueryUnitAccountBalanceHistory(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		accnbr         string
 		bbknbr         string
@@ -95,7 +96,7 @@ func TestQueryUnitAccountBalanceHistory(t *testing.T) {
 			name: "获取测试模式",
 			args: args{
 				userId:         testdata.UserId,
-				asePrivateKey:  testdata.AseKey,
+				sm4Key:         testdata.AseKey,
 				userPrivateKey: testdata.UserKey,
 				accnbr:         testdata.Account,
 				bbknbr:         "75",
@@ -106,7 +107,7 @@ func TestQueryUnitAccountBalanceHistory(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryUnitAccountBalanceHistory(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accnbr, tt.args.bbknbr, tt.args.qrydat, tt.args.dmanbr)
+			got, err := QueryUnitAccountBalanceHistory(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.accnbr, tt.args.bbknbr, tt.args.qrydat, tt.args.dmanbr)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryUnitAccountBalanceHistory() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -121,7 +122,7 @@ func TestQueryUnitAccountBalanceHistory(t *testing.T) {
 func TestQueryUnitAccountInfo(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		accnbr         string
 		dmanbr         string
@@ -137,7 +138,7 @@ func TestQueryUnitAccountInfo(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryUnitAccountInfo(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accnbr, tt.args.dmanbr)
+			got, err := QueryUnitAccountInfo(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.accnbr, tt.args.dmanbr)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryUnitAccountInfo() error = %v, wantErr %v", err, tt.wantErr)
 				return

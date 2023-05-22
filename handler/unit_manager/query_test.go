@@ -1,15 +1,16 @@
 package unit_manager
 
 import (
-	"github.com/ahKevinXy/go-cmb/models"
 	"reflect"
 	"testing"
+
+	"github.com/ahKevinXy/go-cmb/models"
 )
 
 func TestQueryUnitAccountByBusNo(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		yurref         string
 		bgndat         string
@@ -25,7 +26,7 @@ func TestQueryUnitAccountByBusNo(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryUnitAccountByBusNo(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.yurref, tt.args.bgndat, tt.args.enddat)
+			got, err := QueryUnitAccountByBusNo(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.yurref, tt.args.bgndat, tt.args.enddat)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryUnitAccountByBusNo() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -40,7 +41,7 @@ func TestQueryUnitAccountByBusNo(t *testing.T) {
 func TestQueryUnitAccountDetail(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		reqNbr         string
 	}
@@ -54,7 +55,7 @@ func TestQueryUnitAccountDetail(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryUnitAccountDetail(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.reqNbr)
+			got, err := QueryUnitAccountDetail(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.reqNbr)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryUnitAccountDetail() error = %v, wantErr %v", err, tt.wantErr)
 				return

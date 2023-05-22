@@ -1,15 +1,16 @@
 package account
 
 import (
-	"github.com/ahKevinXy/go-cmb/models"
 	"reflect"
 	"testing"
+
+	"github.com/ahKevinXy/go-cmb/models"
 )
 
 func TestGetMainAccountTransInfo(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		bbknbr         string
 		accnbr         string
@@ -26,7 +27,7 @@ func TestGetMainAccountTransInfo(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetMainAccountTransInfo(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.bbknbr, tt.args.accnbr, tt.args.trsDat, tt.args.trsseq)
+			got, err := GetMainAccountTransInfo(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.bbknbr, tt.args.accnbr, tt.args.trsDat, tt.args.trsseq)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetMainAccountTransInfo() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -41,7 +42,7 @@ func TestGetMainAccountTransInfo(t *testing.T) {
 func TestQueryAccountTransInfo(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		bbknbr         string
 		accnbr         string
@@ -60,7 +61,7 @@ func TestQueryAccountTransInfo(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryAccountTransInfo(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.bbknbr, tt.args.accnbr, tt.args.bgndat, tt.args.enddat, tt.args.lowamt, tt.args.hghamt)
+			got, err := QueryAccountTransInfo(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.bbknbr, tt.args.accnbr, tt.args.bgndat, tt.args.enddat, tt.args.lowamt, tt.args.hghamt)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryAccountTransInfo() error = %v, wantErr %v", err, tt.wantErr)
 				return

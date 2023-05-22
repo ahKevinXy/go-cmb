@@ -2,30 +2,32 @@ package account
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // QueryAccountPaymentTransInfo
-//  @Description:  企银批量支付批次查询
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param begDat
-//  @param endDat
-//  @param autStr
-//  @param rtnStr
-//  @param
-//  @return *models.MainAccountSinglePayResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-13 16:47:10
+//
+//	@Description:  企银批量支付批次查询
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param begDat
+//	@param endDat
+//	@param autStr
+//	@param rtnStr
+//	@param
+//	@return *models.MainAccountSinglePayResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-13 16:47:10
 func QueryAccountPaymentTransInfo(userId,
-	asePrivateKey, userPrivateKey,
+	sm4Key, userPrivateKey,
 	begDat,
 	endDat,
 	autStr,
@@ -51,7 +53,7 @@ func QueryAccountPaymentTransInfo(userId,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayQueryInfo, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayQueryInfo, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -67,22 +69,23 @@ func QueryAccountPaymentTransInfo(userId,
 }
 
 // QueryAccountPaymentDetail
-//  @Description:   获取交易明细
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param bthNbr
-//  @param autStr
-//  @param rtnStr
-//  @param ctnKey
-//  @param
-//  @return *models.MainAccountSinglePayResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-13 16:51:27
+//
+//	@Description:   获取交易明细
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param bthNbr
+//	@param autStr
+//	@param rtnStr
+//	@param ctnKey
+//	@param
+//	@return *models.MainAccountSinglePayResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-13 16:51:27
 func QueryAccountPaymentDetail(
 	userId,
-	asePrivateKey, userPrivateKey,
+	sm4Key, userPrivateKey,
 	bthNbr,
 	autStr,
 	rtnStr, ctnKey string,
@@ -107,7 +110,7 @@ func QueryAccountPaymentDetail(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayQueryDetail, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayQueryDetail, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, err

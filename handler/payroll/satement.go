@@ -2,36 +2,38 @@ package payroll
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // QueryPayrollStatement
-//  @Description: 代发明细对账单查询请求
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param payeac 付款账户
-//  @param begdat 开始日期
-//  @param enddat 结束日期
-//  @param buscod 业务类型
-//  @param busmod 业务模式
-//  @param eacnam 收方户名
-//  @param ptyref 业务参考号
-//  @param trxsrl 流水号
-//  @param minamt 最小金额
-//  @param maxamt 最大金额
-//  @param prtmod 打印模式
-//  @param begidx 查询标记
-//  @return *models.QueryPayrollStatementResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-04-14 17:28:32
-func QueryPayrollStatement(userId, asePrivateKey, userPrivateKey, payeac, begdat, enddat, buscod, busmod, eacnam, ptyref, trxsrl, minamt, maxamt, prtmod, begidx string) (*models.QueryPayrollStatementResponse, error) {
+//
+//	@Description: 代发明细对账单查询请求
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param payeac 付款账户
+//	@param begdat 开始日期
+//	@param enddat 结束日期
+//	@param buscod 业务类型
+//	@param busmod 业务模式
+//	@param eacnam 收方户名
+//	@param ptyref 业务参考号
+//	@param trxsrl 流水号
+//	@param minamt 最小金额
+//	@param maxamt 最大金额
+//	@param prtmod 打印模式
+//	@param begidx 查询标记
+//	@return *models.QueryPayrollStatementResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-04-14 17:28:32
+func QueryPayrollStatement(userId, sm4Key, userPrivateKey, payeac, begdat, enddat, buscod, busmod, eacnam, ptyref, trxsrl, minamt, maxamt, prtmod, begidx string) (*models.QueryPayrollStatementResponse, error) {
 	reqData := new(models.QueryPayrollStatementRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollStatement
@@ -57,7 +59,7 @@ func QueryPayrollStatement(userId, asePrivateKey, userPrivateKey, payeac, begdat
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollStatement, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollStatement, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -73,16 +75,17 @@ func QueryPayrollStatement(userId, asePrivateKey, userPrivateKey, payeac, begdat
 }
 
 // QueryPayrollStatementDownloadUrl
-//  @Description:   获取回单地址
-//  @param userId
-//  @param asePrivateKey
-//  @param userPrivateKey
-//  @param taskid 查询ID
-//  @return *models.QueryBatchTransListResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-04-14 17:33:31
-func QueryPayrollStatementDownloadUrl(userId, asePrivateKey, userPrivateKey, taskid string) (*models.QueryBatchTransListResponse, error) {
+//
+//	@Description:   获取回单地址
+//	@param userId
+//	@param sm4Key
+//	@param userPrivateKey
+//	@param taskid 查询ID
+//	@return *models.QueryBatchTransListResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-04-14 17:33:31
+func QueryPayrollStatementDownloadUrl(userId, sm4Key, userPrivateKey, taskid string) (*models.QueryBatchTransListResponse, error) {
 	reqData := new(models.QueryPayrollStatementDownloadUrlRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollStatementDownloadUrl
@@ -96,7 +99,7 @@ func QueryPayrollStatementDownloadUrl(userId, asePrivateKey, userPrivateKey, tas
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollStatementDownloadUrl, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollStatementDownloadUrl, userId, userPrivateKey, sm4Key)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

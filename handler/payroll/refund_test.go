@@ -1,15 +1,16 @@
 package payroll
 
 import (
-	"github.com/ahKevinXy/go-cmb/models"
 	"reflect"
 	"testing"
+
+	"github.com/ahKevinXy/go-cmb/models"
 )
 
 func TestQueryRefundList(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		accNbr         string
 		trstyp         string
@@ -28,7 +29,7 @@ func TestQueryRefundList(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryRefundList(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.accNbr, tt.args.trstyp, tt.args.bgndat, tt.args.enddat, tt.args.cntkey, tt.args.reqnbr)
+			got, err := QueryRefundList(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.accNbr, tt.args.trstyp, tt.args.bgndat, tt.args.enddat, tt.args.cntkey, tt.args.reqnbr)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryRefundList() error = %v, wantErr %v", err, tt.wantErr)
 				return

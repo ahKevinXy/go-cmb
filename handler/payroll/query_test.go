@@ -1,15 +1,16 @@
 package payroll
 
 import (
-	"github.com/ahKevinXy/go-cmb/models"
 	"reflect"
 	"testing"
+
+	"github.com/ahKevinXy/go-cmb/models"
 )
 
 func TestQueryBatchTransInfo(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		buscode        string
 		yurref         string
@@ -27,7 +28,7 @@ func TestQueryBatchTransInfo(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryBatchTransInfo(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.buscode, tt.args.yurref, tt.args.bthnbr, tt.args.trxseq, tt.args.histga)
+			got, err := QueryBatchTransInfo(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.buscode, tt.args.yurref, tt.args.bthnbr, tt.args.trxseq, tt.args.histga)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryBatchTransInfo() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -42,7 +43,7 @@ func TestQueryBatchTransInfo(t *testing.T) {
 func TestQueryBatchTransList(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		buscode        string
 		yurref         string
@@ -61,7 +62,7 @@ func TestQueryBatchTransList(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryBatchTransList(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.buscode, tt.args.yurref, tt.args.bgndat, tt.args.enddat, tt.args.cntkey, tt.args.dattyp)
+			got, err := QueryBatchTransList(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.buscode, tt.args.yurref, tt.args.bgndat, tt.args.enddat, tt.args.cntkey, tt.args.dattyp)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryBatchTransList() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -76,7 +77,7 @@ func TestQueryBatchTransList(t *testing.T) {
 func TestQueryPayrollTransDetail(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm4Key         string
 		userPrivateKey string
 		reqnbr         string
 		bthnbr         string
@@ -93,7 +94,7 @@ func TestQueryPayrollTransDetail(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := QueryPayrollTransDetail(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.reqnbr, tt.args.bthnbr, tt.args.trxseq, tt.args.histag)
+			got, err := QueryPayrollTransDetail(tt.args.userId, tt.args.sm4Key, tt.args.userPrivateKey, tt.args.reqnbr, tt.args.bthnbr, tt.args.trxseq, tt.args.histag)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("QueryPayrollTransDetail() error = %v, wantErr %v", err, tt.wantErr)
 				return

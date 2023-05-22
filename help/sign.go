@@ -26,18 +26,18 @@ import (
 //	@param funCode 请求代码
 //	@param uid   用户ID
 //	@param userKey 用户秘钥
-//	@param AESKey 用户对称秘钥
+//	@param sm4Key 用户对称秘钥
 //	@return string 结果返回
 //	@Author  ahKevinXy
 //	@Date 2023-04-10 13:41:37
-func CmbSignRequest(reqStr string, funCode, uid, userKey, AESKey string) string {
+func CmbSignRequest(reqStr string, funCode, uid, userKey, sm4Key string) string {
 
-	return SignatureDataSM(reqStr, funCode, uid, userKey, AESKey)
+	return SignatureDataSM(reqStr, funCode, uid, userKey, sm4Key)
 
 }
 
 func SignatureDataSM(
-	reqStr, funCode, uid, userKey, AESKey string) string {
+	reqStr, funCode, uid, userKey, sm4Key string) string {
 
 	reqStr = GetJson(reqStr)
 	var reqV1 models.ReqV1
@@ -97,7 +97,7 @@ func SignatureDataSM(
 	}
 
 	userId := uid + "000000"
-	reqNewAccountAes, err := Sm4Encrypt([]byte(AESKey), []byte(userId), reqV1Json)
+	reqNewAccountAes, err := Sm4Encrypt([]byte(sm4Key), []byte(userId), reqV1Json)
 	if err != nil {
 
 		return ""
@@ -125,7 +125,7 @@ func SignatureDataSM(
 	var dataStr string
 	if !strings.Contains(string(respBody), "ErrMsg") {
 		respBody64, err := base64.StdEncoding.DecodeString(string(respBody))
-		dataByte, err := sm4Decrypt([]byte(AESKey), []byte(userId), respBody64)
+		dataByte, err := sm4Decrypt([]byte(sm4Key), []byte(userId), respBody64)
 		if err != nil {
 
 			return ""

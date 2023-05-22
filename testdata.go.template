@@ -1,4 +1,4 @@
-package go_cmb
+package testdata
 
 // 商户配置
 const (

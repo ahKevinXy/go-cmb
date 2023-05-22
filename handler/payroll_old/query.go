@@ -12,7 +12,7 @@ import (
 // QueryPayRollDetail
 //  @Description:   查询交易概要信息
 //  @param userId
-//  @param asePrivateKey
+//  @param sm2PrivateKey
 //  @param userPrivateKey
 //  @param reqnbr
 //  @param bthnbr
@@ -22,7 +22,7 @@ import (
 //  @return error
 //  @Author  ahKevinXy
 //  @Date  2023-05-21 20:34:03
-func QueryPayRollDetail(userId, asePrivateKey, userPrivateKey, reqnbr, bthnbr, trxseq, histag string) (*models.QueryPayRollDetailResponse, error) {
+func QueryPayRollDetail(userId, sm2PrivateKey, userPrivateKey, reqnbr, bthnbr, trxseq, histag string) (*models.QueryPayRollDetailResponse, error) {
 	reqData := new(models.PayrollOldQueryTransRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollOldQueryTrans
@@ -42,7 +42,7 @@ func QueryPayRollDetail(userId, asePrivateKey, userPrivateKey, reqnbr, bthnbr, t
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldQueryTrans, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldQueryTrans, userId, userPrivateKey, sm2PrivateKey)
 
 	if res == "" {
 		return nil, err

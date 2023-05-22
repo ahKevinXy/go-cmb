@@ -13,7 +13,7 @@ import (
 // QueryUnitAccountDetail
 //  @Description:
 //  @param userId
-//  @param asePrivateKey
+//  @param sm2PrivateKey
 //  @param userPrivateKey
 //  @param reqNbr
 //  @return *models.QueryUnitAccountDetailResponse
@@ -22,7 +22,7 @@ import (
 //  @Date  2023-04-13 18:13:23
 func QueryUnitAccountDetail(
 	userId,
-	asePrivateKey, userPrivateKey,
+	sm2PrivateKey, userPrivateKey,
 
 	reqNbr string) (*models.QueryUnitAccountDetailResponse, error) {
 	reqData := new(models.QueryUnitTransDetailRequest)
@@ -41,7 +41,7 @@ func QueryUnitAccountDetail(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransQueryDetail, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransQueryDetail, userId, userPrivateKey, sm2PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -59,7 +59,7 @@ func QueryUnitAccountDetail(
 // QueryUnitAccountByBusNo
 //  @Description:  通过业务单号获取结果信息
 //  @param userId
-//  @param asePrivateKey
+//  @param sm2PrivateKey
 //  @param userPrivateKey
 //  @param yurref
 //  @param bgndat
@@ -70,7 +70,7 @@ func QueryUnitAccountDetail(
 //  @Date  2023-04-13 18:05:07
 func QueryUnitAccountByBusNo(
 	userId,
-	asePrivateKey, userPrivateKey,
+	sm2PrivateKey, userPrivateKey,
 	yurref,
 	bgndat,
 	enddat string) (*models.QueryUnitTransByBusNoResponse, error) {
@@ -92,7 +92,7 @@ func QueryUnitAccountByBusNo(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransQueryByBusNo, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransQueryByBusNo, userId, userPrivateKey, sm2PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

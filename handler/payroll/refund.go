@@ -12,7 +12,7 @@ import (
 // QueryRefundList
 //  @Description: 退票查询
 //  @param userId
-//  @param asePrivateKey
+//  @param sm2PrivateKey
 //  @param userPrivateKey
 //  @param accNbr
 //  @param trstyp
@@ -24,7 +24,7 @@ import (
 //  @return error
 //  @Author  ahKevinXy
 //  @Date  2023-04-14 15:22:17
-func QueryRefundList(userId, asePrivateKey, userPrivateKey, accNbr, trstyp, bgndat, enddat, cntkey, reqnbr string) (*models.QueryBatchTransListResponse, error) {
+func QueryRefundList(userId, sm2PrivateKey, userPrivateKey, accNbr, trstyp, bgndat, enddat, cntkey, reqnbr string) (*models.QueryBatchTransListResponse, error) {
 	reqData := new(models.QueryPayrollRefundRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollQueryBatchList
@@ -45,7 +45,7 @@ func QueryRefundList(userId, asePrivateKey, userPrivateKey, accNbr, trstyp, bgnd
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollQueryBatchList, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollQueryBatchList, userId, userPrivateKey, sm2PrivateKey)
 
 	if res == "" {
 		return nil, err

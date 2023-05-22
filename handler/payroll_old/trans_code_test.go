@@ -9,7 +9,7 @@ import (
 func TestPayMods(t *testing.T) {
 	type args struct {
 		userId         string
-		asePrivateKey  string
+		sm2PrivateKey  string
 		userPrivateKey string
 		busCode        string
 		accnbr         string
@@ -24,7 +24,7 @@ func TestPayMods(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := PayMods(tt.args.userId, tt.args.asePrivateKey, tt.args.userPrivateKey, tt.args.busCode, tt.args.accnbr)
+			got, err := PayMods(tt.args.userId, tt.args.sm2PrivateKey, tt.args.userPrivateKey, tt.args.busCode, tt.args.accnbr)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("PayMods() error = %v, wantErr %v", err, tt.wantErr)
 				return

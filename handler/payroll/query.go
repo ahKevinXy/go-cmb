@@ -13,7 +13,7 @@ import (
 // QueryBatchTransInfo
 //  @Description: 批次与明细查询
 //  @param userId
-//  @param asePrivateKey
+//  @param sm2PrivateKey
 //  @param userPrivateKey
 //  @param buscode 业务编码
 //  @param yurref 业务参考号
@@ -24,7 +24,7 @@ import (
 //  @return error
 //  @Author  ahKevinXy
 //  @Date  2023-04-14 14:47:18
-func QueryBatchTransInfo(userId, asePrivateKey, userPrivateKey, buscode, yurref, bthnbr, trxseq, histga string) (*models.QueryBatchTransInfoResponse, error) {
+func QueryBatchTransInfo(userId, sm2PrivateKey, userPrivateKey, buscode, yurref, bthnbr, trxseq, histga string) (*models.QueryBatchTransInfoResponse, error) {
 	reqData := new(models.QueryBatchTransInfoRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollQuery
@@ -45,7 +45,7 @@ func QueryBatchTransInfo(userId, asePrivateKey, userPrivateKey, buscode, yurref,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollQuery, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollQuery, userId, userPrivateKey, sm2PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -63,7 +63,7 @@ func QueryBatchTransInfo(userId, asePrivateKey, userPrivateKey, buscode, yurref,
 // QueryBatchTransList
 //  @Description: 代发批次查询
 //  @param userId
-//  @param asePrivateKey
+//  @param sm2PrivateKey
 //  @param userPrivateKey
 //  @param buscode 业务编码
 //  @param yurref 业务参考号
@@ -75,7 +75,7 @@ func QueryBatchTransInfo(userId, asePrivateKey, userPrivateKey, buscode, yurref,
 //  @return error
 //  @Author  ahKevinXy
 //  @Date  2023-04-14 14:57:28
-func QueryBatchTransList(userId, asePrivateKey, userPrivateKey, buscode, yurref, bgndat, enddat, cntkey, dattyp string) (*models.QueryBatchTransListResponse, error) {
+func QueryBatchTransList(userId, sm2PrivateKey, userPrivateKey, buscode, yurref, bgndat, enddat, cntkey, dattyp string) (*models.QueryBatchTransListResponse, error) {
 	reqData := new(models.QueryBatchTransListRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollQueryBatchList
@@ -96,7 +96,7 @@ func QueryBatchTransList(userId, asePrivateKey, userPrivateKey, buscode, yurref,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollQueryBatchList, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollQueryBatchList, userId, userPrivateKey, sm2PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -114,7 +114,7 @@ func QueryBatchTransList(userId, asePrivateKey, userPrivateKey, buscode, yurref,
 // QueryPayrollTransDetail
 //  @Description: 代发明细查询
 //  @param userId
-//  @param asePrivateKey
+//  @param sm2PrivateKey
 //  @param userPrivateKey
 //  @param reqnbr
 //  @param bthnbr
@@ -124,7 +124,7 @@ func QueryBatchTransList(userId, asePrivateKey, userPrivateKey, buscode, yurref,
 //  @return error
 //  @Author  ahKevinXy
 //  @Date  2023-04-14 15:02:42
-func QueryPayrollTransDetail(userId, asePrivateKey, userPrivateKey, reqnbr, bthnbr, trxseq, histag string) (*models.QueryPayrollTransDetailResponse, error) {
+func QueryPayrollTransDetail(userId, sm2PrivateKey, userPrivateKey, reqnbr, bthnbr, trxseq, histag string) (*models.QueryPayrollTransDetailResponse, error) {
 	reqData := new(models.QueryPayrollTransDetailRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollQueryDetail
@@ -143,7 +143,7 @@ func QueryPayrollTransDetail(userId, asePrivateKey, userPrivateKey, reqnbr, bthn
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollQueryDetail, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollQueryDetail, userId, userPrivateKey, sm2PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

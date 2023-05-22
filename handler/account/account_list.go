@@ -13,7 +13,7 @@ import (
 // @Description:   获取可经办列表
 // @Author ahKevinXy
 // @Date 2023-02-13 13:16:21
-func MainAccountUsers(userId, asePrivateKey, userPrivateKey, buscod, busmod string) (*models.MainAccountUsersResponse, error) {
+func MainAccountUsers(userId, sm2PrivateKey, userPrivateKey, buscod, busmod string) (*models.MainAccountUsersResponse, error) {
 	reqData := new(models.MainAccountUsersRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbAccountUserList
@@ -28,7 +28,7 @@ func MainAccountUsers(userId, asePrivateKey, userPrivateKey, buscod, busmod stri
 	}
 
 	//  todo 优化 返回参数
-	res := help.CmbSignRequest(string(req), constants.CmbAccountUserList, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountUserList, userId, userPrivateKey, sm2PrivateKey)
 
 	if res == "" {
 

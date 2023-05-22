@@ -12,7 +12,7 @@ import (
 // CreditHandleOtherBySup
 //  @Description:  超网代发
 //  @param userId
-//  @param asePrivateKey
+//  @param sm2PrivateKey
 //  @param userPrivateKey
 //  @param busmod 交易模式
 //  @param total 汇总信息
@@ -21,7 +21,7 @@ import (
 //  @return error
 //  @Author  ahKevinXy
 //  @Date  2023-04-18 09:48:49
-func CreditHandleOtherBySup(userId, asePrivateKey, userPrivateKey, busmod string, total []*models.Ntagcsaix1, detail []*models.Ntagcsaix2) (*models.PayrollOldCreditOtherBySupResponse, error) {
+func CreditHandleOtherBySup(userId, sm2PrivateKey, userPrivateKey, busmod string, total []*models.Ntagcsaix1, detail []*models.Ntagcsaix2) (*models.PayrollOldCreditOtherBySupResponse, error) {
 
 	reqData := new(models.PayrollOldCreditOtherBySupRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
@@ -44,7 +44,7 @@ func CreditHandleOtherBySup(userId, asePrivateKey, userPrivateKey, busmod string
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldSupPay, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldSupPay, userId, userPrivateKey, sm2PrivateKey)
 
 	if res == "" {
 		return nil, err

@@ -13,12 +13,12 @@ import (
 // PayMods
 //  @Description:  获取支付模式
 //  @param userId 用户ID
-//  @param asePrivateKey 对称加密秘钥
+//  @param sm2PrivateKey 对称加密秘钥
 //  @param userPrivateKey 用户私钥
 //  @param buscode 业务模式
 //  @Author  ahKevinXy
 //  @Date 2023-04-06 19:54:15
-func PayMods(userId, asePrivateKey, userPrivateKey, busCode string) (*models.QueryAccountTransCodeResponse, error) {
+func PayMods(userId, sm2PrivateKey, userPrivateKey, busCode string) (*models.QueryAccountTransCodeResponse, error) {
 
 	reqData := new(models.QueryAccountTransCodeRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
@@ -33,7 +33,7 @@ func PayMods(userId, asePrivateKey, userPrivateKey, busCode string) (*models.Que
 		return nil, err
 	}
 
-	res := help.CmbSignRequest(string(req), constants.CmbAccountCanPayMod, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountCanPayMod, userId, userPrivateKey, sm2PrivateKey)
 	//todo
 	if res == "" {
 		return nil, cmb_errors.SystemError

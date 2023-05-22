@@ -13,7 +13,7 @@ import (
 // UnitAccountPayIn
 //  @Description:  子账户内部调账
 //  @param userId
-//  @param asePrivateKey
+//  @param sm2PrivateKey
 //  @param userPrivateKey
 //  @param accnbr
 //  @param dmadbt
@@ -25,7 +25,7 @@ import (
 //  @Author  ahKevinXy
 //  @Date2023-04-13 17:23:59
 func UnitAccountPayIn(userId,
-	asePrivateKey,
+	sm2PrivateKey,
 	userPrivateKey,
 	accnbr,
 	dmadbt,
@@ -52,7 +52,7 @@ func UnitAccountPayIn(userId,
 	}
 
 	//  todo 判断错误信息
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountPayIn, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountPayIn, userId, userPrivateKey, sm2PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

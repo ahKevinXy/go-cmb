@@ -13,7 +13,7 @@ import (
 // MainAccountPaySingle
 //  @Description:   单笔对公支付
 //  @param userId
-//  @param asePrivateKey
+//  @param sm2PrivateKey
 //  @param userPrivateKey
 //  @param dbAcc
 //  @param buscode
@@ -36,7 +36,7 @@ import (
 //  @Author  ahKevinXy
 //  @Date 2023-04-10 13:56:28
 func MainAccountPaySingle(userId,
-	asePrivateKey, userPrivateKey,
+	sm2PrivateKey, userPrivateKey,
 	dbAcc,
 	buscode,
 	busMode,
@@ -86,7 +86,7 @@ func MainAccountPaySingle(userId,
 		return nil, err
 	}
 
-	res := help.CmbSignRequest(string(req), constants.CmbAccountSinglePay, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountSinglePay, userId, userPrivateKey, sm2PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -104,7 +104,7 @@ func MainAccountPaySingle(userId,
 // MainAccountBatchPay
 //  @Description:  批量支付
 //  @param userId
-//  @param asePrivateKey
+//  @param sm2PrivateKey
 //  @param userPrivateKey
 //  @param busCode
 //  @param busMode
@@ -119,7 +119,7 @@ func MainAccountPaySingle(userId,
 //  @Author  ahKevinXy
 //  @Date 2023-04-10 13:57:21
 func MainAccountBatchPay(userId,
-	asePrivateKey, userPrivateKey,
+	sm2PrivateKey, userPrivateKey,
 	busCode, //业务代码
 	busMode, // 支付模式
 	dtlNbr,
@@ -150,8 +150,8 @@ func MainAccountBatchPay(userId,
 	if err != nil {
 		return nil, err
 	}
-	
-	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayQuery, userId, userPrivateKey, asePrivateKey)
+
+	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayQuery, userId, userPrivateKey, sm2PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

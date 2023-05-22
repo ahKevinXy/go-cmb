@@ -27,7 +27,6 @@ go get -u github.com/ahKevinXy/go-cmb
 
 * `cmb_error` 错误参数
 * `config`  配置文件
-* `configs` 项目配置参数
 * `constants` 常量文件
 * `docs` 文档文件
 * `handler` 业务处理

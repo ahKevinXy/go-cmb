@@ -1,10 +1,10 @@
 # go-cmb
 
 
+[![招商银行logo](https://p9.itc.cn/q_70/images01/20211203/e57156f9afaa4ac78c65eb44e2b7561c.png)](https://p9.itc.cn/q_70/images01/20211203/e57156f9afaa4ac78c65eb44e2b7561c.png)
 
 版本变更日志参见 [`CHANGELOG.md`](CHANGELOG.md)
 
-[![招商银行logo](https://p9.itc.cn/q_70/images01/20211203/e57156f9afaa4ac78c65eb44e2b7561c.png)](https://p9.itc.cn/q_70/images01/20211203/e57156f9afaa4ac78c65eb44e2b7561c.png)
 
 [![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg "logo")](https://jb.gg/OpenSourceSupport)
 

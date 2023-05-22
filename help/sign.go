@@ -92,14 +92,14 @@ func SignatureDataSM(
 	reqV1Json, err := json.Marshal(reqV1)
 
 	if err != nil {
-
+		fmt.Println(err)
 		return ""
 	}
 
 	userId := uid + "000000"
 	reqNewAccountAes, err := Sm4Encrypt([]byte(AESKey), []byte(userId), reqV1Json)
 	if err != nil {
-
+		fmt.Println(err)
 		return ""
 	}
 
@@ -115,7 +115,7 @@ func SignatureDataSM(
 
 	resp, err := http.PostForm(config.Settings.CmbPay.CmbUrl, u)
 	if err != nil {
-
+		fmt.Println(err)
 		return ""
 	}
 	defer resp.Body.Close()

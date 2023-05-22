@@ -36,9 +36,17 @@ type AccountCloseUnitData struct {
 }
 
 type NtbusmodyBody struct {
-	Ntbusmody  []*Ntbusmody  `json:"ntdmaaddx,omitempty"`
-	Ntdmadltx1 []*Ntdmadltx1 `json:"ntdmadltx1,omitempty"`
-	Ntdmadltx2 []*Ntdmadltx2 `json:"ntdmadltx2,omitempty"`
+	Ntbusmody  []*Ntbusmody  `json:"ntbusmody,omitempty"`
+	Ntdumdltx1 []*Ntdumdltx1 `json:"ntdumdltx1,omitempty"`
+	Ntdumdltx2 []*Ntdumdltx2 `json:"ntdumdltx2,omitempty"`
+}
+type Ntdumdltx1 struct {
+	Bbknbr string `json:"bbknbr,omitempty"`
+	Inbacc string `json:"inbacc,omitempty"`
+}
+type Ntdumdltx2 struct {
+	Dyanbr string `json:"dyanbr,omitempty"`
+	Yurref string `json:"yurref,omitempty"`
 }
 type Ntdmadltx1 struct {
 	Accnbr string `json:"accnbr"`

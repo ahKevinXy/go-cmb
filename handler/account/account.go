@@ -12,8 +12,15 @@ import (
 )
 
 // MainAccountInfo
-// @Description:  获取账户信息
-// @Author ahKevinXy
+//  @Description:   获取账务信息
+//  @param userId
+//  @param asePrivateKey
+//  @param userPrivateKey
+//  @param accnbr 账号
+//  @param bbknbr 分行号
+//  @return *models.AccountInfoResponse
+//  @return error
+//  @Author  ahKevinXy
 // @Date 2023-02-13 13:16:21
 func MainAccountInfo(userId, asePrivateKey, userPrivateKey, accnbr, bbknbr string) (*models.AccountInfoResponse, error) {
 	reqData := new(models.AccountDetailsRequest)
@@ -145,7 +152,7 @@ func GetBankLinkNo(userId, asePrivateKey, userPrivateKey, accnbr string) (*model
 }
 
 // GetMainAccountPayBusList
-//  @Description:   获取招商以后支付模式 todo
+//  @Description:   获取支付模式 todo 删除
 //  @param userId
 //  @param asePrivateKey
 //  @param userPrivateKey
@@ -155,35 +162,35 @@ func GetBankLinkNo(userId, asePrivateKey, userPrivateKey, accnbr string) (*model
 //  @return error
 //  @Author  ahKevinXy
 //  @Date 2023-04-10 15:16:34
-func GetMainAccountPayBusList(userId, asePrivateKey, userPrivateKey, buscode string) (*models.QueryAccountTransCodeResponse, error) {
-	reqData := new(models.QueryAccountTransCodeRequest)
-	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
-	reqData.Request.Head.Funcode = constants.CmbAccountPayModQuery
-	reqData.Request.Head.Userid = userId
-	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
-	reqData.Signature.Sigdat = "__signature_sigdat__"
-	reqData.Request.Body.Buscod = buscode
-
-	req, err := json.Marshal(reqData)
-	if err != nil {
-		return nil, err
-	}
-
-	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountPayModQuery, userId, userPrivateKey, asePrivateKey)
-
-	if res == "" {
-
-	}
-
-	var resp models.QueryAccountTransCodeResponse
-
-	if err := json.Unmarshal([]byte(res), &resp); err != nil {
-		return nil, err
-	}
-	//fmt.Println(res)
-	return &resp, nil
-}
+//func GetMainAccountPayBusList(userId, asePrivateKey, userPrivateKey, buscode string) (*models.QueryAccountTransCodeResponse, error) {
+//	reqData := new(models.QueryAccountTransCodeRequest)
+//	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
+//	reqData.Request.Head.Funcode = constants.CmbAccountPayModQuery
+//	reqData.Request.Head.Userid = userId
+//	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
+//	reqData.Signature.Sigdat = "__signature_sigdat__"
+//	reqData.Request.Body.Buscod = buscode
+//
+//	req, err := json.Marshal(reqData)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	//  todo
+//	res := help.CmbSignRequest(string(req), constants.CmbAccountPayModQuery, userId, userPrivateKey, asePrivateKey)
+//
+//	if res == "" {
+//
+//	}
+//
+//	var resp models.QueryAccountTransCodeResponse
+//	fmt.Println(res)
+//	if err := json.Unmarshal([]byte(res), &resp); err != nil {
+//		return nil, err
+//	}
+//	//fmt.Println(res)
+//	return &resp, nil
+//}
 
 // QueryBatchAccountBalance
 //  @Description:  批量获取余额

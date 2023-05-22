@@ -2,10 +2,11 @@ package go_cmb
 
 // 商户配置
 const (
-	UserId  = "" // 用户ID
-	Account = "" //账户
-	UserKey = "" // 用户秘钥
-	AseKey  = "" // 对称秘钥
+	UserId     = "" // 用户ID
+	Account    = "" //账户
+	UserKey    = "" // 用户秘钥
+	AseKey     = "" // 对称秘钥
+	BankLinkNo = "" // 分行号
 )
 
 // Sass平台配置

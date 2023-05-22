@@ -70,6 +70,7 @@ func AddUnitAccount(
 //  @param userPrivateKey
 //  @param accnbr 账户
 //  @param dmanbr 子单元账号
+//  @param busMod 业务模式
 //  @param
 //  @return *models.CloseUnitAccountResponse
 //  @return error
@@ -79,7 +80,10 @@ func CloseUnitAccount(
 	userId,
 	asePrivateKey, userPrivateKey,
 	accnbr,
-	dmanbr string,
+	bbknbr,
+	dmanbr,
+	busMod,
+	yurref string,
 
 ) (*models.CloseUnitAccountResponse, error) {
 	reqData := new(models.AccountCloseUnitRequest)
@@ -88,11 +92,15 @@ func CloseUnitAccount(
 	reqData.Request.Head.Userid = userId
 	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
 	reqData.Signature.Sigdat = "__signature_sigdat__"
-	reqData.Request.Body.Ntdmadltx1 = append(reqData.Request.Body.Ntdmadltx1, &models.Ntdmadltx1{
-		Accnbr: accnbr,
+
+	reqData.Request.Body.Ntbusmody = append(reqData.Request.Body.Ntbusmody, &models.Ntbusmody{Busmod: busMod})
+	reqData.Request.Body.Ntdumdltx1 = append(reqData.Request.Body.Ntdumdltx1, &models.Ntdumdltx1{
+		Inbacc: accnbr,
+		Bbknbr: bbknbr,
 	})
-	reqData.Request.Body.Ntdmadltx2 = append(reqData.Request.Body.Ntdmadltx2, &models.Ntdmadltx2{
-		Dmanbr: dmanbr,
+	reqData.Request.Body.Ntdumdltx2 = append(reqData.Request.Body.Ntdumdltx2, &models.Ntdumdltx2{
+		Dyanbr: dmanbr,
+		Yurref: yurref,
 	})
 
 	req, err := json.Marshal(reqData)
@@ -130,7 +138,7 @@ func CloseUnitAccount(
 func QueryUnitAccountInfo(userId, asePrivateKey, userPrivateKey, accnbr, dmanbr string) (*models.AccountUnitInfoResponse, error) {
 	reqData := new(models.AccountUnitInfoRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
-	reqData.Request.Head.Funcode = constants.CmbUnitManageAccountQuery
+	reqData.Request.Head.Funcode = constants.CmbUnitManageAccountQueryV2
 	reqData.Request.Head.Userid = userId
 	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
 	reqData.Signature.Sigdat = "__signature_sigdat__"
@@ -145,7 +153,7 @@ func QueryUnitAccountInfo(userId, asePrivateKey, userPrivateKey, accnbr, dmanbr 
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountQuery, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountQueryV2, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -222,10 +230,10 @@ func QueryUnitAccountBalanceHistory(userId, asePrivateKey, userPrivateKey, accnb
 //  @return error
 //  @Author  ahKevinXy
 //  @Date  2023-05-19 18:02:13
-func QueryUnitAccountSingleBalanceHistory(userId, asePrivateKey, userPrivateKey, bbknbr, accnbr, dmanbr, begdat, enddat string) (*models.QueryUnitAccountSingleBalanceHistoryResponse, error) {
+func QueryUnitAccountSingleBalanceHistory(userId, asePrivateKey, userPrivateKey, accnbr, bbknbr, dmanbr, begdat, enddat string) (*models.QueryUnitAccountSingleBalanceHistoryResponse, error) {
 	reqData := new(models.QueryUnitAccountSingleBalanceHistoryRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
-	reqData.Request.Head.Funcode = constants.CmbUnitAllHistoryBalanceV2
+	reqData.Request.Head.Funcode = constants.CmbUnitHistoryBalanceV2
 	reqData.Request.Head.Userid = userId
 	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
 	reqData.Signature.Sigdat = "__signature_sigdat__"
@@ -244,7 +252,7 @@ func QueryUnitAccountSingleBalanceHistory(userId, asePrivateKey, userPrivateKey,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitAllHistoryBalanceV2, userId, userPrivateKey, asePrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitHistoryBalanceV2, userId, userPrivateKey, asePrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

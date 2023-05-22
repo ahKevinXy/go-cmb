@@ -34,7 +34,6 @@ func PayMods(userId, asePrivateKey, userPrivateKey, busCode string) (*models.Que
 	}
 
 	res := help.CmbSignRequest(string(req), constants.CmbAccountCanPayMod, userId, userPrivateKey, asePrivateKey)
-
 	//todo
 	if res == "" {
 		return nil, cmb_errors.SystemError

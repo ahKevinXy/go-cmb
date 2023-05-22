@@ -1,7 +1,7 @@
 # go-cmb
 
 
-[![招商银行logo](docs/static/cmb_logo.jpeg)](docs/static/cmb_logo.jpeg)
+[![招商银行logo](./docs/static/img/cmb_logo.jpeg)](./docs/static/img/cmb_logo.jpeg)
 
 版本变更日志参见 [`CHANGELOG.md`](CHANGELOG.md)
 

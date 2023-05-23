@@ -9,7 +9,7 @@ import (
 func TestCreditHandleOtherBySup(t *testing.T) {
 	type args struct {
 		userId         string
-		sm2PrivateKey  string
+		sm4PrivateKey  string
 		userPrivateKey string
 		busmod         string
 		total          []*models.Ntagcsaix1
@@ -25,7 +25,7 @@ func TestCreditHandleOtherBySup(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := CreditHandleOtherBySup(tt.args.userId, tt.args.sm2PrivateKey, tt.args.userPrivateKey, tt.args.busmod, tt.args.total, tt.args.detail)
+			got, err := CreditHandleOtherBySup(tt.args.userId, tt.args.sm4PrivateKey, tt.args.userPrivateKey, tt.args.busmod, tt.args.total, tt.args.detail)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("CreditHandleOtherBySup() error = %v, wantErr %v", err, tt.wantErr)
 				return

@@ -13,7 +13,7 @@ import (
 // GetMainAccountTransInfo
 //  @Description:   获取交易信息
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param bbknbr 开户行
 //  @param accnbr 账户
@@ -23,7 +23,7 @@ import (
 //  @return error
 //  @Author  ahKevinXy
 //  @Date 2023-04-10 14:01:42
-func GetMainAccountTransInfo(userId, sm2PrivateKey, userPrivateKey,
+func GetMainAccountTransInfo(userId, sm4PrivateKey, userPrivateKey,
 	bbknbr,
 	accnbr,
 	trsDat,
@@ -45,7 +45,7 @@ func GetMainAccountTransInfo(userId, sm2PrivateKey, userPrivateKey,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransInfo, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransInfo, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -64,7 +64,7 @@ func GetMainAccountTransInfo(userId, sm2PrivateKey, userPrivateKey,
 // QueryAccountTransInfo
 //  @Description:   获取交易信息
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param bbknbr 开户行
 //  @param accnbr 账户
@@ -76,7 +76,7 @@ func GetMainAccountTransInfo(userId, sm2PrivateKey, userPrivateKey,
 //  @return error
 //  @Author  ahKevinXy
 //  @Date 2023-04-13 15:32:25
-func QueryAccountTransInfo(userId, sm2PrivateKey, userPrivateKey,
+func QueryAccountTransInfo(userId, sm4PrivateKey, userPrivateKey,
 	bbknbr,
 	accnbr,
 	bgndat,
@@ -105,7 +105,7 @@ func QueryAccountTransInfo(userId, sm2PrivateKey, userPrivateKey,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountGetTransInfo, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountGetTransInfo, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

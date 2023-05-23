@@ -13,7 +13,7 @@ import (
 // QueryAccountPaymentRefund
 //  @Description:  跨行退票查询
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param bbkNbr 开户行
 //  @param bgnDat 开始时间
@@ -28,7 +28,7 @@ import (
 //  @Date 2023-04-13 16:59:34
 func QueryAccountPaymentRefund(
 	userId,
-	sm2PrivateKey, userPrivateKey,
+	sm4PrivateKey, userPrivateKey,
 	bbkNbr,
 	bgnDat,
 	endDat,
@@ -59,7 +59,7 @@ func QueryAccountPaymentRefund(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayRefund, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayRefund, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

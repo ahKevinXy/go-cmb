@@ -15,7 +15,7 @@ import (
 // AsyncStatement
 //  @Description:   异步获取回单
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param eacnbr
 //  @param begdat
@@ -27,7 +27,7 @@ import (
 //  @return error
 //  @Author  ahKevinXy
 //  @Date2023-04-10 15:05:15
-func AsyncStatement(userId, sm2PrivateKey, userPrivateKey,
+func AsyncStatement(userId, sm4PrivateKey, userPrivateKey,
 	eacnbr,
 	begdat,
 	enddat,
@@ -53,7 +53,7 @@ func AsyncStatement(userId, sm2PrivateKey, userPrivateKey,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryAsyncStatement, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryAsyncStatement, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -71,7 +71,7 @@ func AsyncStatement(userId, sm2PrivateKey, userPrivateKey,
 // SingleStatementQuery
 //  @Description:  单个回单请求
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param eacnbr
 //  @param quedat
@@ -81,7 +81,7 @@ func AsyncStatement(userId, sm2PrivateKey, userPrivateKey,
 //  @return error
 //  @Author  ahKevinXy
 //  @Date2023-04-10 15:09:21
-func SingleStatementQuery(userId, sm2PrivateKey, userPrivateKey, eacnbr, quedat, trsseq, primod string) (*models.SingleCallBackPdfResponse, error) {
+func SingleStatementQuery(userId, sm4PrivateKey, userPrivateKey, eacnbr, quedat, trsseq, primod string) (*models.SingleCallBackPdfResponse, error) {
 	reqData := new(models.SingleCallBackPdfRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbAccountQuerySingleStatement
@@ -100,7 +100,7 @@ func SingleStatementQuery(userId, sm2PrivateKey, userPrivateKey, eacnbr, quedat,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQuerySingleStatement, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQuerySingleStatement, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -118,7 +118,7 @@ func SingleStatementQuery(userId, sm2PrivateKey, userPrivateKey, eacnbr, quedat,
 // GetStatementPdf
 //  @Description:   获取回单文件
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param taskid
 //  @param qwenab
@@ -127,7 +127,7 @@ func SingleStatementQuery(userId, sm2PrivateKey, userPrivateKey, eacnbr, quedat,
 //  @return error
 //  @Author  ahKevinXy
 //  @Date2023-04-10 15:09:59
-func GetStatementPdf(userId, sm2PrivateKey, userPrivateKey, taskid, qwenab string) (*models.QueryAccountCallbackDownloadPdfResponse, error) {
+func GetStatementPdf(userId, sm4PrivateKey, userPrivateKey, taskid, qwenab string) (*models.QueryAccountCallbackDownloadPdfResponse, error) {
 	reqData := new(models.QueryAccountCallbackDownloadPdfRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbAccountQueryAsyncDownloadStatement
@@ -143,7 +143,7 @@ func GetStatementPdf(userId, sm2PrivateKey, userPrivateKey, taskid, qwenab strin
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryAsyncDownloadStatement, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryAsyncDownloadStatement, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -161,7 +161,7 @@ func GetStatementPdf(userId, sm2PrivateKey, userPrivateKey, taskid, qwenab strin
 // BatchStatementQuery
 //  @Description:  获取回单列表
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param bbknbr
 //  @param accnbr
@@ -173,7 +173,7 @@ func GetStatementPdf(userId, sm2PrivateKey, userPrivateKey, taskid, qwenab strin
 //  @return error
 //  @Author  ahKevinXy
 //  @Date2023-04-13 15:40:33
-func BatchStatementQuery(userId, sm2PrivateKey, userPrivateKey,
+func BatchStatementQuery(userId, sm4PrivateKey, userPrivateKey,
 	bbknbr,
 	accnbr,
 	bgndat,
@@ -202,7 +202,7 @@ func BatchStatementQuery(userId, sm2PrivateKey, userPrivateKey,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransDetail, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransDetail, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

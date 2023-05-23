@@ -14,7 +14,7 @@ import (
 // MainAccountInfo
 //  @Description:   获取账务信息
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param accnbr 账号
 //  @param bbknbr 分行号
@@ -22,7 +22,7 @@ import (
 //  @return error
 //  @Author  ahKevinXy
 // @Date 2023-02-13 13:16:21
-func MainAccountInfo(userId, sm2PrivateKey, userPrivateKey, accnbr, bbknbr string) (*models.AccountInfoResponse, error) {
+func MainAccountInfo(userId, sm4PrivateKey, userPrivateKey, accnbr, bbknbr string) (*models.AccountInfoResponse, error) {
 	reqData := new(models.AccountDetailsRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbAccountInfo
@@ -40,7 +40,7 @@ func MainAccountInfo(userId, sm2PrivateKey, userPrivateKey, accnbr, bbknbr strin
 	}
 
 	//  todo 优化
-	res := help.CmbSignRequest(string(req), constants.CmbAccountInfo, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountInfo, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 
@@ -59,7 +59,7 @@ func MainAccountInfo(userId, sm2PrivateKey, userPrivateKey, accnbr, bbknbr strin
 // MainAccountHistoryBalance
 //  @Description:   获取历史余额 todo
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param accnbr 主账户
 //  @param bbknbr 子单元
@@ -70,7 +70,7 @@ func MainAccountInfo(userId, sm2PrivateKey, userPrivateKey, accnbr, bbknbr strin
 //  @Author  ahKevinXy
 //  @Date2023-04-10 13:48:04
 func MainAccountHistoryBalance(
-	userId, sm2PrivateKey,
+	userId, sm4PrivateKey,
 	userPrivateKey,
 	accnbr,
 	bbknbr,
@@ -96,7 +96,7 @@ func MainAccountHistoryBalance(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountHistoryBalance, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountHistoryBalance, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -114,14 +114,14 @@ func MainAccountHistoryBalance(
 // GetBankLinkNo
 //  @Description:   获取银联号
 //  @param userId 用户ID
-//  @param sm2PrivateKey  对称秘钥
+//  @param sm4PrivateKey  对称秘钥
 //  @param userPrivateKey  用户私钥
 //  @param accnbr  账号
 //  @return *models.AccountBankInfoResponse 请求返回
 //  @return error
 //  @Author  ahKevinXy
 //  @Date 2023-04-10 13:51:13
-func GetBankLinkNo(userId, sm2PrivateKey, userPrivateKey, accnbr string) (*models.AccountBankInfoResponse, error) {
+func GetBankLinkNo(userId, sm4PrivateKey, userPrivateKey, accnbr string) (*models.AccountBankInfoResponse, error) {
 	reqData := new(models.AccountBankInfoRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbAccountQueryBankLinkNo
@@ -136,7 +136,7 @@ func GetBankLinkNo(userId, sm2PrivateKey, userPrivateKey, accnbr string) (*model
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryBankLinkNo, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryBankLinkNo, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -154,7 +154,7 @@ func GetBankLinkNo(userId, sm2PrivateKey, userPrivateKey, accnbr string) (*model
 // GetMainAccountPayBusList
 //  @Description:   获取支付模式 todo 删除
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param buscode
 //  @param category
@@ -162,7 +162,7 @@ func GetBankLinkNo(userId, sm2PrivateKey, userPrivateKey, accnbr string) (*model
 //  @return error
 //  @Author  ahKevinXy
 //  @Date 2023-04-10 15:16:34
-//func GetMainAccountPayBusList(userId, sm2PrivateKey, userPrivateKey, buscode string) (*models.QueryAccountTransCodeResponse, error) {
+//func GetMainAccountPayBusList(userId, sm4PrivateKey, userPrivateKey, buscode string) (*models.QueryAccountTransCodeResponse, error) {
 //	reqData := new(models.QueryAccountTransCodeRequest)
 //	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 //	reqData.Request.Head.Funcode = constants.CmbAccountPayModQuery
@@ -177,7 +177,7 @@ func GetBankLinkNo(userId, sm2PrivateKey, userPrivateKey, accnbr string) (*model
 //	}
 //
 //	//  todo
-//	res := help.CmbSignRequest(string(req), constants.CmbAccountPayModQuery, userId, userPrivateKey, sm2PrivateKey)
+//	res := help.CmbSignRequest(string(req), constants.CmbAccountPayModQuery, userId, userPrivateKey, sm4PrivateKey)
 //
 //	if res == "" {
 //
@@ -195,7 +195,7 @@ func GetBankLinkNo(userId, sm2PrivateKey, userPrivateKey, accnbr string) (*model
 // QueryBatchAccountBalance
 //  @Description:  批量获取余额
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param accnbr 账号
 //  @param buscode 分行号
@@ -203,7 +203,7 @@ func GetBankLinkNo(userId, sm2PrivateKey, userPrivateKey, accnbr string) (*model
 //  @return error
 //  @Author  ahKevinXy
 //  @Date 2023-04-13 13:58:14
-func QueryBatchAccountBalance(userId, sm2PrivateKey, userPrivateKey, accnbr, bbknbr string) (*models.QueryBatchAccountBalanceResponse, error) {
+func QueryBatchAccountBalance(userId, sm4PrivateKey, userPrivateKey, accnbr, bbknbr string) (*models.QueryBatchAccountBalanceResponse, error) {
 	reqData := new(models.QueryBatchMainAccountBalanceRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbAccountBatchQueryBalance
@@ -221,7 +221,7 @@ func QueryBatchAccountBalance(userId, sm2PrivateKey, userPrivateKey, accnbr, bbk
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchQueryBalance, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchQueryBalance, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 

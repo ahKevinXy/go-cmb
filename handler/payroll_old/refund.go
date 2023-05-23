@@ -10,7 +10,7 @@ import (
 )
 
 func Refund(
-	userId, sm2PrivateKey, userPrivateKey, taskId string) (*models.GetPayrollPdfResponse, error) {
+	userId, sm4PrivateKey, userPrivateKey, taskId string) (*models.GetPayrollPdfResponse, error) {
 	reqData := new(models.PayrollPdfFileRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollOldQueryTransRefund
@@ -25,7 +25,7 @@ func Refund(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldQueryTransRefund, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldQueryTransRefund, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, err

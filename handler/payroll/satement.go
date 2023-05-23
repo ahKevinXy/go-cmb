@@ -13,7 +13,7 @@ import (
 // QueryPayrollStatement
 //  @Description: 代发明细对账单查询请求
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param payeac 付款账户
 //  @param begdat 开始日期
@@ -31,7 +31,7 @@ import (
 //  @return error
 //  @Author  ahKevinXy
 //  @Date  2023-04-14 17:28:32
-func QueryPayrollStatement(userId, sm2PrivateKey, userPrivateKey, payeac, begdat, enddat, buscod, busmod, eacnam, ptyref, trxsrl, minamt, maxamt, prtmod, begidx string) (*models.QueryPayrollStatementResponse, error) {
+func QueryPayrollStatement(userId, sm4PrivateKey, userPrivateKey, payeac, begdat, enddat, buscod, busmod, eacnam, ptyref, trxsrl, minamt, maxamt, prtmod, begidx string) (*models.QueryPayrollStatementResponse, error) {
 	reqData := new(models.QueryPayrollStatementRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollStatement
@@ -57,7 +57,7 @@ func QueryPayrollStatement(userId, sm2PrivateKey, userPrivateKey, payeac, begdat
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollStatement, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollStatement, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
@@ -75,14 +75,14 @@ func QueryPayrollStatement(userId, sm2PrivateKey, userPrivateKey, payeac, begdat
 // QueryPayrollStatementDownloadUrl
 //  @Description:   获取回单地址
 //  @param userId
-//  @param sm2PrivateKey
+//  @param sm4PrivateKey
 //  @param userPrivateKey
 //  @param taskid 查询ID
 //  @return *models.QueryBatchTransListResponse
 //  @return error
 //  @Author  ahKevinXy
 //  @Date  2023-04-14 17:33:31
-func QueryPayrollStatementDownloadUrl(userId, sm2PrivateKey, userPrivateKey, taskid string) (*models.QueryBatchTransListResponse, error) {
+func QueryPayrollStatementDownloadUrl(userId, sm4PrivateKey, userPrivateKey, taskid string) (*models.QueryBatchTransListResponse, error) {
 	reqData := new(models.QueryPayrollStatementDownloadUrlRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollStatementDownloadUrl
@@ -96,7 +96,7 @@ func QueryPayrollStatementDownloadUrl(userId, sm2PrivateKey, userPrivateKey, tas
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollStatementDownloadUrl, userId, userPrivateKey, sm2PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbPayrollStatementDownloadUrl, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError

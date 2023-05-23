@@ -1,7 +1,7 @@
 package models
 
-// AccountAddUnitRequest 添加子单元
-type AccountAddUnitRequest struct {
+// AccountAddUnitV1Request 添加子单元
+type AccountAddUnitV1Request struct {
 	Request   AccountAddUnitData `json:"request"`
 	Signature Signature          `json:"signature"`
 }
@@ -140,4 +140,32 @@ type Ntdmahadx1 struct {
 	Dmanbr string `json:"dmanbr,omitempty"` // 记账单元
 	Begdat string `json:"begdat,omitempty"` // 开始时间
 	Enddat string `json:"enddat,omitempty"` // 结束时间
+}
+
+// UpdateUnitAccountV1Request    获取单个交易历史余额
+type UpdateUnitAccountV1Request struct {
+	Request   UpdateUnitAccountV1Data `json:"request"`
+	Signature Signature               `json:"signature"`
+}
+
+type UpdateUnitAccountV1Data struct {
+	Body UpdateUnitAccountV1Body `json:"body,omitempty"`
+	Head Head                    `json:"head"`
+}
+type UpdateUnitAccountV1Body struct {
+	Ntbusmody  []*Ntbusmody  `json:"ntbusmody,omitempty"`
+	Ntdmamntx1 []*Ntdmamntx1 `json:"ntdmahadx1,omitempty"`
+}
+
+type Ntdmamntx1 struct {
+	Bbknbr string `json:"bbknbr,omitempty"` //分行号
+	Accnbr string `json:"accnbr,omitempty"` // 账号
+	Dmanbr string `json:"dmanbr,omitempty"` // 记账单元编号
+	Dmanam string `json:"dmanam,omitempty"` // 记账单元名称
+	Ovrctl string `json:"ovrctl,omitempty"` // 额度控制标志 (y 允许透支 n 不允许透支)
+	Clstyp string `json:"clstyp,omitempty"` // 余额为零是否关闭
+	Yurref string `json:"yurref,omitempty"` // 交易编号 保证唯一性
+	Ballmt string `json:"BALLMT,omitempty"` // 余额上限
+	Lmtflg string `json:"LMTFLG,omitempty"` // 额度标志 n 不设置 y 设置
+	Bcktyp string `json:"bcktyp,omitempty"` // 退款处理方式 Y 退回原记账单元  N 退回结算户
 }

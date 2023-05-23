@@ -1,10 +1,10 @@
 package models
 
-// AddUnitAccountResponse
+// AddUnitAccountV1Response
 //  @Description:  添加记账单元
 //  @Author  ahKevinXy
 //  @Date2023-04-13 17:43:53
-type AddUnitAccountResponse struct {
+type AddUnitAccountV1Response struct {
 	Response struct {
 		Body struct {
 			Ntdumaddz1 []struct {
@@ -153,6 +153,26 @@ type QueryUnitAccountSingleBalanceHistoryResponse struct {
 				Dmanbr string `json:"dmanbr,omitempty"`
 				Psedat string `json:"psedat,omitempty"`
 			} `json:"ntdmahadz1,omitempty"`
+		} `json:"body,omitempty"`
+		Head struct {
+			Bizcode    string `json:"bizcode,omitempty"`
+			Funcode    string `json:"funcode,omitempty"`
+			Reqid      string `json:"reqid,omitempty"`
+			Resultcode string `json:"resultcode,omitempty"`
+			Resultmsg  string `json:"resultmsg,omitempty"`
+			Rspid      string `json:"rspid,omitempty"`
+			Userid     string `json:"userid,omitempty"`
+		} `json:"head,omitempty"`
+	} `json:"response,omitempty"`
+}
+
+// UpdateUnitAccountV1Response
+//  @Description:  跟新返回
+//  @Author  ahKevinXy
+//  @Date  2023-05-23 18:38:00
+type UpdateUnitAccountV1Response struct {
+	Response struct {
+		Body struct {
 		} `json:"body,omitempty"`
 		Head struct {
 			Bizcode    string `json:"bizcode,omitempty"`

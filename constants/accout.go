@@ -59,7 +59,9 @@ const (
 
 // 管家 管理
 const (
-	CmbUnitManageAddAccount                 = "NTDMAADD"    //新增记账子单元 NTDMAADD
+	CmbUnitManageAddAccountV1               = "NTDMAADD"    //新增记账子单元 NTDMAADD
+	CmbUnitManageAddAccountV2               = "NTDUMADD"    //新增记账子单元 NTDMAADD
+	CmbUnitManageUpdateAccountV1            = "NTDMAMNT"    // 修改记账子单元NTDMAMNT
 	CmbUnitManageCloseAccount               = "NTDUMDLT"    //关闭记账子单元NTDUMDLT
 	CmbUnitManageAccountQuery               = "NTDUMQRY"    //记账子单元查询NTDUMQRY
 	CmbUnitManageAccountQueryV2             = "NTDMABAL"    //记账子单元查询NTDUMQRY

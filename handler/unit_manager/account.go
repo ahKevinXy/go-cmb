@@ -12,7 +12,7 @@ import (
 
 // 记账单元 管理
 
-// AddUnitAccount
+// AddUnitAccountV1
 //  @Description:  新增记账单元
 //  @param userId
 //  @param sm4PrivateKey
@@ -21,17 +21,17 @@ import (
 //  @param dmanam
 //  @param dmanbr
 //  @param
-//  @return *models.AddUnitAccountResponse
+//  @return *models.AddUnitAccountV1Response
 //  @return error
 //  @Author  ahKevinXy
 //  @Date 2023-04-13 17:28:18
-func AddUnitAccount(
+func AddUnitAccountV1(
 	userId, sm4PrivateKey, userPrivateKey, accnbr, dmanam, dmanbr string,
 
-) (*models.AddUnitAccountResponse, error) {
-	reqData := new(models.AccountAddUnitRequest)
+) (*models.AddUnitAccountV1Response, error) {
+	reqData := new(models.AccountAddUnitV1Request)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
-	reqData.Request.Head.Funcode = constants.CmbUnitManageAddAccount
+	reqData.Request.Head.Funcode = constants.CmbUnitManageAddAccountV1
 	reqData.Request.Head.Userid = userId
 	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
 	reqData.Signature.Sigdat = "__signature_sigdat__"
@@ -47,13 +47,13 @@ func AddUnitAccount(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAddAccount, userId, userPrivateKey, sm4PrivateKey)
+	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAddAccountV1, userId, userPrivateKey, sm4PrivateKey)
 
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
 
-	var resp models.AddUnitAccountResponse
+	var resp models.AddUnitAccountV1Response
 
 	if err := json.Unmarshal([]byte(res), &resp); err != nil {
 
@@ -259,6 +259,83 @@ func QueryUnitAccountSingleBalanceHistory(userId, sm4PrivateKey, userPrivateKey,
 	}
 
 	var resp models.QueryUnitAccountSingleBalanceHistoryResponse
+
+	if err := json.Unmarshal([]byte(res), &resp); err != nil {
+		return nil, err
+	}
+
+	return &resp, err
+}
+
+// UpdateUnitAccountV1
+//  @Description:   更新记账单元(记账)
+//  @param userId
+//  @param sm4PrivateKey
+//  @param userPrivateKey
+//  @param busmod 业务模式
+//  @param accnbr 账户
+//  @param bbknbr 开户行
+//  @param dmanbr 子单元
+//  @param dmanam 子单元名称
+//  @param ovrctl 额度控制标志
+//  @param ballmt 余额上限
+//  @param yurref 批次号
+//  @param bcktyp 退票处理
+//  @param clstyp 余额为零是否关闭
+//  @param lmtflg 额度标志
+//  @return *models.QueryUnitAccountSingleBalanceHistoryResponse
+//  @return error
+//  @Author  ahKevinXy
+//  @Date  2023-05-23 18:35:29
+func UpdateUnitAccountV1(userId,
+	sm4PrivateKey,
+	userPrivateKey,
+	accnbr,
+	busmod,
+
+	bbknbr,
+	dmanbr,
+	dmanam,
+	ovrctl,
+	ballmt,
+	yurref,
+	lmtflg,
+	bcktyp,
+	clstyp string) (*models.UpdateUnitAccountV1Response, error) {
+	reqData := new(models.UpdateUnitAccountV1Request)
+	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
+	reqData.Request.Head.Funcode = constants.CmbUnitManageUpdateAccountV1
+	reqData.Request.Head.Userid = userId
+	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
+	reqData.Signature.Sigdat = "__signature_sigdat__"
+	reqData.Request.Body.Ntbusmody = append(reqData.Request.Body.Ntbusmody, &models.Ntbusmody{
+		Busmod: busmod,
+	})
+	reqData.Request.Body.Ntdmamntx1 = append(reqData.Request.Body.Ntdmamntx1, &models.Ntdmamntx1{
+		Bbknbr: bbknbr,
+		Accnbr: accnbr,
+		Dmanbr: dmanbr,
+		Dmanam: dmanam,
+		Ovrctl: ovrctl,
+		Clstyp: clstyp,
+		Yurref: yurref,
+		Ballmt: ballmt,
+		Lmtflg: lmtflg,
+		Bcktyp: bcktyp,
+	})
+	req, err := json.Marshal(reqData)
+	if err != nil {
+		return nil, err
+	}
+
+	//  todo
+	res := help.CmbSignRequest(string(req), constants.CmbUnitManageUpdateAccountV1, userId, userPrivateKey, sm4PrivateKey)
+
+	if res == "" {
+		return nil, cmb_errors.SystemError
+	}
+
+	var resp models.UpdateUnitAccountV1Response
 
 	if err := json.Unmarshal([]byte(res), &resp); err != nil {
 		return nil, err

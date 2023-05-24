@@ -167,12 +167,53 @@ type QueryUnitAccountSingleBalanceHistoryResponse struct {
 }
 
 // UpdateUnitAccountV1Response
-//  @Description:  跟新返回
+//  @Description:  更新记账单元
 //  @Author  ahKevinXy
 //  @Date  2023-05-23 18:38:00
 type UpdateUnitAccountV1Response struct {
 	Response struct {
 		Body struct {
+		} `json:"body,omitempty"`
+		Head struct {
+			Bizcode    string `json:"bizcode,omitempty"`
+			Funcode    string `json:"funcode,omitempty"`
+			Reqid      string `json:"reqid,omitempty"`
+			Resultcode string `json:"resultcode,omitempty"`
+			Resultmsg  string `json:"resultmsg,omitempty"`
+			Rspid      string `json:"rspid,omitempty"`
+			Userid     string `json:"userid,omitempty"`
+		} `json:"head,omitempty"`
+	} `json:"response,omitempty"`
+}
+
+// QueryUnitAccountInfoV2Response
+//  @Description:  查询记账单元返回
+//  @Author  ahKevinXy
+//  @Date  2023-05-24 10:05:18
+type QueryUnitAccountInfoV2Response struct {
+	Response struct {
+		Body struct {
+			Ntdumqryz1 []struct {
+				Dyaccy string `json:"dyaccy,omitempty"` // 币种
+				Dyanam string `json:"dyanam,omitempty"` // 单元名称
+				Dyanbr string `json:"dyanbr,omitempty"` // 记账单元编号
+				Eftdat string `json:"eftdat,omitempty"` // 生效时间
+				Enddat string `json:"enddat,omitempty"` // 终止时间
+				Inbacc string `json:"inbacc,omitempty"` // 账号
+				Ovrctl string `json:"ovrctl,omitempty"` // 是否允许透支
+				Pstbal string `json:"pstbal,omitempty"` // 上日余额
+				Pstdat string `json:"pstdat,omitempty"` // 上日日期
+				Rcvlck string `json:"rcvlck,omitempty"` // 是否入账控制
+				Stscod string `json:"stscod,omitempty"` // 状态
+				Uptbal string `json:"uptbal,omitempty"` // 实时更新余额
+			} `json:"ntdumqryz1,omitempty"`
+			Ntdumqryz2 []struct {
+				Avilmt string `json:"avilmt,omitempty"` // 余额
+				Ballmt string `json:"ballmt,omitempty"` // 余额上线
+				Dyanbr string `json:"dyanbr,omitempty"` // 记账单元编号
+				Lmtflg string `json:"lmtflg,omitempty"` // 额度标志
+			} `json:"ntdumqryz2,omitempty"`
+			Ntdumqryy1 []*Ntdumqryy1 `json:"ntdumqryy1,omitempty"`
 		} `json:"body,omitempty"`
 		Head struct {
 			Bizcode    string `json:"bizcode,omitempty"`

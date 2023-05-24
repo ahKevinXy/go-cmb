@@ -169,3 +169,27 @@ type Ntdmamntx1 struct {
 	Lmtflg string `json:"LMTFLG,omitempty"` // 额度标志 n 不设置 y 设置
 	Bcktyp string `json:"bcktyp,omitempty"` // 退款处理方式 Y 退回原记账单元  N 退回结算户
 }
+
+// QueryUnitAccountInfoV2Request    获取单个交易历史余额
+type QueryUnitAccountInfoV2Request struct {
+	Request   QueryUnitAccountInfoV2Data `json:"request"`
+	Signature Signature                  `json:"signature"`
+}
+
+type QueryUnitAccountInfoV2Data struct {
+	Body QueryUnitAccountInfoV2Body `json:"body,omitempty"`
+	Head Head                       `json:"head"`
+}
+type QueryUnitAccountInfoV2Body struct {
+	//Ntbusmody  []*Ntbusmody  `json:"ntbusmody,omitempty"`
+	Ntdumqryy1 []*Ntdumqryy1 `json:"ntdumqryy1,omitempty"`
+}
+
+type Ntdumqryy1 struct {
+	Bbknbr string `json:"bbknbr,omitempty"` //分行号
+	Inbacc string `json:"inbacc,omitempty"` // 账号
+	Danbeg string `json:"danbeg,omitempty"` // 记账单元开始(*)
+	Danend string `json:"danend,omitempty"` // 记账单元结束(*)
+	Ctnkey string `json:"ctnkey,omitempty"` // 额度控制标志 (y 允许透支 n 不允许透支)
+
+}

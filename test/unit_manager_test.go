@@ -1,9 +1,11 @@
 package cmb
 
 import (
-	"github.com/ahKevinXy/go-cmb/handler/unit_manager"
-	"github.com/ahKevinXy/go-cmb/testdata"
 	"testing"
+
+	"github.com/ahKevinXy/go-cmb/handler/unit_manager"
+	"github.com/ahKevinXy/go-cmb/help"
+	"github.com/ahKevinXy/go-cmb/testdata"
 )
 
 // 添加 记账单元 测试完成
@@ -57,4 +59,25 @@ func TestQueryUnitAccountSingleBalanceHistory(t *testing.T) {
 		return
 	}
 	t.Logf("%+v", history)
+}
+
+// 设置记账子单元关联付款方信息
+func TestSetUnitAccountRelation(t *testing.T) {
+	setRes, err := unit_manager.SetUnitAccountRelation(
+		testdata.UserId,
+		testdata.AseKey,
+		testdata.UserKey,
+		"00001",
+		testdata.BankLinkNo,
+		testdata.Account,
+		"0001000111",
+		"Y",
+		"102100099996",
+		help.GenYurref(),
+	)
+	if err != nil {
+		t.Errorf("%+v", err)
+		return
+	}
+	t.Logf("%+v", setRes)
 }

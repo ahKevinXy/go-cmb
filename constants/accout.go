@@ -82,6 +82,10 @@ const (
 	CmbUnitHistoryBalanceV2                 = "NTDMAHAD"    //查询单个记账子单元的历史余额
 	CmbUnitAllHistoryBalanceV2              = "NTDMAHBD"    //查询所有记账子单元的某日余额
 
+	CmbUnitManageSetRelationV2   = "NTDMARLT" // 设置记账子单元关联付款方信息
+	CmbUnitManageModRelationV2   = "NTDMATMN" // 修改记账子单元关联付款方信息
+	CmbUnitManageQueryRelationV2 = "NTDMARLQ" // 查询子单元关联付款方信息
+	CmbUnitManageDelRelationV2   = "NTDMARLD" // 删除记账子单元关联付款方信息
 )
 
 // 提醒

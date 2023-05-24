@@ -7,9 +7,9 @@ import (
 )
 
 // 添加 记账单元 测试完成
-func TestAddUnitAccount(t *testing.T) {
+func TestAddUnitAccountV(t *testing.T) {
 
-	account, err := unit_manager.AddUnitAccount(testdata.UserId, testdata.AseKey, testdata.UserKey, testdata.Account, "测试添加记账单元0001", "0001000111")
+	account, err := unit_manager.AddUnitAccountV1(testdata.UserId, testdata.AseKey, testdata.UserKey, testdata.Account, "测试添加记账单元0001", "0001000111")
 	if err != nil {
 		t.Errorf("%+v", err)
 		return

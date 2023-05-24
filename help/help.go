@@ -3,7 +3,10 @@ package help
 import (
 	"bytes"
 	"crypto/cipher"
+	"crypto/rand"
+	"encoding/hex"
 	"encoding/json"
+
 	"github.com/tjfoc/gmsm/sm4"
 )
 
@@ -37,4 +40,10 @@ func pkcs5Padding(src []byte, blockSize int) []byte {
 	padding := blockSize - len(src)%blockSize
 	padtext := bytes.Repeat([]byte{byte(padding)}, padding)
 	return append(src, padtext...)
+}
+
+func GenYurref() string {
+	b := make([]byte, 8)
+	rand.Read(b)
+	return hex.EncodeToString(b)
 }

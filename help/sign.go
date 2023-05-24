@@ -6,7 +6,6 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"encoding/json"
-	"fmt"
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"io/ioutil"
 	"math/big"
@@ -51,7 +50,6 @@ func CmbSignRequest(
 
 	priv, err := FormatPri([]byte(key))
 	if err != nil {
-		fmt.Println("decode private key fail")
 		return "", cmb_errors.DecodePrivateKeyError
 	}
 

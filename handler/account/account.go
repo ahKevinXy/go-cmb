@@ -39,9 +39,10 @@ func MainAccountInfo(userId, sm4PrivateKey, userPrivateKey, accnbr, bbknbr strin
 		return nil, err
 	}
 
-	//  todo 优化
-	res := help.CmbSignRequest(string(req), constants.CmbAccountInfo, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbAccountInfo, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 
 		return nil, cmb_errors.SystemError
@@ -96,8 +97,10 @@ func MainAccountHistoryBalance(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountHistoryBalance, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbAccountHistoryBalance, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
@@ -136,8 +139,11 @@ func GetBankLinkNo(userId, sm4PrivateKey, userPrivateKey, accnbr string) (*model
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryBankLinkNo, userId, userPrivateKey, sm4PrivateKey)
+	res, err := help.CmbSignRequest(string(req), constants.CmbAccountQueryBankLinkNo, userId, userPrivateKey, sm4PrivateKey)
 
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
@@ -220,9 +226,10 @@ func QueryBatchAccountBalance(userId, sm4PrivateKey, userPrivateKey, accnbr, bbk
 		return nil, err
 	}
 
-	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchQueryBalance, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbAccountBatchQueryBalance, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 
 		return nil, cmb_errors.SystemError

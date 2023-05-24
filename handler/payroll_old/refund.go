@@ -9,9 +9,10 @@ import (
 	"time"
 )
 
+// todo  bug 优化退票
 func Refund(
 	userId, sm4PrivateKey, userPrivateKey, taskId string) (*models.GetPayrollPdfResponse, error) {
-	reqData := new(models.PayrollPdfFileRequest)
+	reqData := new(models.PayrollOldPdfFileRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollOldQueryTransRefund
 	reqData.Request.Head.Userid = userId
@@ -24,9 +25,10 @@ func Refund(
 		return nil, err
 	}
 
-	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldQueryTransRefund, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbPayrollOldQueryTransRefund, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, err
 	}

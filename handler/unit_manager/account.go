@@ -47,8 +47,10 @@ func AddUnitAccountV1(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAddAccountV1, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbUnitManageAddAccountV1, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
@@ -109,8 +111,10 @@ func CloseUnitAccount(
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageCloseAccountV2, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbUnitManageCloseAccountV2, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
@@ -153,8 +157,10 @@ func QueryUnitAccountInfo(userId, sm4PrivateKey, userPrivateKey, accnbr, dmanbr 
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountQueryV1, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountQueryV1, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
@@ -201,8 +207,10 @@ func QueryUnitAccountBalanceHistory(userId, sm4PrivateKey, userPrivateKey, accnb
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitAllHistoryBalanceV2, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbUnitAllHistoryBalanceV2, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
@@ -252,8 +260,10 @@ func QueryUnitAccountSingleBalanceHistory(userId, sm4PrivateKey, userPrivateKey,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitHistoryBalanceV2, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbUnitHistoryBalanceV2, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
@@ -328,8 +338,10 @@ func UpdateUnitAccountV1(userId,
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageUpdateAccountV1, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbUnitManageUpdateAccountV1, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
@@ -378,8 +390,10 @@ func QueryUnitAccountInfoV2(userId, sm4PrivateKey, userPrivateKey, accnbr, bbknb
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountQueryV1, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountQueryV1, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}

@@ -2,6 +2,7 @@ package account
 
 import (
 	"encoding/json"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
@@ -28,11 +29,13 @@ func MainAccountUsers(userId, sm4PrivateKey, userPrivateKey, buscod, busmod stri
 	}
 
 	//  todo 优化 返回参数
-	res := help.CmbSignRequest(string(req), constants.CmbAccountUserList, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbAccountUserList, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 
-		return nil, err
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.MainAccountUsersResponse

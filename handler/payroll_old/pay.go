@@ -44,8 +44,10 @@ func CreditHandleOtherBySup(userId, sm4PrivateKey, userPrivateKey, busmod string
 	}
 
 	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldSupPay, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbPayrollOldSupPay, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, err
 	}

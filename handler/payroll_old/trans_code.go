@@ -2,6 +2,7 @@ package payroll_old
 
 import (
 	"encoding/json"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
@@ -37,10 +38,12 @@ func PayMods(userId, sm4PrivateKey, userPrivateKey, busCode, accnbr string) (*mo
 	if err != nil {
 		return nil, err
 	}
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollOldTransCode, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbPayrollOldTransCode, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
-
+		return nil, cmb_errors.SystemError
 	}
 
 	var resp models.QueryPayrollOldTransCodeResponse

@@ -41,9 +41,10 @@ func GetUnitAccountTransList(userId, sm4PrivateKey, userPrivateKey, accnbr, dman
 		return nil, err
 	}
 
-	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransDaily, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransDaily, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
@@ -92,9 +93,10 @@ func GetUnitAccountTransHistoryList(userId, sm4PrivateKey, userPrivateKey, accnb
 		return nil, err
 	}
 
-	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransHistory, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbUnitManageAccountTransHistory, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}

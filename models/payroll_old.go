@@ -93,3 +93,17 @@ type Ntagdinfy1 struct {
 	Trxseq string `json:"trxseq,omitempty"`
 	Histag string `json:"histag,omitempty"`
 }
+
+// PayrollOldPdfFileRequest   查询交易明细信息
+type PayrollOldPdfFileRequest struct {
+	Request   PayrollPdfFileData `json:"request"`
+	Signature Signature          `json:"signature"`
+}
+
+type PayrollPdfFileData struct {
+	Body PayrollPdfFileBody `json:"body,omitempty"`
+	Head Head               `json:"head"`
+}
+type PayrollPdfFileBody struct {
+	Taskid string `json:"taskid"`
+}

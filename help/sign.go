@@ -7,6 +7,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"io/ioutil"
 	"math/big"
 	"net/http"
@@ -30,21 +31,15 @@ import (
 //	@return string 结果返回
 //	@Author  ahKevinXy
 //	@Date 2023-04-10 13:41:37
-func CmbSignRequest(reqStr string, funCode, uid, userKey, AESKey string) string {
-
-	return SignatureDataSM(reqStr, funCode, uid, userKey, AESKey)
-
-}
-
-func SignatureDataSM(
-	reqStr, funCode, uid, userKey, AESKey string) string {
+func CmbSignRequest(
+	reqStr, funCode, uid, userKey, AESKey string) (string, error) {
 
 	reqStr = GetJson(reqStr)
 	var reqV1 models.ReqV1
 
 	if err := json.Unmarshal([]byte(reqStr), &reqV1); err != nil {
-		fmt.Println(err)
-		return ""
+
+		return "", cmb_errors.JsonUnmarshalError
 	}
 
 	reqStr = strings.ReplaceAll(reqStr, "\n", "")
@@ -57,15 +52,14 @@ func SignatureDataSM(
 	priv, err := FormatPri([]byte(key))
 	if err != nil {
 		fmt.Println("decode private key fail")
-		return ""
+		return "", cmb_errors.DecodePrivateKeyError
 	}
 
 	sm2uid := uid + "0000000000000000"
 	reqSign, err := SM3WithSM2Sign(priv, reqStr, []byte(sm2uid[0:16]))
 
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		return "", cmb_errors.CreateSignError
 	}
 
 	//平台方签名
@@ -77,13 +71,13 @@ func SignatureDataSM(
 
 		saasPriv, err := FormatPri([]byte(saaskey))
 		if err != nil {
-			fmt.Println("decode saas private key fail")
-			return ""
+
+			return "", err
 		}
 		reqSignSaas, err = SM3WithSM2Sign(saasPriv, reqSign, []byte(sm2uid[0:16]))
 		if err != nil {
-			fmt.Println(err)
-			return ""
+
+			return "", err
 		}
 
 	}
@@ -92,15 +86,15 @@ func SignatureDataSM(
 	reqV1Json, err := json.Marshal(reqV1)
 
 	if err != nil {
-		fmt.Println(err)
-		return ""
+
+		return "", err
 	}
 
 	userId := uid + "000000"
 	reqNewAccountAes, err := Sm4Encrypt([]byte(AESKey), []byte(userId), reqV1Json)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+
+		return "", err
 	}
 
 	u := url.Values{}
@@ -115,8 +109,8 @@ func SignatureDataSM(
 
 	resp, err := http.PostForm(config.Settings.CmbPay.CmbUrl, u)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+
+		return "", err
 	}
 	defer resp.Body.Close()
 
@@ -128,14 +122,14 @@ func SignatureDataSM(
 		dataByte, err := sm4Decrypt([]byte(AESKey), []byte(userId), respBody64)
 		if err != nil {
 
-			return ""
+			return "", err
 		}
 		dataStr = string(dataByte)
 	} else {
 		dataStr = string(respBody)
 	}
 
-	return dataStr
+	return dataStr, nil
 }
 
 func sm4Decrypt(key, iv, cipherText []byte) ([]byte, error) {

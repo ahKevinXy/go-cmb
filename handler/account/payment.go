@@ -86,8 +86,10 @@ func MainAccountPaySingle(userId,
 		return nil, err
 	}
 
-	res := help.CmbSignRequest(string(req), constants.CmbAccountSinglePay, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbAccountSinglePay, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
@@ -151,8 +153,10 @@ func MainAccountBatchPay(userId,
 		return nil, err
 	}
 
-	res := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayQuery, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbAccountBatchPayQuery, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}

@@ -44,9 +44,10 @@ func GetMainAccountTransInfo(userId, sm4PrivateKey, userPrivateKey,
 		return nil, err
 	}
 
-	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransInfo, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbAccountQueryTransInfo, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
@@ -104,9 +105,10 @@ func QueryAccountTransInfo(userId, sm4PrivateKey, userPrivateKey,
 		return nil, err
 	}
 
-	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbAccountGetTransInfo, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbAccountGetTransInfo, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}

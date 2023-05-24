@@ -56,9 +56,10 @@ func QueryPayrollStatement(userId, sm4PrivateKey, userPrivateKey, payeac, begdat
 		return nil, err
 	}
 
-	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollStatement, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbPayrollStatement, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}
@@ -95,9 +96,10 @@ func QueryPayrollStatementDownloadUrl(userId, sm4PrivateKey, userPrivateKey, tas
 		return nil, err
 	}
 
-	//  todo
-	res := help.CmbSignRequest(string(req), constants.CmbPayrollStatementDownloadUrl, userId, userPrivateKey, sm4PrivateKey)
-
+	res, err := help.CmbSignRequest(string(req), constants.CmbPayrollStatementDownloadUrl, userId, userPrivateKey, sm4PrivateKey)
+	if err != nil {
+		return nil, err
+	}
 	if res == "" {
 		return nil, cmb_errors.SystemError
 	}

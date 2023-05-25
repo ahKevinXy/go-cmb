@@ -5,6 +5,7 @@ type UnitAccountTransDailyResponse struct {
 		Body struct {
 			Ntdmtlstz []struct {
 				Accnbr string `json:"accnbr,omitempty"`
+				Autflg string `json:"autflg,omitempty"`
 				Ccynbr string `json:"ccynbr,omitempty"`
 				Dmanam string `json:"dmanam,omitempty"`
 				Dmanbr string `json:"dmanbr,omitempty"`
@@ -16,6 +17,7 @@ type UnitAccountTransDailyResponse struct {
 				Trxnbr string `json:"trxnbr,omitempty"`
 				Trxtim string `json:"trxtim,omitempty"`
 				Trxtxt string `json:"trxtxt,omitempty"`
+				Narinn string `json:"narinn,omitempty"`
 			} `json:"ntdmtlstz,omitempty"`
 		} `json:"body,omitempty"`
 		Head struct {

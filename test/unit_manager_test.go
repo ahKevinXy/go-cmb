@@ -81,3 +81,19 @@ func TestSetUnitAccountRelation(t *testing.T) {
 	}
 	t.Logf("%+v", setRes)
 }
+
+func TestGetUnitAccountTransDailyList(t *testing.T) {
+	dailyRes, err := unit_manager.GetUnitAccountTransList(
+		testdata.UserId,
+		testdata.AseKey,
+		testdata.UserKey,
+		testdata.Account,
+		"",
+		"",
+	)
+	if err != nil {
+		t.Errorf("%+v", err)
+		return
+	}
+	t.Logf("%+v", dailyRes)
+}

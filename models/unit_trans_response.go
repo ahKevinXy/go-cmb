@@ -19,6 +19,7 @@ type UnitAccountTransDailyResponse struct {
 				Trxtxt string `json:"trxtxt,omitempty"`
 				Narinn string `json:"narinn,omitempty"`
 			} `json:"ntdmtlstz,omitempty"`
+			Ntdmtlsty []*Ntdmtlsty `json:"ntdmthlsy,omitempty"`
 		} `json:"body,omitempty"`
 		Head struct {
 			Bizcode    string `json:"bizcode,omitempty"`

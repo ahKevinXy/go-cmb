@@ -72,26 +72,29 @@ type Ntagcsaix2 struct {
 	Trxtxt string `json:"trxtxt,omitempty"`
 }
 
-// PayrollOldQueryTransRequest    概要查询
-type PayrollOldQueryTransRequest struct {
-	Request   PayrollOrderQueryDetailsData `json:"request"`
-	Signature Signature                    `json:"signature"`
+// QueryOldPayRollOrderRequest    概要查询
+type QueryOldPayRollOrderRequest struct {
+	Request   QueryOldPayRollOrderData `json:"request"`
+	Signature Signature                `json:"signature"`
 }
 
-type PayrollOrderQueryDetailsData struct {
-	Body Ntagdinfy1Body `json:"body,omitempty"`
+type QueryOldPayRollOrderData struct {
+	Body Ntagcinny1Body `json:"body,omitempty"`
 	Head Head           `json:"head"`
 }
 
-type Ntagdinfy1Body struct {
-	Ntagdinfy1 []*Ntagdinfy1 `json:"ntagdinfy1,omitempty"`
+type Ntagcinny1Body struct {
+	Ntagcinny1 []*Ntagcinny1 `json:"ntagcinny1,omitempty"`
 }
 
-type Ntagdinfy1 struct {
-	Reqnbr string `json:"reqnbr,omitempty"` //流程实例号
-	Bthnbr string `json:"bthnbr,omitempty"`
-	Trxseq string `json:"trxseq,omitempty"`
-	Histag string `json:"histag,omitempty"`
+type Ntagcinny1 struct {
+	Busmod string `json:"busmod,omitempty"` //业务类型 N03010 代发工资 N03020 代发 N03030 代扣
+	Buscod string `json:"buscod,omitempty"` //业务模式
+	Bgndat string `json:"bgndat,omitempty"` //开始时间
+	Enddat string `json:"enddat,omitempty"` //结束时间
+	Datflg string `json:"datflg,omitempty"` //时间类型 A 经办日期 B 期望日期
+	Ctnkey string `json:"ctnkey,omitempty"` // 续传接口
+
 }
 
 // PayrollOldPdfFileRequest   查询交易明细信息
@@ -106,4 +109,33 @@ type PayrollPdfFileData struct {
 }
 type PayrollPdfFileBody struct {
 	Taskid string `json:"taskid"`
+}
+
+// QueryOldPayRollTransDetailRecordRequest    明细查询
+type QueryOldPayRollOrderDetailRequest struct {
+	Request   QueryOldPayRollOrderDetailData `json:"request"`
+	Signature Signature                      `json:"signature"`
+}
+
+type QueryOldPayRollOrderDetailData struct {
+	Body Ntagdinfy1Body `json:"body,omitempty"`
+	Head Head           `json:"head"`
+}
+
+type Ntagdinfy1Body struct {
+	Ntagdinfy1 []*Ntagdinfy1 `json:"ntagdinfy1,omitempty"`
+}
+
+//type Ntagdinfy1 struct {
+//	Reqnbr string `json:"reqnbr,omitempty"` //流程实例号
+//	Bthnbr string `json:"bthnbr,omitempty"`
+//	Trxseq string `json:"trxseq,omitempty"`
+//	Histag string `json:"histag,omitempty"`
+//}
+
+type Ntagdinfy1 struct {
+	Reqnbr string `json:"reqnbr,omitempty"` //流程实例号
+	Bthnbr string `json:"bthnbr,omitempty"` // 续传标志
+	Trxseq string `json:"trxseq,omitempty"` //  续传明细序号
+	Histag string `json:"histag,omitempty"` //  续传使用
 }

@@ -9,7 +9,16 @@ import (
 	"time"
 )
 
-// todo  bug 优化退票
+// Refund
+//  @Description:   获取退票
+//  @param userId
+//  @param sm4PrivateKey
+//  @param userPrivateKey
+//  @param taskId
+//  @return *models.GetPayrollPdfResponse
+//  @return error
+//  @Author  ahKevinXy
+//  @Date  2023-06-05 16:43:16
 func Refund(
 	userId, sm4PrivateKey, userPrivateKey, taskId string) (*models.GetPayrollPdfResponse, error) {
 	reqData := new(models.PayrollOldPdfFileRequest)

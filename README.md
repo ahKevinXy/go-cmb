@@ -94,6 +94,3 @@ const (
 
 ```
 
-## 微信群
-
-[![微信群](./docs/static/img/webchat.png)](./docs/static/img/webchat.png)

@@ -2,5 +2,5 @@ title: go-cmb
 logo: ./static/img/cmb_logo.png
 description: 招商银行银企直联 go sdk
 show_downloads: true
-google_analytics:
+google_analytics: G-B24LDL7T4W
 theme: jekyll-theme-minimal

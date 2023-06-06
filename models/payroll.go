@@ -16,9 +16,10 @@ type UnitPayrollPaymentBody struct {
 }
 
 // Bb6cdcbhx1
-//  @Description: 汇总接口
-//  @Author  ahKevinXy
-//  @Date  2023-06-05 10:20:20
+//
+//	@Description: 汇总接口
+//	@Author  ahKevinXy
+//	@Date  2023-06-05 10:20:20
 type Bb6cdcbhx1 struct {
 	Bbknbr string `json:"bbknbr,omitempty"` // 业务受理分行号
 	Begtag string `json:"begtag,omitempty"` // 批次开始标志
@@ -30,6 +31,7 @@ type Bb6cdcbhx1 struct {
 	Fctnam string `json:"fctnam,omitempty"` // 公司名称
 	Ttlamt string `json:"ttlamt,omitempty"` // 总金额
 	Ttlcnt string `json:"ttlcnt,omitempty"` // 总笔数
+	Ttlnum string `json:"ttlnum,omitempty"` // 总次数
 	Curamt string `json:"curamt,omitempty"` // 本次金额
 	Curcnt string `json:"curcnt,omitempty"` // 本次笔数
 	Cnvnbr string `json:"cnvnbr,omitempty"` // 合作方协议号和交易类型不能同时为空
@@ -47,9 +49,10 @@ type Bb6cdcbhx1 struct {
 }
 
 // Bb6cdcdlx1
-//  @Description:  明细接口
-//  @Author  ahKevinXy
-//  @Date  2023-06-05 10:20:44
+//
+//	@Description:  明细接口
+//	@Author  ahKevinXy
+//	@Date  2023-06-05 10:20:44
 type Bb6cdcdlx1 struct {
 	Trxseq string `json:"trxseq,omitempty"` // 交易序号
 	Accnbr string `json:"accnbr,omitempty"` // 账号

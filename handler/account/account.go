@@ -2,7 +2,6 @@ package account
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
@@ -110,7 +109,7 @@ func MainAccountHistoryBalance(
 	if err := json.Unmarshal([]byte(res), &resp); err != nil {
 		return nil, err
 	}
-	fmt.Println(res)
+
 	return &resp, nil
 }
 

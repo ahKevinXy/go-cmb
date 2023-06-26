@@ -1,5 +1,6 @@
 # go-cmb
 
+[![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg "logo")](https://jb.gg/OpenSourceSupport)
 
 
 版本变更日志参见 [`CHANGELOG.md`](CHANGELOG.md)
@@ -92,7 +93,9 @@ const (
 ```
 
 
-[![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg "logo")](https://jb.gg/OpenSourceSupport)
 
 
+## 微信交流 
 
+
+[![wx](https://img.opencodes.top/blog/cmb/wx.png "wx")](https://img.opencodes.top/blog/cmb/wx.png)

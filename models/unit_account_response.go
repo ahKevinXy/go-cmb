@@ -1,9 +1,10 @@
 package models
 
 // AddUnitAccountV1Response
-//  @Description:  添加记账单元
-//  @Author  ahKevinXy
-//  @Date2023-04-13 17:43:53
+//
+//	@Description:  添加记账单元
+//	@Author  ahKevinXy
+//	@Date2023-04-13 17:43:53
 type AddUnitAccountV1Response struct {
 	Response struct {
 		Body struct {
@@ -28,9 +29,10 @@ type AddUnitAccountV1Response struct {
 }
 
 // CloseUnitAccountResponse
-//  @Description:  关闭记账单元
-//  @Author  ahKevinXy
-//  @Date2023-04-13 17:44:38
+//
+//	@Description:  关闭记账单元
+//	@Author  ahKevinXy
+//	@Date2023-04-13 17:44:38
 type CloseUnitAccountResponse struct {
 	Response struct {
 		Body struct {
@@ -55,9 +57,10 @@ type CloseUnitAccountResponse struct {
 }
 
 // AccountUnitInfoResponse
-//  @Description:  获取余额信息
-//  @Author  ahKevinXy
-//  @Date  2023-04-13 17:50:47
+//
+//	@Description:  获取余额信息
+//	@Author  ahKevinXy
+//	@Date  2023-04-13 17:50:47
 type AccountUnitInfoResponse struct {
 	Response struct {
 		Body struct {
@@ -84,9 +87,10 @@ type AccountUnitInfoResponse struct {
 }
 
 // QueryUnitTransByBusNoResponse
-//  @Description:  获取交易信息
-//  @Author  ahKevinXy
-//  @Date  2023-04-13 18:04:30
+//
+//	@Description:  获取交易信息
+//	@Author  ahKevinXy
+//	@Date  2023-04-13 18:04:30
 type QueryUnitTransByBusNoResponse struct {
 	Response struct {
 		Body struct {
@@ -167,9 +171,10 @@ type QueryUnitAccountSingleBalanceHistoryResponse struct {
 }
 
 // UpdateUnitAccountV1Response
-//  @Description:  更新记账单元
-//  @Author  ahKevinXy
-//  @Date  2023-05-23 18:38:00
+//
+//	@Description:  更新记账单元
+//	@Author  ahKevinXy
+//	@Date  2023-05-23 18:38:00
 type UpdateUnitAccountV1Response struct {
 	Response struct {
 		Body struct {
@@ -187,9 +192,10 @@ type UpdateUnitAccountV1Response struct {
 }
 
 // QueryUnitAccountInfoV2Response
-//  @Description:  查询记账单元返回
-//  @Author  ahKevinXy
-//  @Date  2023-05-24 10:05:18
+//
+//	@Description:  查询记账单元返回
+//	@Author  ahKevinXy
+//	@Date  2023-05-24 10:05:18
 type QueryUnitAccountInfoV2Response struct {
 	Response struct {
 		Body struct {
@@ -223,6 +229,32 @@ type QueryUnitAccountInfoV2Response struct {
 			Resultmsg  string `json:"resultmsg,omitempty"`
 			Rspid      string `json:"rspid,omitempty"`
 			Userid     string `json:"userid,omitempty"`
+		} `json:"head,omitempty"`
+	} `json:"response,omitempty"`
+}
+
+// AccountSetWhitePayResponse
+//
+//	@Description:  设置白名单返回
+//	@Author  colornote
+//	@Date  2023-06-27 10:05:18
+type AccountSetWhitePayResponse struct {
+	Response struct {
+		Body struct {
+			Ntoprrtnz []struct {
+				Errcod string `json:"errcod,omitempty"` // 错误码
+				Reqnbr string `json:"reqnbr,omitempty"` // 请求流水号
+				Reqsts string `json:"reqsts,omitempty"` // 请求状态
+			} `json:"ntoprrtnz,omitempty"`
+		} `json:"body,omitempty"`
+		Head struct {
+			Bizcode    string `json:"bizcode,omitempty"`    // 业务码
+			Funcode    string `json:"funcode,omitempty"`    // 功能码
+			Reqid      string `json:"reqid,omitempty"`      // 请求流水号
+			Resultcode string `json:"resultcode,omitempty"` // 返回码
+			Resultmsg  string `json:"resultmsg,omitempty"`  // 返回信息
+			Rspid      string `json:"rspid,omitempty"`      // 响应流水号
+			Userid     string `json:"userid,omitempty"`     // 用户ID
 		} `json:"head,omitempty"`
 	} `json:"response,omitempty"`
 }

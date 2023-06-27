@@ -193,3 +193,30 @@ type Ntdumqryy1 struct {
 	Ctnkey string `json:"ctnkey,omitempty"` // 额度控制标志 (y 允许透支 n 不允许透支)
 
 }
+
+type Ntdumrlax1 struct {
+	Bbknbr string `json:"bbknbr,omitempty"` //分行号
+	Accnbr string `json:"accnbr,omitempty"` // 账号
+	Dumnbr string `json:"dumnbr,omitempty"` // 记账子单元编号
+	Rltnam string `json:"rltnam,omitempty"` // 关联户名
+	Rltacc string `json:"rltacc,omitempty"` // 关联账户
+	Chktyp string `json:"chktyp,omitempty"` // 白名单校验类型 1:帐号 2:户名
+	Rcvtyp string `json:"rcvtyp,omitempty"` // 入账方式 N：非关联收款入账默认子单元 R：非关联收款拒绝入账
+	Yurref string `json:"yurref,omitempty"` // 批次号
+}
+
+type AccountSetWhitePayBody struct {
+	Ntbusmody  []*Ntbusmody  `json:"ntbusmody,omitempty"`
+	Ntdumrlax1 []*Ntdumrlax1 `json:"ntdumrlax1,omitempty"`
+}
+
+type AccountSetWhitePayData struct {
+	Body AccountSetWhitePayBody `json:"body,omitempty"`
+	Head Head                   `json:"head"`
+}
+
+// AccountSetWhitePayRequest    设置白名单
+type AccountSetWhitePayRequest struct {
+	Request   AccountSetWhitePayData `json:"request"`
+	Signature Signature              `json:"signature"`
+}

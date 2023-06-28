@@ -154,7 +154,7 @@ type UpdateUnitAccountV1Data struct {
 }
 type UpdateUnitAccountV1Body struct {
 	Ntbusmody  []*Ntbusmody  `json:"ntbusmody,omitempty"`
-	Ntdmamntx1 []*Ntdmamntx1 `json:"ntdmahadx1,omitempty"`
+	Ntdmamntx1 []*Ntdmamntx1 `json:"ntdmamntx1,omitempty"`
 }
 
 type Ntdmamntx1 struct {

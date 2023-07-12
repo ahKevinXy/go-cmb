@@ -258,3 +258,29 @@ type AccountSetWhitePayResponse struct {
 		} `json:"head,omitempty"`
 	} `json:"response,omitempty"`
 }
+
+// CloseUnitAccountV1Response
+//  @Description:  关闭 记账单元账号
+//  @Author  ahKevinXy
+//  @Date  2023-07-12 23:42:30
+type CloseUnitAccountV1Response struct {
+	Response struct {
+		Body struct {
+			Ntdmadltz []struct {
+				Dmanam string `json:"dmanam,omitempty"`
+				Dmanbr string `json:"dmanbr,omitempty"`
+				Prcsts string `json:"prcsts,omitempty"`
+				Rtncod string `json:"rtncod,omitempty"`
+			} `json:"ntdmadltz,omitempty"`
+		} `json:"body,omitempty"`
+		Head struct {
+			Bizcode    string `json:"bizcode,omitempty"`
+			Funcode    string `json:"funcode,omitempty"`
+			Reqid      string `json:"reqid,omitempty"`
+			Resultcode string `json:"resultcode,omitempty"`
+			Resultmsg  string `json:"resultmsg,omitempty"`
+			Rspid      string `json:"rspid,omitempty"`
+			Userid     string `json:"userid,omitempty"`
+		} `json:"head,omitempty"`
+	} `json:"response,omitempty"`
+}

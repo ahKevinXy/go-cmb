@@ -9,25 +9,21 @@ import (
 	"time"
 )
 
-// Refund
-//  @Description:   获取退票
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param taskId
-//  @return *models.GetPayrollPdfResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-06-05 16:43:16
 func Refund(
-	userId, sm4PrivateKey, userPrivateKey, taskId string) (*models.GetPayrollPdfResponse, error) {
-	reqData := new(models.PayrollOldPdfFileRequest)
+	userId, sm4PrivateKey, userPrivateKey, accnbr, bbknbr, trstyp, bgDate, endDat string) (*models.GetPayrollPdfResponse, error) {
+	reqData := new(models.PayrollOldRefundRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbPayrollOldQueryTransRefund
 	reqData.Request.Head.Userid = userId
 	reqData.Signature.Sigtim = time.Now().Format("20060102150405")
 	reqData.Signature.Sigdat = "__signature_sigdat__"
-	reqData.Request.Body.Taskid = taskId
+	reqData.Request.Body.Ntagdrfdy1 = append(reqData.Request.Body.Ntagdrfdy1, &models.Ntagdrfdy1{
+		Bbknbr: bbknbr,
+		Accnbr: accnbr,
+		Trstyp: trstyp,
+		Bgndat: bgDate,
+		Enddat: endDat,
+	})
 
 	req, err := json.Marshal(reqData)
 	if err != nil {

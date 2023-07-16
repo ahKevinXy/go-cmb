@@ -154,3 +154,27 @@ type QueryOldPayRollOrderDetailResponse struct {
 		} `json:"head,omitempty"`
 	} `json:"response,omitempty"`
 }
+
+type PayrollOldRefundResponse struct {
+	Response struct {
+		Body struct {
+			Ntagdrfdz1 []struct {
+				Reqnbr string `json:"reqnbr"` //流程实例号
+				Yurref string `json:"yurref"` //业务单号
+				Bthdtl string `json:"bthdtl"` //明细序号
+				Eacnbr string `json:"eacnbr"` //账号
+				Eacnam string `json:"eacnam"` //账号名称
+				Trsamt string `json:"trsamt"` //交易金额
+			} `json:"ntagdrfdz1"`
+		} `json:"body,omitempty"`
+		Head struct {
+			Bizcode    string `json:"bizcode,omitempty"`
+			Funcode    string `json:"funcode,omitempty"`
+			Reqid      string `json:"reqid,omitempty"`
+			Resultcode string `json:"resultcode,omitempty"`
+			Resultmsg  string `json:"resultmsg,omitempty"`
+			Rspid      string `json:"rspid,omitempty"`
+			Userid     string `json:"userid,omitempty"`
+		} `json:"head,omitempty"`
+	} `json:"response,omitempty"`
+}

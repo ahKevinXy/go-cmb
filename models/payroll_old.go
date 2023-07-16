@@ -111,7 +111,33 @@ type PayrollPdfFileBody struct {
 	Taskid string `json:"taskid"`
 }
 
-// QueryOldPayRollTransDetailRecordRequest    明细查询
+// PayrollOldRefundRequest
+//  @Description:   跨行退票
+//  @Author  ahKevinXy
+//  @Date  2023-07-16 00:15:32
+type PayrollOldRefundRequest struct {
+	Request   PayrollOldRefundData `json:"request"`
+	Signature Signature            `json:"signature"`
+}
+
+type PayrollOldRefundData struct {
+	Body PayrollOldRefundBody `json:"body,omitempty"`
+	Head Head                 `json:"head"`
+}
+
+type PayrollOldRefundBody struct {
+	Ntagdrfdy1 []*Ntagdrfdy1 `json:"ntagdrfdy1 ,omitempty"`
+}
+
+type Ntagdrfdy1 struct {
+	Bbknbr string `json:"bbknbr,omitempty"`
+	Accnbr string `json:"accnbr,omitempty"`
+	Trstyp string `json:"trstyp,omitempty"`
+	Bgndat string `json:"bgndat,omitempty"`
+	Enddat string `json:"enddat,omitempty"`
+}
+
+// QueryOldPayRollOrderDetailRequest    明细查询
 type QueryOldPayRollOrderDetailRequest struct {
 	Request   QueryOldPayRollOrderDetailData `json:"request"`
 	Signature Signature                      `json:"signature"`

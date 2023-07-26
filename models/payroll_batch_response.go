@@ -1,9 +1,10 @@
 package models
 
 // QueryBatchTransInfoResponse
-//  @Description:   批次信息查询
-//  @Author  ahKevinXy
-//  @Date  2023-04-14 14:46:26
+//
+//	@Description:   批次信息查询
+//	@Author  ahKevinXy
+//	@Date  2023-04-14 14:46:26
 type QueryBatchTransInfoResponse struct {
 	Response struct {
 		Body struct {
@@ -47,6 +48,8 @@ type QueryBatchTransInfoResponse struct {
 				Trsdat string `json:"trsdat,omitempty"`
 				Trsdsp string `json:"trsdsp,omitempty"`
 				Trxseq string `json:"trxseq,omitempty"`
+				Errcod string `json:"errcod,omitempty"`
+				Errtxt string `json:"errtxt,omitempty"`
 			} `json:"bb6bpdqyz2,omitempty"`
 		} `json:"body,omitempty"`
 		Head struct {

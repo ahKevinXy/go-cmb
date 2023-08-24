@@ -5,6 +5,7 @@
 
 版本变更日志参见 [`CHANGELOG.md`](CHANGELOG.md)
 
+**特别感谢JetBrains对开源项目大力支持**
 
 [![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg "logo")](https://jb.gg/OpenSourceSupport)
 

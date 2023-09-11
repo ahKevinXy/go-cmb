@@ -1,9 +1,10 @@
 package models
 
 // QueryAccountCallbackAsyncResponse
-//  @Description:   异步回单
-//  @Author  ahKevinXy
-//  @Date2023-04-10 15:07:07
+//
+//	@Description:   异步回单
+//	@Author  ahKevinXy
+//	@Date2023-04-10 15:07:07
 type QueryAccountCallbackAsyncResponse struct {
 	Response struct {
 		Head struct {
@@ -45,9 +46,10 @@ type QueryAccountCallbackAsyncResponse struct {
 }
 
 // SingleCallBackPdfResponse
-//  @Description:   获取单笔交易回单
-//  @Author  ahKevinXy
-//  @Date2023-04-10 15:10:52
+//
+//	@Description:   获取单笔交易回单
+//	@Author  ahKevinXy
+//	@Date2023-04-10 15:10:52
 type SingleCallBackPdfResponse struct {
 	Response struct {
 		Body struct {
@@ -68,9 +70,10 @@ type SingleCallBackPdfResponse struct {
 }
 
 // QueryAccountCallbackDownloadPdfResponse
-//  @Description:   获取回单文件
-//  @Author  ahKevinXy
-//  @Date2023-04-10 15:10:42
+//
+//	@Description:   获取回单文件
+//	@Author  ahKevinXy
+//	@Date2023-04-10 15:10:42
 type QueryAccountCallbackDownloadPdfResponse struct {
 	Response struct {
 		Body struct {

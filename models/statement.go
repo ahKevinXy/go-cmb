@@ -19,12 +19,24 @@ type QueryAccountCallbackAsyncBody struct {
 	Begamt string `json:"begamt,omitempty"` // 最小金额
 	Endamt string `json:"endamt,omitempty"` // 最大金额
 	Rrccod string `json:"rrccod,omitempty"` // 回单代码
+
+	Nxtdat string `json:"nxtdat,omitempty"`
+	Nxtnbr string `json:"nxtnbr,omitempty"`
+	Nxttim string `json:"nxttim,omitempty"`
+	Oprtyp string `json:"oprtyp,omitempty"`
+	Pagcnt string `json:"pagcnt,omitempty"`
+	Pattyp string `json:"pattyp,omitempty"`
+	Predat string `json:"predat,omitempty"`
+	Prenbr string `json:"prenbr,omitempty"`
+	Pretim string `json:"pretim,omitempty"`
+	Spc100 string `json:"spc100,omitempty"`
 }
 
 // SingleCallBackPdfRequest
-//  @Description:  账户交易信息查询DCTRSINF
-//  @Author  ahKevinXy
-//  @Date2023-04-10 15:08:08
+//
+//	@Description:  账户交易信息查询DCTRSINF
+//	@Author  ahKevinXy
+//	@Date2023-04-10 15:08:08
 type SingleCallBackPdfRequest struct {
 	Request   SingleCallBackPdfData `json:"request"`
 	Signature Signature             `json:"signature"`

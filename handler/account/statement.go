@@ -2,31 +2,33 @@ package account
 
 import (
 	"encoding/json"
+	"strconv"
+	"time"
+
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"github.com/ahKevinXy/go-cmb/constants"
 	"github.com/ahKevinXy/go-cmb/help"
 	"github.com/ahKevinXy/go-cmb/models"
-	"strconv"
-	"time"
 )
 
 // 回单
 
 // AsyncStatement
-//  @Description:   异步获取回单
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param eacnbr
-//  @param begdat
-//  @param enddat
-//  @param begamt
-//  @param endamt
-//  @param category
-//  @return *models.QueryAccountCallbackAsyncResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date2023-04-10 15:05:15
+//
+//	@Description:   异步获取回单
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param eacnbr
+//	@param begdat
+//	@param enddat
+//	@param begamt
+//	@param endamt
+//	@param category
+//	@return *models.QueryAccountCallbackAsyncResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date2023-04-10 15:05:15
 func AsyncStatement(userId, sm4PrivateKey, userPrivateKey,
 	eacnbr,
 	begdat,
@@ -46,6 +48,8 @@ func AsyncStatement(userId, sm4PrivateKey, userPrivateKey,
 	reqData.Request.Body.Rrcflg = "1"
 	reqData.Request.Body.Begamt = begamt
 	reqData.Request.Body.Endamt = endamt
+
+AsyncStatement:
 
 	req, err := json.Marshal(reqData)
 	if err != nil {
@@ -67,22 +71,41 @@ func AsyncStatement(userId, sm4PrivateKey, userPrivateKey,
 		print(err)
 	}
 
+	// 如果有续传标识，继续请求
+	if resp.Response.Body.Ctnkeyz2.Nxtnbr != "" {
+
+		reqData.Request.Body.Nxtdat = resp.Response.Body.Ctnkeyz2.Nxtdat
+		reqData.Request.Body.Nxtnbr = resp.Response.Body.Ctnkeyz2.Nxtnbr
+		reqData.Request.Body.Nxttim = resp.Response.Body.Ctnkeyz2.Nxttim
+		reqData.Request.Body.Oprtyp = resp.Response.Body.Ctnkeyz2.Oprtyp
+		reqData.Request.Body.Pagcnt = resp.Response.Body.Ctnkeyz2.Pagcnt
+		reqData.Request.Body.Pattyp = resp.Response.Body.Ctnkeyz2.Pattyp
+		reqData.Request.Body.Predat = resp.Response.Body.Ctnkeyz2.Predat
+		reqData.Request.Body.Prenbr = resp.Response.Body.Ctnkeyz2.Prenbr
+		reqData.Request.Body.Pretim = resp.Response.Body.Ctnkeyz2.Pretim
+		reqData.Request.Body.Spc100 = resp.Response.Body.Ctnkeyz2.Spc100
+
+		goto AsyncStatement
+
+	}
+
 	return &resp, nil
 }
 
 // SingleStatementQuery
-//  @Description:  单个回单请求
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param eacnbr
-//  @param quedat
-//  @param trsseq
-//  @param primod
-//  @return *models.SingleCallBackPdfResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date2023-04-10 15:09:21
+//
+//	@Description:  单个回单请求
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param eacnbr
+//	@param quedat
+//	@param trsseq
+//	@param primod
+//	@return *models.SingleCallBackPdfResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date2023-04-10 15:09:21
 func SingleStatementQuery(userId, sm4PrivateKey, userPrivateKey, eacnbr, quedat, trsseq, primod string) (*models.SingleCallBackPdfResponse, error) {
 	reqData := new(models.SingleCallBackPdfRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
@@ -120,17 +143,18 @@ func SingleStatementQuery(userId, sm4PrivateKey, userPrivateKey, eacnbr, quedat,
 }
 
 // GetStatementPdf
-//  @Description:   获取回单文件
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param taskid
-//  @param qwenab
-//  @param category
-//  @return *models.QueryAccountCallbackDownloadPdfResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date2023-04-10 15:09:59
+//
+//	@Description:   获取回单文件
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param taskid
+//	@param qwenab
+//	@param category
+//	@return *models.QueryAccountCallbackDownloadPdfResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date2023-04-10 15:09:59
 func GetStatementPdf(userId, sm4PrivateKey, userPrivateKey, taskid, qwenab string) (*models.QueryAccountCallbackDownloadPdfResponse, error) {
 	reqData := new(models.QueryAccountCallbackDownloadPdfRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
@@ -164,20 +188,21 @@ func GetStatementPdf(userId, sm4PrivateKey, userPrivateKey, taskid, qwenab strin
 }
 
 // BatchStatementQuery
-//  @Description:  获取回单列表
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param bbknbr
-//  @param accnbr
-//  @param bgndat
-//  @param enddat
-//  @param lowamt
-//  @param hghamt
-//  @return *models.BatchStatementQueryResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date2023-04-13 15:40:33
+//
+//	@Description:  获取回单列表
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param bbknbr
+//	@param accnbr
+//	@param bgndat
+//	@param enddat
+//	@param lowamt
+//	@param hghamt
+//	@return *models.BatchStatementQueryResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date2023-04-13 15:40:33
 func BatchStatementQuery(userId, sm4PrivateKey, userPrivateKey,
 	bbknbr,
 	accnbr,

@@ -58,6 +58,21 @@ type Ntbusmody struct {
 	Busmod string `json:"busmod,omitempty"`
 }
 
+// AccountCloseUnitV1Request 关闭子单元
+type AccountCloseUnitV1Request struct {
+	Request   AccountCloseUnitDataV1 `json:"request"`
+	Signature Signature              `json:"signature"`
+}
+type AccountCloseUnitDataV1 struct {
+	Body Ntdmadltx1Body `json:"body,omitempty"`
+	Head Head           `json:"head"`
+}
+
+type Ntdmadltx1Body struct {
+	Ntdmadltx1 []*Ntdmadltx1 `json:"ntdmadltx1,omitempty"`
+	Ntdmadltx2 []*Ntdmadltx2 `json:"ntdmadltx2,omitempty"`
+}
+
 // AccountUnitInfoRequest    获取金额
 type AccountUnitInfoRequest struct {
 	Request   AccountUnitBalanceData `json:"request"`
@@ -154,7 +169,7 @@ type UpdateUnitAccountV1Data struct {
 }
 type UpdateUnitAccountV1Body struct {
 	Ntbusmody  []*Ntbusmody  `json:"ntbusmody,omitempty"`
-	Ntdmamntx1 []*Ntdmamntx1 `json:"ntdmahadx1,omitempty"`
+	Ntdmamntx1 []*Ntdmamntx1 `json:"ntdmamntx1,omitempty"`
 }
 
 type Ntdmamntx1 struct {

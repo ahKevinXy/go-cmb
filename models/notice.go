@@ -1,9 +1,10 @@
 package models
 
 // CommonNotice
-//  @Description:  通用 通知消息
-//  @Author  ahKevinXy
-//  @Date2023-04-11 18:20:50
+//
+//	@Description:  通用 通知消息
+//	@Author  ahKevinXy
+//	@Date2023-04-11 18:20:50
 type CommonNotice struct {
 	Sigtim string `json:"sigtim"` // 签名时间
 	Sigdat string `json:"sigdat"` // 签名内容
@@ -55,16 +56,17 @@ type AccountNotice struct {
 	Msgtyp string `json:"msgtyp,omitempty"`
 }
 
-type SatementNotice struct {
+type StatementNotice struct {
 	Returl string `json:"returl,omitempty"` //文件ur
 	Retcod string `json:"retcod,omitempty"` //处理结果
 	Taskid string `json:"taskid,omitempty"` //打印任务编号
 }
 
 // PayResultNotice
-//  @Description:   支付结果
-//  @Author  ahKevinXy
-//  @Date2023-04-11 18:31:45
+//
+//	@Description:   支付结果
+//	@Author  ahKevinXy
+//	@Date2023-04-11 18:31:45
 type PayResultNotice struct {
 	Msgdat struct {
 		TrsInfo struct {
@@ -98,9 +100,10 @@ type PayResultNotice struct {
 }
 
 // PayrollResultNotice
-//  @Description:  代发通知
-//  @Author  ahKevinXy
-//  @Date2023-04-13 14:21:11
+//
+//	@Description:  代发通知
+//	@Author  ahKevinXy
+//	@Date2023-04-13 14:21:11
 type PayrollResultNotice struct {
 	Msgdat struct {
 		DetailInfo []struct {

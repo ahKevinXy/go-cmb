@@ -6,6 +6,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
 	"io/ioutil"
 	"math/big"
@@ -52,7 +53,9 @@ func CmbSignRequest(
 	if err != nil {
 		return "", cmb_errors.DecodePrivateKeyError
 	}
-
+	if config.Settings.IsDebug {
+		fmt.Println("请求参数:" + reqStr)
+	}
 	sm2uid := uid + "0000000000000000"
 	reqSign, err := SM3WithSM2Sign(priv, reqStr, []byte(sm2uid[0:16]))
 
@@ -126,7 +129,9 @@ func CmbSignRequest(
 	} else {
 		dataStr = string(respBody)
 	}
-
+	if config.Settings.IsDebug {
+		fmt.Println("返回结果:" + dataStr)
+	}
 	return dataStr, nil
 }
 

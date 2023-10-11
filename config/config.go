@@ -17,17 +17,19 @@ package config
 //}
 
 // InitConfig
-//  @Description:  初始化配置文件
-//  @param cmbConfig
-//  @Author  ahKevinXy
-//  @Date2023-04-13 15:04:18
-func InitConfig(sassName, url, prKey, signDefault string) {
+//
+//	@Description:  初始化配置文件
+//	@param cmbConfig
+//	@Author  ahKevinXy
+//	@Date2023-04-13 15:04:18
+func InitConfig(sassName, url, prKey, signDefault string, isDebug bool) {
 	Settings = &Config{
 		CmbPay{
 			CmbSaasName:       sassName,
 			CmbUrl:            url,
 			CmbSaasPrivateKey: prKey,
 			CmbSigdatDefult:   signDefault,
+			IsDebug:           isDebug,
 		},
 	}
 }
@@ -44,5 +46,5 @@ type CmbPay struct {
 	CmbUrl            string `toml:"cmb_url"`              //招商请求地址
 	CmbSaasPrivateKey string `toml:"cmb_saas_private_key"` //私钥
 	CmbSigdatDefult   string `toml:"cmb_sigdat_defult"`    //默认签名
-
+	IsDebug           bool   `toml:"is_debug"`
 }

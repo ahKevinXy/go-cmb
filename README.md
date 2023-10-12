@@ -1,6 +1,7 @@
 # go-cmb
 
 
+
 [![招商银行logo](./docs/static/img/cmb_logo.jpeg)](./docs/static/img/cmb_logo.jpeg)
 
 版本变更日志参见 [`CHANGELOG.md`](CHANGELOG.md)
@@ -12,6 +13,12 @@
 ## 介绍
 
 招商银行银企直联服务
+
+## 分支说明
+
+`v1` 版本基于  **2023年**招商银行之前对接文档开发
+
+`master` 基于**最新**招商银行银企直连官方文档开发
 
 ## 招商银行文档 [官网](https://openbiz.cmbchina.com/developer/UI/business/Index.aspx)
 

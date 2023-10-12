@@ -2,27 +2,28 @@ package account
 
 import (
 	"encoding/json"
-	"github.com/ahKevinXy/go-cmb/cmb_errors"
-	"github.com/ahKevinXy/go-cmb/constants"
-	"github.com/ahKevinXy/go-cmb/help"
-	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/ahKevinXy/go-cmb/v1/cmb_errors"
+	"github.com/ahKevinXy/go-cmb/v1/constants"
+	"github.com/ahKevinXy/go-cmb/v1/help"
+	"github.com/ahKevinXy/go-cmb/v1/models"
 	"strconv"
 	"time"
 )
 
 // GetMainAccountTransInfo
-//  @Description:   获取交易信息
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param bbknbr 开户行
-//  @param accnbr 账户
-//  @param trsDat 交易日期
-//  @param trsseq
-//  @return *models.GetMainAccountTransInfoResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-10 14:01:42
+//
+//	@Description:   获取交易信息
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param bbknbr 开户行
+//	@param accnbr 账户
+//	@param trsDat 交易日期
+//	@param trsseq
+//	@return *models.GetMainAccountTransInfoResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-10 14:01:42
 func GetMainAccountTransInfo(userId, sm4PrivateKey, userPrivateKey,
 	bbknbr,
 	accnbr,
@@ -63,20 +64,21 @@ func GetMainAccountTransInfo(userId, sm4PrivateKey, userPrivateKey,
 }
 
 // QueryAccountTransInfo
-//  @Description:   获取交易信息
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param bbknbr 开户行
-//  @param accnbr 账户
-//  @param bgndat 开始时间
-//  @param enddat 结束时间
-//  @param lowamt 最小金额
-//  @param hghamt 最大金额
-//  @return *models.QueryAccountTransInfoResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-13 15:32:25
+//
+//	@Description:   获取交易信息
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param bbknbr 开户行
+//	@param accnbr 账户
+//	@param bgndat 开始时间
+//	@param enddat 结束时间
+//	@param lowamt 最小金额
+//	@param hghamt 最大金额
+//	@return *models.QueryAccountTransInfoResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-13 15:32:25
 func QueryAccountTransInfo(userId, sm4PrivateKey, userPrivateKey,
 	bbknbr,
 	accnbr,

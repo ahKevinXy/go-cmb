@@ -2,25 +2,26 @@ package payroll_old
 
 import (
 	"encoding/json"
-	"github.com/ahKevinXy/go-cmb/cmb_errors"
-	"github.com/ahKevinXy/go-cmb/constants"
-	"github.com/ahKevinXy/go-cmb/help"
-	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/ahKevinXy/go-cmb/v1/cmb_errors"
+	"github.com/ahKevinXy/go-cmb/v1/constants"
+	"github.com/ahKevinXy/go-cmb/v1/help"
+	"github.com/ahKevinXy/go-cmb/v1/models"
 	"strconv"
 	"time"
 )
 
 // PayMods
-//  @Description:   获取交易模式
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param busCode
-//  @param accnbr
-//  @return *models.QueryPayrollOldTransCodeResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-04-18 09:45:07
+//
+//	@Description:   获取交易模式
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param busCode
+//	@param accnbr
+//	@return *models.QueryPayrollOldTransCodeResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-04-18 09:45:07
 func PayMods(userId, sm4PrivateKey, userPrivateKey, busCode, accnbr string) (*models.QueryPayrollOldTransCodeResponse, error) {
 
 	reqData := new(models.QueryPayrollOldTransCodeRequest)

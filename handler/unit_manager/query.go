@@ -2,24 +2,25 @@ package unit_manager
 
 import (
 	"encoding/json"
-	"github.com/ahKevinXy/go-cmb/cmb_errors"
-	"github.com/ahKevinXy/go-cmb/constants"
-	"github.com/ahKevinXy/go-cmb/help"
-	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/ahKevinXy/go-cmb/v1/cmb_errors"
+	"github.com/ahKevinXy/go-cmb/v1/constants"
+	"github.com/ahKevinXy/go-cmb/v1/help"
+	"github.com/ahKevinXy/go-cmb/v1/models"
 	"strconv"
 	"time"
 )
 
 // QueryUnitAccountDetail
-//  @Description:
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param reqNbr
-//  @return *models.QueryUnitAccountDetailResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-04-13 18:13:23
+//
+//	@Description:
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param reqNbr
+//	@return *models.QueryUnitAccountDetailResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-04-13 18:13:23
 func QueryUnitAccountDetail(
 	userId,
 	sm4PrivateKey, userPrivateKey,
@@ -59,17 +60,18 @@ func QueryUnitAccountDetail(
 }
 
 // QueryUnitAccountByBusNo
-//  @Description:  通过业务单号获取结果信息
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param yurref
-//  @param bgndat
-//  @param enddat
-//  @return *models.QueryUnitTransByBusNoResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-04-13 18:05:07
+//
+//	@Description:  通过业务单号获取结果信息
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param yurref
+//	@param bgndat
+//	@param enddat
+//	@return *models.QueryUnitTransByBusNoResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-04-13 18:05:07
 func QueryUnitAccountByBusNo(
 	userId,
 	sm4PrivateKey, userPrivateKey,

@@ -1,8 +1,6 @@
 package cmb
 
 import (
-	"github.com/ahKevinXy/go-cmb/handler/account"
-	"github.com/ahKevinXy/go-cmb/testdata"
 	"testing"
 )
 

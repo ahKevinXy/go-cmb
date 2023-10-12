@@ -1,11 +1,10 @@
 package cmb
 
 import (
+	"github.com/ahKevinXy/go-cmb/v1/handler/unit_manager"
+	"github.com/ahKevinXy/go-cmb/v1/help"
+	"github.com/ahKevinXy/go-cmb/v1/testdata"
 	"testing"
-
-	"github.com/ahKevinXy/go-cmb/handler/unit_manager"
-	"github.com/ahKevinXy/go-cmb/help"
-	"github.com/ahKevinXy/go-cmb/testdata"
 )
 
 // 添加 记账单元 测试完成

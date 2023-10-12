@@ -2,7 +2,6 @@ package notice
 
 import (
 	"encoding/json"
-	"github.com/ahKevinXy/go-cmb/models"
 )
 
 // Pay

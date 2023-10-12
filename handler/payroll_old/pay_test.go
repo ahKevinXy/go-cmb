@@ -1,7 +1,7 @@
 package payroll_old
 
 import (
-	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/ahKevinXy/go-cmb/v1/models"
 	"reflect"
 	"testing"
 )

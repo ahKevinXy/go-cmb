@@ -7,15 +7,16 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"github.com/ahKevinXy/go-cmb/cmb_errors"
+	"github.com/ahKevinXy/go-cmb/v1/cmb_errors"
+
+	"github.com/ahKevinXy/go-cmb/v1/config"
+	"github.com/ahKevinXy/go-cmb/v1/models"
 	"io"
 	"math/big"
 	"net/http"
 	"net/url"
 	"strings"
 
-	"github.com/ahKevinXy/go-cmb/config"
-	"github.com/ahKevinXy/go-cmb/models"
 	"github.com/tjfoc/gmsm/sm2"
 	"github.com/tjfoc/gmsm/sm4"
 )

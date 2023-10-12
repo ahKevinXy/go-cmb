@@ -1,8 +1,8 @@
 package cmb
 
 import (
-	"github.com/ahKevinXy/go-cmb/config"
-	"github.com/ahKevinXy/go-cmb/testdata"
+	"github.com/ahKevinXy/go-cmb/v1/config"
+	"github.com/ahKevinXy/go-cmb/v1/testdata"
 )
 
 // init

@@ -5,10 +5,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/ahKevinXy/go-cmb/cmb_errors"
-	"github.com/ahKevinXy/go-cmb/constants"
-	"github.com/ahKevinXy/go-cmb/help"
-	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/ahKevinXy/go-cmb/v1/cmb_errors"
+	"github.com/ahKevinXy/go-cmb/v1/constants"
+	"github.com/ahKevinXy/go-cmb/v1/help"
+	"github.com/ahKevinXy/go-cmb/v1/models"
 )
 
 // 记账单元 管理

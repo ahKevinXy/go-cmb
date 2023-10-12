@@ -2,28 +2,30 @@ package payroll
 
 import (
 	"encoding/json"
-	"github.com/ahKevinXy/go-cmb/constants"
-	"github.com/ahKevinXy/go-cmb/help"
-	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/ahKevinXy/go-cmb/v1/constants"
+	"github.com/ahKevinXy/go-cmb/v1/help"
+	"github.com/ahKevinXy/go-cmb/v1/models"
+
 	"strconv"
 	"time"
 )
 
 // QueryRefundList
-//  @Description: 退票查询
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param accNbr
-//  @param trstyp
-//  @param bgndat
-//  @param enddat
-//  @param cntkey
-//  @param reqnbr
-//  @return *models.QueryBatchTransListResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-04-14 15:22:17
+//
+//	@Description: 退票查询
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param accNbr
+//	@param trstyp
+//	@param bgndat
+//	@param enddat
+//	@param cntkey
+//	@param reqnbr
+//	@return *models.QueryBatchTransListResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-04-14 15:22:17
 func QueryRefundList(userId, sm4PrivateKey, userPrivateKey, accNbr, trstyp, bgndat, enddat, cntkey, reqnbr string) (*models.QueryBatchTransListResponse, error) {
 	reqData := new(models.QueryPayrollRefundRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())

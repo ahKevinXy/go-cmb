@@ -2,28 +2,30 @@ package account
 
 import (
 	"encoding/json"
-	"github.com/ahKevinXy/go-cmb/cmb_errors"
-	"github.com/ahKevinXy/go-cmb/constants"
-	"github.com/ahKevinXy/go-cmb/help"
-	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/ahKevinXy/go-cmb/v1/cmb_errors"
+	"github.com/ahKevinXy/go-cmb/v1/constants"
+	"github.com/ahKevinXy/go-cmb/v1/help"
+	"github.com/ahKevinXy/go-cmb/v1/models"
+
 	"strconv"
 	"time"
 )
 
 // QueryAccountPaymentTransInfo
-//  @Description:  企银批量支付批次查询
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param begDat
-//  @param endDat
-//  @param autStr
-//  @param rtnStr
-//  @param
-//  @return *models.MainAccountSinglePayResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-13 16:47:10
+//
+//	@Description:  企银批量支付批次查询
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param begDat
+//	@param endDat
+//	@param autStr
+//	@param rtnStr
+//	@param
+//	@return *models.MainAccountSinglePayResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-13 16:47:10
 func QueryAccountPaymentTransInfo(userId,
 	sm4PrivateKey, userPrivateKey,
 	begDat,
@@ -68,19 +70,20 @@ func QueryAccountPaymentTransInfo(userId,
 }
 
 // QueryAccountPaymentDetail
-//  @Description:   获取交易明细
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param bthNbr
-//  @param autStr
-//  @param rtnStr
-//  @param ctnKey
-//  @param
-//  @return *models.MainAccountSinglePayResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-13 16:51:27
+//
+//	@Description:   获取交易明细
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param bthNbr
+//	@param autStr
+//	@param rtnStr
+//	@param ctnKey
+//	@param
+//	@return *models.MainAccountSinglePayResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-13 16:51:27
 func QueryAccountPaymentDetail(
 	userId,
 	sm4PrivateKey, userPrivateKey,

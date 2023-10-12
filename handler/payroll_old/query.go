@@ -2,28 +2,30 @@ package payroll_old
 
 import (
 	"encoding/json"
-	"github.com/ahKevinXy/go-cmb/constants"
-	"github.com/ahKevinXy/go-cmb/help"
-	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/ahKevinXy/go-cmb/v1/constants"
+	"github.com/ahKevinXy/go-cmb/v1/help"
+	"github.com/ahKevinXy/go-cmb/v1/models"
+
 	"strconv"
 	"time"
 )
 
 // QueryOldPayRollOrder
-//  @Description:   获取代发 概要信息
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param buscod 业务类型
-//  @param busmod 业务模式
-//  @param bgndat 起始时间
-//  @param enddat 结束时间
-//  @param datflg 日期类型 默认 经办  A 经办日期 B  期望日期
-//  @param ctnkey 续传key
-//  @return *models.QueryOldPayRollOrderResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-06-05 17:35:27
+//
+//	@Description:   获取代发 概要信息
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param buscod 业务类型
+//	@param busmod 业务模式
+//	@param bgndat 起始时间
+//	@param enddat 结束时间
+//	@param datflg 日期类型 默认 经办  A 经办日期 B  期望日期
+//	@param ctnkey 续传key
+//	@return *models.QueryOldPayRollOrderResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-06-05 17:35:27
 func QueryOldPayRollOrder(userId, sm4PrivateKey, userPrivateKey, buscod, busmod, bgndat, enddat, datflg, ctnkey string) (*models.QueryOldPayRollOrderResponse, error) {
 	reqData := new(models.QueryOldPayRollOrderRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())

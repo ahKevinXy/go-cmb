@@ -2,24 +2,25 @@ package payroll_old
 
 import (
 	"encoding/json"
-	"github.com/ahKevinXy/go-cmb/cmb_errors"
-	"github.com/ahKevinXy/go-cmb/constants"
-	"github.com/ahKevinXy/go-cmb/help"
-	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/ahKevinXy/go-cmb/v1/cmb_errors"
+	"github.com/ahKevinXy/go-cmb/v1/constants"
+	"github.com/ahKevinXy/go-cmb/v1/help"
+	"github.com/ahKevinXy/go-cmb/v1/models"
 	"strconv"
 	"time"
 )
 
 // QueryPayrollStatementDownloadUrl
-//  @Description:   获取回单地址
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param taskid 查询ID
-//  @return *models.QueryBatchTransListResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date  2023-04-14 17:33:31
+//
+//	@Description:   获取回单地址
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param taskid 查询ID
+//	@return *models.QueryBatchTransListResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-04-14 17:33:31
 func QueryPayrollStatementDownloadUrl(userId, sm4PrivateKey, userPrivateKey, taskid string) (*models.QueryBatchTransListResponse, error) {
 	reqData := new(models.QueryPayrollStatementDownloadUrlRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())

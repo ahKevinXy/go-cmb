@@ -2,30 +2,31 @@ package account
 
 import (
 	"encoding/json"
-	"github.com/ahKevinXy/go-cmb/cmb_errors"
-	"github.com/ahKevinXy/go-cmb/constants"
-	"github.com/ahKevinXy/go-cmb/help"
-	"github.com/ahKevinXy/go-cmb/models"
+	"github.com/ahKevinXy/go-cmb/v1/cmb_errors"
+	"github.com/ahKevinXy/go-cmb/v1/constants"
+	"github.com/ahKevinXy/go-cmb/v1/help"
+	"github.com/ahKevinXy/go-cmb/v1/models"
 	"strconv"
 	"time"
 )
 
 // QueryAccountPaymentRefund
-//  @Description:  跨行退票查询
-//  @param userId
-//  @param sm4PrivateKey
-//  @param userPrivateKey
-//  @param bbkNbr 开户行
-//  @param bgnDat 开始时间
-//  @param endDat 结束时间
-//  @param reqNbr 请求批次
-//  @param ctnKey 续传key
-//  @param rsv50z 保留字
-//  @param
-//  @return *models.QueryAccountPaymentRefundResponse
-//  @return error
-//  @Author  ahKevinXy
-//  @Date 2023-04-13 16:59:34
+//
+//	@Description:  跨行退票查询
+//	@param userId
+//	@param sm4PrivateKey
+//	@param userPrivateKey
+//	@param bbkNbr 开户行
+//	@param bgnDat 开始时间
+//	@param endDat 结束时间
+//	@param reqNbr 请求批次
+//	@param ctnKey 续传key
+//	@param rsv50z 保留字
+//	@param
+//	@return *models.QueryAccountPaymentRefundResponse
+//	@return error
+//	@Author  ahKevinXy
+//	@Date 2023-04-13 16:59:34
 func QueryAccountPaymentRefund(
 	userId,
 	sm4PrivateKey, userPrivateKey,

@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors       = ["ahKevinXy"]
   s.email         = ["ah_kevin_xy@126.com"]
   s.homepage      = "https://ahkevinxy.github.io/go-cmb/"
-  s.summary       = "招商银行银企直联 go sdk"
+  s.summary       = "招商银行银企直联 代发代扣 交易管家 发票云 go sdk "
 
   s.files         = `git ls-files -z`.split("\x0").select do |f|
     f.match(%r{^((_includes|_layouts|_sass|assets)/|(LICENSE|README)((\.(txt|md|markdown)|$)))}i)

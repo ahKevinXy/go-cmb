@@ -43,7 +43,7 @@ go get -u github.com/ahKevinXy/go-cmb
     * `payrool_old` 代发(旧)
     * `unit_manager` 交易管家
 * `help` 工具类函数
-* `models` 实例
+* `models` 请求参数 和 返回参数
 * `pkg` 第三方包
 * `testdata` 本地测试数据
 
@@ -60,6 +60,10 @@ go get -u github.com/ahKevinXy/go-cmb
 
 
 ## 开发调试
+###  常用工具
+[json 格式化工具 ](https://tool.lu/json/)
+[json 转 go  struct ](https://mholt.github.io/json-to-go/)
+[goland 注释工具 Goanno](https://plugins.jetbrains.com/plugin/14988-goanno)
 
 ### 生成 testdata 参数数据
 ```bash
@@ -68,7 +72,6 @@ go get -u github.com/ahKevinXy/go-cmb
  
 # 生成 testdata.go 文件
  cp -rf  testdata.go.template  testdata/testdata.go
- 
 ```
 
 ### 录入本地测试数据
@@ -92,9 +95,31 @@ const (
 	CmbSigdatDefault  = "" // 默认值
 	CmbUrl            = "" // 银企直联地址
 )
+const IsDebug = true // 判断是否是debug 模式 打印相关请求参数
 
 ```
 
+## 接口清单
+
+* 可经办业务模式查询  `DCLISMOD`
+* 账户详细信息查询  `NTQACINF`
+* 查询交易概要信息  `NTAGCINN`
+* 电子回单查询 `DCAGPPDF`
+* 批量查询余额 `NTQADINF`
+* 新增记账子单元 `NTDMAADD`
+* 查询记账子单元当天交易 `NTDMTQRD`
+* 查询记账子单元历史交易 `NTDMTHLS`
+* 查询记账子单元余额 `NTDMABAL`
+* 记账子单元内部转账 `NTDMITRX`
+* 超网代发其他 `NTAGCAPI`
+* 查询交易明细信息 `NTAGDINF`
+* 代发明细对账单处理结果查询请求 `DCTASKID`
+* 查询记账子单元信息 `NTDMALST`
+* 关闭子单元 `NTDMADLT`
+* 设置记账子单元关联付款方信息 `NTDMARLT`
+* 删除记账子单元关联付款方信息 `NTDMARLD`
+* 修改记账子单元关联付款方信息 `NTDMATMN`
+* 查询记账子单元关联付款信息 `NTDMARLQ`
 
 ## 微信交流
 

@@ -16,3 +16,5 @@ const (
 	CmbSigdatDefault  = "" // 默认值
 	CmbUrl            = "" // 银企直联地址
 )
+
+const IsDebug = true

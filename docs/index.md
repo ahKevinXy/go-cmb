@@ -20,7 +20,6 @@
 
 ```bash
 go get -u github.com/ahKevinXy/go-cmb
-
 ```
 
 ## TODO

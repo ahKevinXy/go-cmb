@@ -1,5 +1,10 @@
 # go-cmb
 
+# 说明
+
+ `v1` 版本基于  **2023年**招商银行之前对接文档开发
+
+ `master` 基于**最新**招商银行银企直连官方文档开发
 
 [![招商银行logo](./docs/static/img/cmb_logo.jpeg)](./docs/static/img/cmb_logo.jpeg)
 
@@ -19,7 +24,7 @@
 ## 使用
 
 ```bash
-go get -u github.com/ahKevinXy/go-cmb
+go get -u github.com/ahKevinXy/go-cmb/v1
 ```
 
 ## TODO 

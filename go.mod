@@ -1,4 +1,4 @@
-module github.com/ahKevinXy/go-cmb
+module github.com/ahKevinXy/go-cmb/v1
 
 go 1.17
 

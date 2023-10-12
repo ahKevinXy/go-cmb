@@ -27,7 +27,7 @@ const (
 
 )
 
-//代发代扣 old
+// 代发代扣 old
 const (
 	CmbPayrollOld                        = ""
 	CmbPayrollOldTransCode               = "NTAGTLS2" //获取交易代码
@@ -86,6 +86,8 @@ const (
 	CmbUnitManageModRelationV2   = "NTDMATMN" // 修改记账子单元关联付款方信息
 	CmbUnitManageQueryRelationV2 = "NTDMARLQ" // 查询子单元关联付款方信息
 	CmbUnitManageDelRelationV2   = "NTDMARLD" // 删除记账子单元关联付款方信息
+
+	CmbUnitManageSetWhitePayBankCard = "NTDMAWLS"
 )
 
 // 提醒

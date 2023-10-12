@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/ahKevinXy/go-cmb/cmb_errors"
-	"io/ioutil"
+	"io"
 	"math/big"
 	"net/http"
 	"net/url"
@@ -32,7 +32,11 @@ import (
 //	@Author  ahKevinXy
 //	@Date 2023-04-10 13:41:37
 func CmbSignRequest(
-	reqStr, funCode, uid, userKey, AESKey string) (string, error) {
+	reqStr,
+	funCode,
+	uid,
+	userKey,
+	AESKey string) (string, error) {
 
 	reqStr = GetJson(reqStr)
 	var reqV1 models.ReqV1
@@ -53,9 +57,7 @@ func CmbSignRequest(
 	if err != nil {
 		return "", cmb_errors.DecodePrivateKeyError
 	}
-	if config.Settings.IsDebug {
-		fmt.Println("请求参数:" + reqStr)
-	}
+
 	sm2uid := uid + "0000000000000000"
 	reqSign, err := SM3WithSM2Sign(priv, reqStr, []byte(sm2uid[0:16]))
 
@@ -68,9 +70,9 @@ func CmbSignRequest(
 
 	if len(config.Settings.CmbPay.CmbSaasPrivateKey) > 0 {
 
-		saaskey, _ := base64.StdEncoding.DecodeString(config.Settings.CmbPay.CmbSaasPrivateKey)
+		saasKey, _ := base64.StdEncoding.DecodeString(config.Settings.CmbPay.CmbSaasPrivateKey)
 
-		saasPriv, err := FormatPri([]byte(saaskey))
+		saasPriv, err := FormatPri(saasKey)
 		if err != nil {
 
 			return "", err
@@ -87,7 +89,6 @@ func CmbSignRequest(
 	reqV1Json, err := json.Marshal(reqV1)
 
 	if err != nil {
-
 		return "", err
 	}
 
@@ -107,7 +108,13 @@ func CmbSignRequest(
 	u.Set("FUNCODE", funCode)
 
 	u.Encode()
-
+	if config.Settings.IsDebug {
+		fmt.Println("请求参数:" + "\n" + reqStr)
+		// 用于测试报告打印参数
+		fmt.Println("请求参数带签名:"+"\n", string(reqV1Json))
+		fmt.Println("用户签名--->"+"\n", reqSign)
+		fmt.Println("SaaS平台签名--->"+"\n", reqSignSaas)
+	}
 	resp, err := http.PostForm(config.Settings.CmbPay.CmbUrl, u)
 	if err != nil {
 
@@ -115,7 +122,8 @@ func CmbSignRequest(
 	}
 	defer resp.Body.Close()
 
-	respBody, _ := ioutil.ReadAll(resp.Body)
+	// 读取数据
+	respBody, _ := io.ReadAll(resp.Body)
 	// 返回数据处理
 	var dataStr string
 	if !strings.Contains(string(respBody), "ErrMsg") {
@@ -130,11 +138,22 @@ func CmbSignRequest(
 		dataStr = string(respBody)
 	}
 	if config.Settings.IsDebug {
-		fmt.Println("返回结果:" + dataStr)
+		fmt.Println("返回结果加密结果:" + "\n" + string(respBody))
+		fmt.Println("返回结果:" + "\n" + dataStr)
 	}
 	return dataStr, nil
 }
 
+// sm4Decrypt
+//
+//	@Description:  sm4解密
+//	@param key
+//	@param iv
+//	@param cipherText
+//	@return []byte
+//	@return error
+//	@Author  ahKevinXy
+//	@Date  2023-10-11 16:25:15
 func sm4Decrypt(key, iv, cipherText []byte) ([]byte, error) {
 	block, err := sm4.NewCipher(key)
 	if err != nil {

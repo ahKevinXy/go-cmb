@@ -247,7 +247,18 @@ func QueryUnitAccountSingleBalanceHistory(userId, sm4PrivateKey, userPrivateKey,
 // @return error
 // @Author  colornote
 // @Date  2023-06-27 10:00:00
-func AccountSetWhitePay(userId, sm4PrivateKey, userPrivateKey, accnbr, busmod, bbknbr, dumnbr, rltnam, rltacc, chktyp, rcvtyp, yurref string) (*models.AccountSetWhitePayResponse, error) {
+func AccountSetWhitePay(userId,
+	sm4PrivateKey,
+	userPrivateKey,
+	accnbr,
+	busmod,
+	bbknbr,
+	dumnbr,
+	rltnam,
+	rltacc,
+	chktyp,
+	rcvtyp,
+	yurref string) (*models.AccountSetWhitePayResponse, error) {
 	reqData := new(models.AccountSetWhitePayRequest)
 	reqData.Request.Head.Reqid = time.Now().Format("20060102150405000") + strconv.Itoa(time.Now().Nanosecond())
 	reqData.Request.Head.Funcode = constants.CmbUnitManageAccountSetWhitePay

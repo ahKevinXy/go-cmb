@@ -11,7 +11,7 @@ import (
 // 添加 记账单元 测试完成
 func TestAddUnitAccountV(t *testing.T) {
 
-	account, err := unit_manager.AddUnitAccountV1(testdata.UserId, testdata.AseKey, testdata.UserKey, testdata.Account, "测试添加记账单元0001", "0001000111")
+	account, err := unit_manager.AddUnitAccountV1(testdata.UserId, testdata.AseKey, testdata.UserKey, testdata.Account, "结转账户", "6666666666")
 	if err != nil {
 		t.Errorf("%+v", err)
 		return
@@ -70,8 +70,8 @@ func TestSetUnitAccountRelation(t *testing.T) {
 		"00001",
 		testdata.BankLinkNo,
 		testdata.Account,
-		"0001000111",
-		"Y",
+		"0000000004",
+		"R",
 		"102100099996",
 		help.GenYurref(),
 	)
@@ -87,6 +87,79 @@ func TestGetUnitAccountTransDailyList(t *testing.T) {
 		testdata.UserId,
 		testdata.AseKey,
 		testdata.UserKey,
+		testdata.Account,
+		"",
+		"",
+	)
+	if err != nil {
+		t.Errorf("%+v", err)
+		return
+	}
+	t.Logf("%+v", dailyRes)
+}
+
+func TestAccountSetWhitePay(t *testing.T) {
+	dailyRes, err := unit_manager.AccountSetWhitePay(
+		testdata.UserId,
+		testdata.AseKey,
+		testdata.UserKey,
+		testdata.Account,
+		"0001",
+		"0000000001",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"11111",
+	)
+	if err != nil {
+		t.Errorf("%+v", err)
+		return
+	}
+	t.Logf("%+v", dailyRes)
+}
+
+func TestDelUnitAccountRelation(t *testing.T) {
+	dailyRes, err := unit_manager.DelUnitAccountRelation(
+		testdata.UserId,
+		testdata.AseKey,
+		testdata.UserKey,
+		testdata.BankLinkNo,
+		testdata.Account,
+		"0000000001",
+		"102100099996",
+	)
+	if err != nil {
+		t.Errorf("%+v", err)
+		return
+	}
+	t.Logf("%+v", dailyRes)
+}
+
+func TestUpdateUnitAccountRelation(t *testing.T) {
+	dailyRes, err := unit_manager.UpdateUnitAccountRelation(
+		testdata.UserId,
+		testdata.AseKey,
+		testdata.UserKey,
+		testdata.BankLinkNo,
+		testdata.Account,
+		"0000000001",
+		"Y",
+	)
+	if err != nil {
+		t.Errorf("%+v", err)
+		return
+	}
+	t.Logf("%+v", dailyRes)
+}
+
+func TestQueryUnitAccountRelation(t *testing.T) {
+	dailyRes, err := unit_manager.QueryUnitAccountRelation(
+		testdata.UserId,
+		testdata.AseKey,
+		testdata.UserKey,
+		testdata.BankLinkNo,
 		testdata.Account,
 		"",
 		"",

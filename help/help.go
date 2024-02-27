@@ -10,7 +10,8 @@ import (
 	"github.com/tjfoc/gmsm/sm4"
 )
 
-// GetJson 根据ascii获取jsonStr  利用map的排序方式 实现 ascII排序
+// GetJson
+// 根据ascii获取jsonStr  利用map的排序方式 实现 ascII排序
 func GetJson(reqAccount string) string {
 
 	mp := make(map[string]interface{})
@@ -38,10 +39,16 @@ func Sm4Encrypt(key, iv, plainText []byte) ([]byte, error) {
 // pkcs5填充
 func pkcs5Padding(src []byte, blockSize int) []byte {
 	padding := blockSize - len(src)%blockSize
-	padtext := bytes.Repeat([]byte{byte(padding)}, padding)
-	return append(src, padtext...)
+	padText := bytes.Repeat([]byte{byte(padding)}, padding)
+	return append(src, padText...)
 }
 
+// GenYurref
+//
+//	@Description:  获取业务单号
+//	@return string
+//	@Author  ahKevinXy
+//	@Date  2024-02-27 11:34:45
 func GenYurref() string {
 	b := make([]byte, 8)
 	rand.Read(b)

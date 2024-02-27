@@ -46,5 +46,5 @@ type CmbPay struct {
 	CmbUrl            string `toml:"cmb_url"`              //招商请求地址
 	CmbSaasPrivateKey string `toml:"cmb_saas_private_key"` //私钥
 	CmbSigdatDefult   string `toml:"cmb_sigdat_defult"`    //默认签名
-	IsDebug           bool   `toml:"is_debug"`
+	IsDebug           bool   `toml:"is_debug"`             // 是否开启debug 模式
 }

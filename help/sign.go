@@ -126,7 +126,8 @@ func CmbSignRequest(
 	respBody, _ := io.ReadAll(resp.Body)
 	// 返回数据处理
 	var dataStr string
-	if !strings.Contains(string(respBody), "ErrMsg") {
+
+	if !strings.Contains(string(respBody), "ErrMsg") && !strings.Contains(string(respBody), "CDCServer") {
 		respBody64, err := base64.StdEncoding.DecodeString(string(respBody))
 		dataByte, err := sm4Decrypt([]byte(AESKey), []byte(userId), respBody64)
 		if err != nil {

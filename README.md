@@ -132,7 +132,45 @@ const IsDebug = true // 判断是否是debug 模式 打印相关请求参数
 * 修改记账子单元关联付款方信息 `NTDMATMN`
 * 查询记账子单元关联付款信息 `NTDMARLQ`
 
-## 微信交流
+### 账务查询（官方文档 2026-07-02）
 
+| 接口 | Funcode | Handler | Request Body |
+| --- | --- | --- | --- |
+| 可经办业务模式查询 | `DCLISMOD` | `account.AccountNewDCLISMOD` | `models.AccountNewDCLISMODBody` |
+| 查询可经办的账户列表 | `DCLISACC` | `account.AccountNewDCLISACC` | `models.AccountNewDCLISACCBody` |
+| 结算账户详细信息查询 | `NTQACINF` | `account.AccountNewNTQACINF` | `models.AccountNewNTQACINFBody` |
+| 查询分行号信息 | `NTACCBBK` | `account.AccountNewNTACCBBK` | `models.AccountNewNTACCBBKBody` |
+| 非结算账户详细信息查询 | `QryNonSettleAccounts` | `account.AccountNewQryNonSettleAccounts` | `models.AccountNewQryNonSettleAccountsBody` |
+| 综合账户信息查询 | `TotalAccountDirect` | `account.AccountNewTotalAccountDirect` | `models.AccountNewTotalAccountDirectBody` |
+| 查询账户历史余额 | `NTQABINF` | `account.AccountNewNTQABINF` | `models.AccountNewNTQABINFBody` |
+| 历史冻结余额等余额信息查询 | `NTQRYHSB` | `account.AccountNewNTQRYHSB` | `models.AccountNewNTQRYHSBBody` |
+| 批量查询余额 | `NTQADINF` | `account.AccountNewNTQADINF` | `models.AccountNewNTQADINFBody` |
+| 账户交易信息查询 | `trsQryByBreakPoint` | `account.AccountNewTrsQryByBreakPoint` | `models.AccountNewTrsQryByBreakPointBody` |
+| 非结算户交易流水导出申请 | `NonSettleTranOpr` | `account.AccountNewNonSettleTranOpr` | `models.AccountNewNonSettleTranOprBody` |
+| 查询关联非结算户交易流水 | `NonSettleTranQry` | `account.AccountNewNonSettleTranQry` | `models.AccountNewNonSettleTranQryBody` |
+| PDF文件对账单获取 | `DCTRSPDF` | `account.AccountNewDCTRSPDF` | `models.AccountNewDCTRSPDFBody` |
+| OFD文件对账单获取 | `issueBillOfd` | `account.AccountNewIssueBillOfd` | `models.AccountNewIssueBillOfdBody` |
+| OFD文件对账单获取结果查询 | `queryBillOfd` | `account.AccountNewQueryBillOfd` | `models.AccountNewQueryBillOfdBody` |
+| 单笔回单查询 | `DCSIGREC` | `account.AccountNewDCSIGREC` | `models.AccountNewDCSIGRECBody` |
+| 电子回单异步查询 | `ASYCALHD` | `account.AccountNewASYCALHD` | `models.AccountNewASYCALHDBody` |
+| 异步打印结果查询 | `DCTASKID` | `account.AccountNewDCTASKID` | `models.AccountNewDCTASKIDBody` |
 
-[![wx](https://img.opencodes.top/blog/cmb/wx.png "wx")](https://img.opencodes.top/blog/cmb/wx.png)
+### 代发代扣（官方文档 2026-07-02）
+
+| 接口 | Funcode | Handler | Request Body |
+| --- | --- | --- | --- |
+| 卡BIN匹配识别标准银联卡 | `CdcMatchCardBin` | `payroll.PayrollNewCdcMatchCardBin` | `models.PayrollNewCdcMatchCardBinBody` |
+| 代发经办 | `BB6BTHHL` | `payroll.PayrollNewBB6BTHHL` | `models.PayrollNewBB6BTHHLBody` |
+| 批次与明细查询 | `BB6BPDQY` | `payroll.PayrollNewBB6BPDQY` | `models.PayrollNewBB6BPDQYBody` |
+| 代发代扣综合查询 | `BB6INTQY` | `payroll.PayrollNewBB6INTQY` | `models.PayrollNewBB6INTQYBody` |
+| 代发批次查询 | `BB6BTHQY` | `payroll.PayrollNewBB6BTHQY` | `models.PayrollNewBB6BTHQYBody` |
+| 代发明细查询 | `BB6DTLQY` | `payroll.PayrollNewBB6DTLQY` | `models.PayrollNewBB6DTLQYBody` |
+| 代发退票查询 | `BB6RFDQY` | `payroll.PayrollNewBB6RFDQY` | `models.PayrollNewBB6RFDQYBody` |
+| 代发类型查询 | `BB6AGTQY` | `payroll.PayrollNewBB6AGTQY` | `models.PayrollNewBB6AGTQYBody` |
+| 代扣经办 | `BB6ACLAK` | `payroll.PayrollNewBB6ACLAK` | `models.PayrollNewBB6ACLAKBody` |
+| 代扣批次查询 | `BB6CDCQY` | `payroll.PayrollNewBB6CDCQY` | `models.PayrollNewBB6CDCQYBody` |
+| 代扣明细查询 | `BB6ACLIF` | `payroll.PayrollNewBB6ACLIF` | `models.PayrollNewBB6ACLIFBody` |
+| 代扣类型查询 | `BB6TRSQY` | `payroll.PayrollNewBB6TRSQY` | `models.PayrollNewBB6TRSQYBody` |
+| 代发明细对账单查询请求 | `DCAGPPDF` | `payroll.PayrollNewDCAGPPDF` | `models.PayrollNewDCAGPPDFBody` |
+| 代发明细对账单处理结果查询请求 | `DCTASKID` | `payroll.PayrollNewDCTASKID` | `models.PayrollNewDCTASKIDBody` |
+
